@@ -40,6 +40,27 @@ Ce fichier permet de :
 ---
 
 ### Date
+2026-02-22
+
+### Objectif de la session
+Mettre en place le pipeline d’auto-déploiement via Vercel surveillant le repo GitHub.
+
+### Actions réalisées
+- Configuration du projet sur Vercel
+- Liaison du repo GitHub `eloge-demolition`
+- Activation du déploiement automatique sur push vers `main`
+- Vérification du déploiement en production
+- Validation du workflow commit/push via interface Codex
+
+### Résultat
+- Succès
+- Pipeline GitHub → Vercel opérationnel
+- Déploiement automatique confirmé
+
+### Prochain micro-objectif
+- Implémenter un premier audit déterministe Phase 1 (vérification des citations exact match)
+
+### Date
 2026-02-09
 
 ### Objectif de la session
