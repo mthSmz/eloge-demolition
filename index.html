@@ -331,17 +331,17 @@
       <h1>Patterns anti-hallucination utilisés dans Éloge &amp; Démolition</h1>
 
       <p class="lead">
-        Éloge &amp; Démolition n’est pas seulement un générateur de critiques.<br />
-        C’est un pipeline LLM minimaliste conçu pour réduire les hallucinations par architecture, pas par confiance.
+        Éloge &amp; Démolition est un générateur de critiques.<br />
+        C’est aussi un pipeline LLM minimaliste conçu pour réduire les hallucinations via l'architecture, et non par confiance.
       </p>
       <p class="lead" style="margin-top:10px;">
-        La Phase 1 repose sur un ensemble de patterns reconnus dans la communauté IA.
+        La Phase 1 repose sur un ensemble de patterns existant.
       </p>
     </header>
 
     <section class="panel" aria-label="Liste des patterns">
       <div class="panel-top">
-        <h2>Patterns (survol = déplier)</h2>
+        <h2>Patterns</h2>
         <p class="hint"><span class="sr-only">Astuce :</span> Survole un item (ou clique sur mobile). <kbd>Esc</kbd> pour tout refermer.</p>
       </div>
 
@@ -464,7 +464,7 @@
           </div>
           <div class="details" role="region" aria-label="Détails — Validation déterministe post-génération">
             <p><strong>Principe :</strong> un système non-LLM vérifie la sortie du modèle.</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> exact string match des citations, présence des entités nommées, validation du JSON.</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> audit déterministe incluant correspondance textuelle stricte des citations, validation référentielle des entités nommées, et conformité structurelle du JSON généré.</p>
             <p class="muted"><strong>Conséquence :</strong> si une règle échoue → rejet complet.</p>
             <div class="divider"></div>
             <p class="muted"><strong>Pattern utilisé dans :</strong></p>
