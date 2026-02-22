@@ -1,1 +1,618 @@
-<!doctype html> <html lang="fr"> <head> <meta charset="utf-8"> <title>Éloge & Démolition</title> </head> <body> <h1>Éloge & Démolition</h1> <h2>Pipeline OK</h2> <p>Publié via Codex → PR → Vercel.</p> </body> </html> 
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Éloge & Démolition — Patterns anti-hallucination</title>
+  <style>
+    :root{
+      --bg: #07070a;
+      --card: rgba(255,255,255,0.06);
+      --card2: rgba(255,255,255,0.04);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.68);
+      --muted2: rgba(255,255,255,0.58);
+      --border: rgba(255,255,255,0.10);
+      --border2: rgba(255,255,255,0.14);
+      --shadow: 0 20px 60px rgba(0,0,0,0.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,0.45);
+      --radius: 18px;
+      --radius2: 14px;
+      --pad: 22px;
+      --pad2: 16px;
+      --max: 980px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --dur: 220ms;
+
+      /* Accent subtle (can be changed) */
+      --accent: rgba(160,130,255,0.95);
+      --accent2: rgba(120,245,255,0.9);
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height: 100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(160,130,255,0.18), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(120,245,255,0.12), transparent 55%),
+        radial-gradient(700px 500px at 70% 85%, rgba(255,255,255,0.06), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      letter-spacing: 0.1px;
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 52px 18px 80px;
+    }
+
+    header{
+      margin-bottom: 26px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      border-radius: 999px;
+      box-shadow: var(--shadow2);
+      font-size: 12px;
+      color: var(--muted);
+      user-select: none;
+    }
+    .dot{
+      width: 10px; height:10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(160,130,255,0.35);
+    }
+
+    h1{
+      margin: 16px 0 10px;
+      font-size: clamp(28px, 4.1vw, 44px);
+      line-height: 1.06;
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    .panel{
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel-top{
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 12px;
+      background: rgba(0,0,0,0.18);
+    }
+    .panel-top h2{
+      margin: 0;
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: 0.2px;
+      color: rgba(255,255,255,0.88);
+    }
+    .hint{
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted2);
+      display:flex;
+      gap:8px;
+      align-items:center;
+      user-select:none;
+      text-align:right;
+    }
+    kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      padding: 3px 7px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.80);
+    }
+
+    ul.patterns{
+      list-style: none;
+      margin: 0;
+      padding: 8px;
+    }
+
+    .item{
+      margin: 10px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+      transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle glow on hover */
+    .item::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(450px 180px at 30% 0%, rgba(160,130,255,0.16), transparent 55%),
+                  radial-gradient(350px 160px at 90% 0%, rgba(120,245,255,0.12), transparent 58%);
+      opacity: 0;
+      transition: opacity var(--dur) var(--ease);
+      pointer-events:none;
+    }
+
+    .item:hover{
+      border-color: var(--border2);
+      background: rgba(255,255,255,0.03);
+      transform: translateY(-1px);
+    }
+    .item:hover::before{ opacity: 1; }
+
+    .row{
+      display:flex;
+      align-items:flex-start;
+      gap: 12px;
+      padding: 14px 14px 14px 14px;
+    }
+
+    .num{
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,0.82);
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .title-area{
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .title{
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.1px;
+      line-height: 1.25;
+      display:flex;
+      gap: 10px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .canon{
+      font-weight: 600;
+      font-size: 12px;
+      color: var(--muted2);
+      letter-spacing: 0.2px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .chev{
+      flex: 0 0 auto;
+      margin-left: auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,0.72);
+      transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+      user-select:none;
+    }
+
+    .item:hover .chev{
+      border-color: var(--border2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .details{
+      display: none; /* collapsed by default */
+      padding: 0 16px 16px 54px;
+      color: rgba(255,255,255,0.84);
+      line-height: 1.55;
+      font-size: 14px;
+      position: relative;
+      z-index: 1; /* above glow */
+    }
+
+    .details p{
+      margin: 10px 0;
+      color: rgba(255,255,255,0.84);
+    }
+    .details strong{
+      color: rgba(255,255,255,0.90);
+    }
+    .details .muted{
+      color: var(--muted);
+    }
+
+    .bullets{
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,0.80);
+    }
+    .bullets li{ margin: 4px 0; }
+
+    .divider{
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0 0 0;
+    }
+
+    /* expanded state */
+    .item.expanded .details{
+      display: block;
+      animation: reveal var(--dur) var(--ease) both;
+    }
+    .item.expanded .chev{
+      transform: rotate(180deg);
+    }
+
+    @keyframes reveal{
+      from{ opacity: 0; transform: translateY(-4px); }
+      to{ opacity: 1; transform: translateY(0); }
+    }
+
+    footer{
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 12px;
+      line-height: 1.55;
+      padding: 0 6px;
+    }
+
+    .note{
+      margin-top: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge" aria-label="Statut">
+        <span class="dot" aria-hidden="true"></span>
+        Phase 1 — Anti-hallucination par architecture
+      </div>
+
+      <h1>Patterns anti-hallucination utilisés dans Éloge &amp; Démolition</h1>
+
+      <p class="lead">
+        Éloge &amp; Démolition n’est pas seulement un générateur de critiques.<br />
+        C’est un pipeline LLM minimaliste conçu pour réduire les hallucinations par architecture, pas par confiance.
+      </p>
+      <p class="lead" style="margin-top:10px;">
+        La Phase 1 repose sur un ensemble de patterns reconnus dans la communauté IA.
+      </p>
+    </header>
+
+    <section class="panel" aria-label="Liste des patterns">
+      <div class="panel-top">
+        <h2>Patterns (survol = déplier)</h2>
+        <p class="hint"><span class="sr-only">Astuce :</span> Survole un item (ou clique sur mobile). <kbd>Esc</kbd> pour tout refermer.</p>
+      </div>
+
+      <ul class="patterns" id="patterns">
+        <!-- 1 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">1</div>
+            <div class="title-area">
+              <p class="title">
+                Hypothèse du monde clos
+                <span class="canon">Nom canonique : Closed-World Assumption (CWA)</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Hypothèse du monde clos">
+            <p><strong>Principe :</strong> le modèle ne peut raisonner qu’à partir des données explicitement fournies. Aucune source externe n’est autorisée.</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> le texte est fourni intégralement en entrée, et toute affirmation doit provenir exclusivement de ce texte.</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>Database systems</li>
+              <li>Knowledge representation</li>
+              <li>Logic programming</li>
+              <li>Rule-based expert systems</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 2 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">2</div>
+            <div class="title-area">
+              <p class="title">
+                Génération ancrée sur preuves
+                <span class="canon">Nom canonique : Grounded Generation / Evidence-Based Generation</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Génération ancrée sur preuves">
+            <p><strong>Principe :</strong> chaque affirmation doit être reliée explicitement à une preuve textuelle.</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> citations exactes (sous-chaînes du texte) + interprétations explicitement fondées sur une ou plusieurs citations.</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>QA systems</li>
+              <li>RAG pipelines</li>
+              <li>Fact-checking LLM</li>
+              <li>Retrieval-based architectures</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 3 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">3</div>
+            <div class="title-area">
+              <p class="title">
+                Extraction avant raisonnement
+                <span class="canon">Nom canonique : Extract-Then-Reason</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Extraction avant raisonnement">
+            <p><strong>Principe :</strong> séparer l’extraction factuelle du raisonnement interprétatif.</p>
+            <p class="muted"><strong>Illustration :</strong> (1) extraction structurée d’observations + citations exactes, puis (2) interprétation uniquement à partir de ces éléments extraits.</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>IE (Information Extraction)</li>
+              <li>Multi-step reasoning pipelines</li>
+              <li>Structured reasoning systems</li>
+              <li>Explainable AI frameworks</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 4 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">4</div>
+            <div class="title-area">
+              <p class="title">
+                Génération contrainte par schéma
+                <span class="canon">Nom canonique : Schema-Constrained Generation / Structured Output Enforcement</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Génération contrainte par schéma">
+            <p><strong>Principe :</strong> forcer la sortie du modèle à respecter une structure formelle validable (JSON strict).</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> la génération intermédiaire doit suivre un schéma défini ; sinon elle est rejetée (pas de “best effort”).</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>Production LLM systems</li>
+              <li>API-driven LLM architectures</li>
+              <li>Tool-augmented generation</li>
+              <li>Function calling frameworks</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 5 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">5</div>
+            <div class="title-area">
+              <p class="title">
+                Validation déterministe post-génération
+                <span class="canon">Nom canonique : Post-Generation Verification / Deterministic Validation Layer</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Validation déterministe post-génération">
+            <p><strong>Principe :</strong> un système non-LLM vérifie la sortie du modèle.</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> exact string match des citations, présence des entités nommées, validation du JSON.</p>
+            <p class="muted"><strong>Conséquence :</strong> si une règle échoue → rejet complet.</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>Safety-critical AI systems</li>
+              <li>Compliance architectures</li>
+              <li>Hybrid symbolic-LLM systems</li>
+              <li>Verification pipelines</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 6 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">6</div>
+            <div class="title-area">
+              <p class="title">
+                Rejet strict en cas d’échec
+                <span class="canon">Nom canonique : Fail Fast / Hard Rejection Policy</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Rejet strict en cas d’échec">
+            <p><strong>Principe :</strong> aucune correction automatique, aucune “auto-réparation”. Si ça rate → ça rate.</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> une citation invalide ou un schéma JSON non conforme entraîne un rejet immédiat.</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>Defensive programming</li>
+              <li>Reliable distributed systems</li>
+              <li>Safety-first ML architectures</li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- 7 -->
+        <li class="item" data-expand="hover">
+          <div class="row">
+            <div class="num">7</div>
+            <div class="title-area">
+              <p class="title">
+                Séparation Production / Validation
+                <span class="canon">Nom canonique : Separation of Concerns / Two-Stage Generation-Verification Architecture</span>
+              </p>
+            </div>
+            <div class="chev" aria-hidden="true">⌄</div>
+          </div>
+          <div class="details" role="region" aria-label="Détails — Séparation Production / Validation">
+            <p><strong>Principe :</strong> la génération et la validation sont deux systèmes distincts.</p>
+            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> le modèle peut produire ; seul l’audit décide si le contenu est publiable.</p>
+            <div class="divider"></div>
+            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
+            <ul class="bullets">
+              <li>Secure pipeline design</li>
+              <li>Formal verification workflows</li>
+              <li>Robust LLM deployment architectures</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <div class="note">
+        <strong>Positionnement</strong><br />
+        L’objectif n’est pas d’empêcher toute erreur par magie, mais de réduire structurellement l’espace d’hallucination :
+        monde clos, preuves obligatoires, extraction structurée, validation déterministe, rejet strict. La fiabilité ne repose
+        pas sur la confiance dans le modèle, mais sur la contrainte architecturale.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const list = document.getElementById("patterns");
+      if(!list) return;
+
+      const items = Array.from(list.querySelectorAll(".item"));
+
+      function collapseAll(){
+        items.forEach(it => it.classList.remove("expanded"));
+      }
+
+      function expand(item){
+        // Optional: only one open at a time
+        collapseAll();
+        item.classList.add("expanded");
+      }
+
+      function isTouchDevice(){
+        return window.matchMedia("(pointer: coarse)").matches;
+      }
+
+      const touch = isTouchDevice();
+
+      items.forEach(item => {
+        // Desktop: expand on hover, collapse when leaving item
+        item.addEventListener("mouseenter", () => {
+          if(touch) return;
+          expand(item);
+        });
+
+        item.addEventListener("mouseleave", () => {
+          if(touch) return;
+          item.classList.remove("expanded");
+        });
+
+        // Mobile / touch: toggle on click
+        item.addEventListener("click", (e) => {
+          if(!touch) return;
+          // Prevent weird selections
+          e.preventDefault();
+          const isOpen = item.classList.contains("expanded");
+          collapseAll();
+          if(!isOpen) item.classList.add("expanded");
+        });
+
+        // Make it keyboard friendly for desktop too:
+        item.tabIndex = 0;
+        item.setAttribute("role", "button");
+        item.setAttribute("aria-expanded", "false");
+
+        const syncAria = () => {
+          item.setAttribute("aria-expanded", item.classList.contains("expanded") ? "true" : "false");
+        };
+
+        item.addEventListener("mouseenter", syncAria);
+        item.addEventListener("mouseleave", syncAria);
+        item.addEventListener("click", syncAria);
+        item.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            const isOpen = item.classList.contains("expanded");
+            collapseAll();
+            if(!isOpen) item.classList.add("expanded");
+            syncAria();
+          }
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if(e.key === "Escape"){
+          collapseAll();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
