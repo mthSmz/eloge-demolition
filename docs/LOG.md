@@ -40,6 +40,27 @@ Ce fichier permet de :
 ---
 
 ### Date
+2026-02-24
+
+### Objectif de la session
+Implémenter la v0 minimale de l’audit déterministe (structure JSON + exact match des citations).
+
+### Actions réalisées
+- Création du script `engine/audit.py` avec CLI `--text` et `--json`
+- Ajout des validations de structure minimale (`observations`, `interpretations`, champs requis)
+- Ajout de la vérification des citations exactes dans `observations[].citations` et `interpretations[].based_on`
+- Ajout de sorties stables `PASS`/`FAIL`, erreurs une par ligne, et codes de sortie (0/1/2)
+- Création des fixtures `engine/fixtures/text.txt` et `engine/fixtures/output.json` compatibles PASS
+
+### Résultat
+- Succès
+- Audit déterministe exécutable sans dépendance externe et fixtures de démonstration valides
+
+### Prochain micro-objectif
+- Ajouter un second fixture de test FAIL pour couvrir les erreurs de structure et de citations
+
+---
+### Date
 2026-02-22
 
 ### Objectif de la session
