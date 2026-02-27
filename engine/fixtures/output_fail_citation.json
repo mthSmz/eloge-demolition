@@ -1,0 +1,27 @@
+{
+  "observations": [
+    {
+      "statement": "La matinée commence dans le calme.",
+      "citations": [
+        "Xe matin, la place du village est restée silencieuse",
+        "Une pluie fine a commencé vers huit heures."
+      ]
+    },
+    {
+      "statement": "L'activité commerciale reprend progressivement.",
+      "citations": [
+        "Le boulanger a ouvert sa boutique en retard.",
+        "Trois clients attendaient déjà sous l'auvent."
+      ]
+    }
+  ],
+  "interpretations": [
+    {
+      "claim": "Le temps influence directement le rythme de la rue.",
+      "based_on": [
+        "Une pluie fine a commencé vers huit heures.",
+        "À midi, le soleil est revenu et la rue s'est animée."
+      ]
+    }
+  ]
+}

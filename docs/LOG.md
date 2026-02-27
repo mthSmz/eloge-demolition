@@ -101,3 +101,21 @@ Initialiser le dépôt GitHub et figer le cadre Phase 1.
 
 ### Prochain micro-objectif
 - Implémenter un premier audit déterministe Phase 1 sur un texte test
+---
+### Date
+2026-02-27
+
+### Objectif de la session
+Ajouter deux fixtures FAIL déterministes sans modifier l’audit.
+
+### Actions réalisées
+- Ajout de `engine/fixtures/output_fail_structure.json` en retirant la clé racine `interpretations`
+- Ajout de `engine/fixtures/output_fail_citation.json` en modifiant 1 caractère de `observations[0].citations[0]`
+- Vérification de l’exécution de `engine/audit.py` sur les nouvelles fixtures (erreurs attendues)
+
+### Résultat
+- Succès
+- Deux fixtures FAIL déterministes ajoutées et comportement attendu confirmé
+
+### Prochain micro-objectif
+- Ajouter des fixtures couvrant les erreurs de type (`*_NOT_LIST`, `*_NOT_STRING`)
