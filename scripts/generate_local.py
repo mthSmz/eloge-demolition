@@ -3,39 +3,45 @@ import json
 with open("input.json", encoding="utf-8") as f:
     data = json.load(f)
 
-title = data.get("title", "").strip()
-author = data.get("author", "").strip()
-summary = data.get("summary", "").strip()
+
+def clean(value, fallback):
+    text = str(value or "").strip()
+    return text or fallback
+
+
+title = clean(data.get("title"), "Titre inconnu")
+author = clean(data.get("author"), "Auteur inconnu")
+summary = clean(data.get("summary"), "Résumé non disponible")
 
 persona_templates = {
     "Pierre Castor": (
         "{title} de {author} ouvre un espace de ferveur où l’aventure devient pensée. "
-        "À partir de {summary}, le récit élève chaque épreuve en méditation sur la dignité humaine, "
-        "et laisse une impression de grandeur calme qui persiste bien après la dernière page."
+        "À partir de {summary}, le récit élève chaque épreuve en méditation sur la dignité humaine."
     ),
     "Vestale du Style": (
-        "Dans {title}, {author} cherche une intensité d’écriture continue. "
-        "Le souffle né de {summary} séduit, mais expose aussi le texte au risque d’emphase."
+        "Dans {title}, {author} poursuit un geste d’écriture ambitieux. "
+        "Le souffle issu de {summary} séduit, tout en frôlant parfois l’emphase."
     ),
     "Ingénieur Narratif": (
-        "{title} par {author} organise son intrigue autour d’un enchaînement d’épreuves. "
-        "Le matériau annoncé — {summary} — soutient une mécanique lisible et efficace."
+        "{title} signé {author} organise sa progression en blocs narratifs lisibles. "
+        "L’axe formulé par {summary} soutient une mécanique cohérente."
     ),
     "Cynique Mondain": (
-        "{title} de {author} affiche une ambition noble, parfois trop consciente d’elle-même. "
-        "Même porté par {summary}, le roman laisse filtrer une ironie involontaire."
+        "Avec {title}, {author} affiche une noblesse de ton assumée. "
+        "Même ancré dans {summary}, le récit laisse filtrer une ironie discrète."
     ),
     "Lecteur Populaire": (
-        "Avec {title}, {author} propose une aventure directe et prenante. "
-        "La promesse de {summary} touche juste et donne envie de tourner les pages sans pause."
+        "{title} de {author} propose une aventure directe et entraînante. "
+        "Porté par {summary}, le livre donne envie de poursuivre sans pause."
     ),
 }
 
-text = persona_templates["Pierre Castor"].format(
-    title=title,
-    author=author,
-    summary=summary,
-)
+rendered_critiques = {
+    persona: template.format(title=title, author=author, summary=summary)
+    for persona, template in persona_templates.items()
+}
+
+text = rendered_critiques["Pierre Castor"]
 
 critique = {
     "book": {
