@@ -314,6 +314,107 @@
       border:0;
     }
 
+
+    .tribunal-wrap{
+      margin-top: 28px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .tribunal-wrap h2{
+      margin: 0 0 10px 0;
+      font-size: 22px;
+    }
+
+    .book-meta{
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .tribunal-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .critic-card{
+      background: rgba(0,0,0,0.30);
+      border: 1px solid var(--border);
+      border-radius: var(--radius2);
+      padding: 14px;
+      transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+
+    .critic-card:hover{
+      transform: scale(1.02);
+      border-color: var(--border2);
+    }
+
+    .critic-card h3{
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+
+    .role{
+      display: inline-block;
+      margin: 0 0 10px 0;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid currentColor;
+    }
+
+    .role.eloge{ color: #71df8b; }
+    .role.demolition{ color: #ff7f7f; }
+    .role.analyse{ color: #78b7ff; }
+
+    .critique{
+      margin: 0;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    .verdict{
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      color: rgba(255,255,255,0.92);
+      font-weight: 650;
+    }
+
+    .method-box{
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+
+    .method-box summary{
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 20px;
+      font-weight: 650;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .method-box summary::-webkit-details-marker{ display:none; }
+
+    @media (max-width: 980px){
+      .tribunal-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px){
+      .tribunal-grid{ grid-template-columns: 1fr; }
+    }
+
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; animation:none !important; }
     }
@@ -337,6 +438,9 @@
         La Phase 1 repose sur un ensemble de patterns existant.
       </p>
     </header>
+
+    <details class="method-box">
+      <summary>Méthode de génération</summary>
 
     <section class="panel" aria-label="Liste des patterns">
       <div class="panel-top">
@@ -536,6 +640,14 @@
         pas sur la confiance dans le modèle, mais sur la contrainte architecturale.
       </div>
     </footer>
+
+    </details>
+
+
+    <section id="critiques"></section>
+
+    <section id="tribunal"></section>
+
   </div>
 
   <script>
@@ -613,5 +725,87 @@
       });
     })();
   </script>
+
+  <script>
+    async function loadCritique() {
+      let res = await fetch("/data/critics/generated.json");
+
+      if (!res.ok) {
+        res = await fetch("/data/critics/example.json");
+      }
+
+      return res.json();
+    }
+
+    loadCritique()
+      .then(data => {
+        const book = data.book || {};
+        const critiques = Array.isArray(data.critiques) ? data.critiques : [];
+
+        let eloges = 0;
+        let demolitions = 0;
+        let analyses = 0;
+
+        critiques.forEach(c => {
+          if (c.type === "Éloge") eloges += 1;
+          if (c.type === "Démolition") demolitions += 1;
+          if (c.type === "Analyse") analyses += 1;
+        });
+
+        const intro = critiques[0];
+
+        const titleNode = document.querySelector("header h1");
+        if (titleNode) titleNode.textContent = book.title || "Livre";
+
+        const leadNodes = document.querySelectorAll("header .lead");
+        if (leadNodes[0]) leadNodes[0].innerHTML = `<strong>${book.author || "Auteur inconnu"}</strong>`;
+        if (leadNodes[1]) {
+          leadNodes[1].textContent = intro
+            ? `Critique d’ouverture (${intro.persona}) : ${intro.text}`
+            : "Critique indisponible.";
+        }
+
+        const critiquesContainer = document.getElementById("critiques");
+        if (critiquesContainer) {
+          critiquesContainer.innerHTML = intro ? `
+            <section class="tribunal-wrap">
+              <h2>Critique d’ouverture</h2>
+              <p class="book-meta"><strong>${intro.persona}</strong> — ${intro.type}</p>
+              <p class="critique">${intro.text}</p>
+            </section>
+          ` : "";
+        }
+
+        const tribunalContainer = document.getElementById("tribunal");
+        if (!tribunalContainer) return;
+
+        let cards = "";
+        critiques.forEach(c => {
+          const roleClass = c.type === "Éloge" ? "eloge" : c.type === "Démolition" ? "demolition" : "analyse";
+          cards += `
+            <div class="critic-card">
+              <h3>${c.persona}</h3>
+              <p class="role ${roleClass}">${c.type}</p>
+              <p class="critique">${c.text}</p>
+            </div>
+          `;
+        });
+
+        tribunalContainer.innerHTML = `
+          <section class="tribunal-wrap">
+            <h2>Tribunal critique</h2>
+            <div class="tribunal-grid">${cards}</div>
+            <p class="verdict">Verdict du tribunal : Éloge: ${eloges} · Démolition: ${demolitions} · Analyse: ${analyses}</p>
+          </section>
+        `;
+      })
+      .catch(() => {
+        const critiquesContainer = document.getElementById("critiques");
+        const tribunalContainer = document.getElementById("tribunal");
+        if (critiquesContainer) critiquesContainer.innerHTML = "<p>Contenu critique indisponible.</p>";
+        if (tribunalContainer) tribunalContainer.innerHTML = "";
+      });
+  </script>
+
 </body>
 </html>

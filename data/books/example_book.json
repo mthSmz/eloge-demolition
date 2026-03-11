@@ -1,0 +1,33 @@
+{
+  "title": "Les Mangeurs d'étoiles",
+  "author": "Romain Gary",
+  "year": 1966,
+  "summary": "Adventure novel set in desert environments exploring human resilience.",
+  "critiques": [
+    {
+      "persona": "Pierre Castor",
+      "role": "Éloge",
+      "text": "Gary transforme ici l’aventure en métaphysique."
+    },
+    {
+      "persona": "Vestale du Style",
+      "role": "Démolition",
+      "text": "Une emphase stylistique qui frôle parfois la grandiloquence."
+    },
+    {
+      "persona": "Ingénieur Narratif",
+      "role": "Analyse",
+      "text": "Le roman repose sur une structure d’épreuve classique."
+    },
+    {
+      "persona": "Cynique Mondain",
+      "role": "Démolition",
+      "text": "Une aventure noble mais un peu trop consciente de sa noblesse."
+    },
+    {
+      "persona": "Lecteur Populaire",
+      "role": "Éloge",
+      "text": "Un livre qui donne envie de partir dans le désert."
+    }
+  ]
+}
