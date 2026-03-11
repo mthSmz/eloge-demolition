@@ -3,7 +3,31 @@
     "title": "Dune",
     "author": "Frank Herbert"
   },
-  "persona": "Pierre Castor",
-  "type": "Éloge",
-  "text": "Dune de Frank Herbert ouvre un espace de ferveur où l’aventure devient pensée. À partir de Metadata unavailable from OpenLibrary., le récit élève chaque épreuve en méditation sur la dignité humaine."
+  "critiques": [
+    {
+      "persona": "Pierre Castor",
+      "type": "Éloge",
+      "text": "Dune de Frank Herbert ouvre un espace de ferveur où l’aventure devient pensée. À partir de Metadata unavailable from OpenLibrary., le récit élève chaque épreuve en méditation sur la dignité humaine."
+    },
+    {
+      "persona": "Vestale du Style",
+      "type": "Démolition",
+      "text": "Dans Dune, Frank Herbert poursuit un geste d’écriture ambitieux. Le souffle issu de Metadata unavailable from OpenLibrary. séduit, tout en frôlant parfois l’emphase."
+    },
+    {
+      "persona": "Ingénieur Narratif",
+      "type": "Analyse",
+      "text": "Dune signé Frank Herbert organise sa progression en blocs narratifs lisibles. L’axe formulé par Metadata unavailable from OpenLibrary. soutient une mécanique cohérente."
+    },
+    {
+      "persona": "Cynique Mondain",
+      "type": "Démolition",
+      "text": "Avec Dune, Frank Herbert affiche une noblesse de ton assumée. Même ancré dans Metadata unavailable from OpenLibrary., le récit laisse filtrer une ironie discrète."
+    },
+    {
+      "persona": "Lecteur Populaire",
+      "type": "Éloge",
+      "text": "Dune de Frank Herbert propose une aventure directe et entraînante. Porté par Metadata unavailable from OpenLibrary., le livre donne envie de poursuivre sans pause."
+    }
+  ]
 }
