@@ -347,6 +347,12 @@
       border: 1px solid var(--border);
       border-radius: var(--radius2);
       padding: 14px;
+      transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+
+    .critic-card:hover{
+      transform: scale(1.02);
+      border-color: var(--border2);
     }
 
     .critic-card h3{
@@ -382,6 +388,25 @@
       font-weight: 650;
     }
 
+    .method-box{
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.02);
+      overflow: hidden;
+    }
+
+    .method-box summary{
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 20px;
+      font-weight: 650;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.2);
+    }
+
+    .method-box summary::-webkit-details-marker{ display:none; }
+
     @media (max-width: 980px){
       .tribunal-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -413,6 +438,9 @@
         La Phase 1 repose sur un ensemble de patterns existant.
       </p>
     </header>
+
+    <details class="method-box">
+      <summary>Méthode de génération</summary>
 
     <section class="panel" aria-label="Liste des patterns">
       <div class="panel-top">
@@ -616,6 +644,11 @@
       </div>
     </footer>
 
+    </details>
+
+
+    <section id="critiques"></section>
+
     <section id="tribunal"></section>
 
   </div>
@@ -697,72 +730,84 @@
   </script>
 
   <script>
-    fetch("/data/critics/generated.json")
-      .then(r => r.json())
-      .then(c => {
-        const container = document.getElementById("critiques");
-        if (!container) return;
+    Promise.all([
+      fetch("/data/critics/generated.json").then(r => r.json()),
+      fetch("/data/books/example_book.json").then(r => r.json()),
+    ])
+      .then(([generated, bookData]) => {
+        const book = generated.book || {};
+        const critiques = (bookData.critiques || []).map(c => ({
+          persona: c.persona,
+          type: c.type || c.role,
+          text: c.text,
+        }));
 
-        container.innerHTML = "";
+        if (generated.persona && generated.text) {
+          const hasPierre = critiques.some(c => c.persona === generated.persona);
+          if (!hasPierre) {
+            critiques.unshift({
+              persona: generated.persona,
+              type: generated.type,
+              text: generated.text,
+            });
+          }
+        }
 
-        const card = document.createElement("div");
+        const eloges = critiques.filter(c => c.type === "Éloge").length;
+        const demolitions = critiques.filter(c => c.type === "Démolition").length;
+        const analyses = critiques.filter(c => c.type === "Analyse").length;
 
-        card.innerHTML = `
-          <h2>${c.book.title}</h2>
-          <p><strong>${c.book.author}</strong></p>
-          <p><strong>${c.persona}</strong> — ${c.type}</p>
-          <p>${c.text}</p>
-        `;
+        const intro = critiques.find(c => c.persona === "Pierre Castor") || critiques[0];
 
-        container.appendChild(card);
-      })
-      .catch(() => {
-        const container = document.getElementById("critiques");
-        if (!container) return;
-        container.innerHTML = "<p>Critique générée indisponible.</p>";
-      });
-  </script>
+        const titleNode = document.querySelector("header h1");
+        if (titleNode) titleNode.textContent = book.title || "Livre";
 
+        const leadNodes = document.querySelectorAll("header .lead");
+        if (leadNodes[0]) leadNodes[0].innerHTML = `<strong>${book.author || "Auteur inconnu"}</strong>`;
+        if (leadNodes[1]) {
+          leadNodes[1].textContent = intro
+            ? `Critique d’ouverture (${intro.persona}) : ${intro.text}`
+            : "Critique indisponible.";
+        }
 
-  <script>
-    fetch("/data/books/example_book.json")
-      .then(r => r.json())
-      .then(book => {
-        const container = document.getElementById("tribunal");
-        if (!container) return;
+        const critiquesContainer = document.getElementById("critiques");
+        if (critiquesContainer) {
+          critiquesContainer.innerHTML = intro ? `
+            <section class="tribunal-wrap">
+              <h2>Critique d’ouverture</h2>
+              <p class="book-meta"><strong>${intro.persona}</strong> — ${intro.type}</p>
+              <p class="critique">${intro.text}</p>
+            </section>
+          ` : "";
+        }
 
-        const eLoges = (book.critiques || []).filter(c => c.role === "Éloge").length;
-        const demolitions = (book.critiques || []).filter(c => c.role === "Démolition").length;
-        const analyses = (book.critiques || []).filter(c => c.role === "Analyse").length;
+        const tribunalContainer = document.getElementById("tribunal");
+        if (!tribunalContainer) return;
 
-        let verdict = "Livre controversé";
-        if (eLoges > demolitions) verdict = "Livre globalement défendu";
-        else if (demolitions > eLoges) verdict = "Livre globalement contesté";
-
-        const wrap = document.createElement("div");
-        wrap.className = "tribunal-wrap";
-
-        const cards = (book.critiques || []).map(c => {
-          const roleClass = c.role === "Éloge" ? "eloge" : c.role === "Démolition" ? "demolition" : "analyse";
+        const cards = critiques.map(c => {
+          const roleClass = c.type === "Éloge" ? "eloge" : c.type === "Démolition" ? "demolition" : "analyse";
           return `
             <div class="critic-card">
               <h3>${c.persona}</h3>
-              <p class="role ${roleClass}">${c.role}</p>
+              <p class="role ${roleClass}">${c.type}</p>
               <p class="critique">${c.text}</p>
             </div>
           `;
         }).join("");
 
-        wrap.innerHTML = `
-          <h2>${book.title}</h2>
-          <p class="book-meta"><strong>${book.author}</strong> (${book.year})</p>
-          <p class="book-meta">${book.summary}</p>
-          <h2>Tribunal critique</h2>
-          <div class="tribunal-grid">${cards}</div>
-          <p class="verdict">Verdict du tribunal : ${verdict} (Éloge: ${eLoges} · Démolition: ${demolitions} · Analyse: ${analyses})</p>
+        tribunalContainer.innerHTML = `
+          <section class="tribunal-wrap">
+            <h2>Tribunal critique</h2>
+            <div class="tribunal-grid">${cards}</div>
+            <p class="verdict">Verdict du tribunal : Éloge: ${eloges} · Démolition: ${demolitions} · Analyse: ${analyses}</p>
+          </section>
         `;
-
-        container.appendChild(wrap);
+      })
+      .catch(() => {
+        const critiquesContainer = document.getElementById("critiques");
+        const tribunalContainer = document.getElementById("tribunal");
+        if (critiquesContainer) critiquesContainer.innerHTML = "<p>Contenu critique indisponible.</p>";
+        if (tribunalContainer) tribunalContainer.innerHTML = "";
       });
   </script>
 
