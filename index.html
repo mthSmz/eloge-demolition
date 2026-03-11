@@ -632,6 +632,9 @@
       </ul>
     </section>
 
+
+    <section id="critiques"></section>
+
     <footer>
       <div class="note">
         <strong>Positionnement</strong><br />
@@ -727,32 +730,34 @@
   </script>
 
   <script>
-    async function loadCritique() {
-      let res = await fetch("/data/critics/generated.json");
+    Promise.all([
+      fetch("/data/critics/generated.json").then(r => r.json()),
+      fetch("/data/books/example_book.json").then(r => r.json()),
+    ])
+      .then(([generated, bookData]) => {
+        const book = generated.book || {};
+        const critiques = (bookData.critiques || []).map(c => ({
+          persona: c.persona,
+          type: c.type || c.role,
+          text: c.text,
+        }));
 
-      if (!res.ok) {
-        res = await fetch("/data/critics/example.json");
-      }
+        if (generated.persona && generated.text) {
+          const hasPierre = critiques.some(c => c.persona === generated.persona);
+          if (!hasPierre) {
+            critiques.unshift({
+              persona: generated.persona,
+              type: generated.type,
+              text: generated.text,
+            });
+          }
+        }
 
-      return res.json();
-    }
+        const eloges = critiques.filter(c => c.type === "Éloge").length;
+        const demolitions = critiques.filter(c => c.type === "Démolition").length;
+        const analyses = critiques.filter(c => c.type === "Analyse").length;
 
-    loadCritique()
-      .then(data => {
-        const book = data.book || {};
-        const critiques = Array.isArray(data.critiques) ? data.critiques : [];
-
-        let eloges = 0;
-        let demolitions = 0;
-        let analyses = 0;
-
-        critiques.forEach(c => {
-          if (c.type === "Éloge") eloges += 1;
-          if (c.type === "Démolition") demolitions += 1;
-          if (c.type === "Analyse") analyses += 1;
-        });
-
-        const intro = critiques[0];
+        const intro = critiques.find(c => c.persona === "Pierre Castor") || critiques[0];
 
         const titleNode = document.querySelector("header h1");
         if (titleNode) titleNode.textContent = book.title || "Livre";
@@ -779,17 +784,16 @@
         const tribunalContainer = document.getElementById("tribunal");
         if (!tribunalContainer) return;
 
-        let cards = "";
-        critiques.forEach(c => {
+        const cards = critiques.map(c => {
           const roleClass = c.type === "Éloge" ? "eloge" : c.type === "Démolition" ? "demolition" : "analyse";
-          cards += `
+          return `
             <div class="critic-card">
               <h3>${c.persona}</h3>
               <p class="role ${roleClass}">${c.type}</p>
               <p class="critique">${c.text}</p>
             </div>
           `;
-        });
+        }).join("");
 
         tribunalContainer.innerHTML = `
           <section class="tribunal-wrap">
