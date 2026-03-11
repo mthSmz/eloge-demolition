@@ -8,6 +8,7 @@ import requests
 
 OPENLIBRARY_URL = "https://openlibrary.org/search.json"
 WIKIPEDIA_SUMMARY_URL = "https://fr.wikipedia.org/api/rest_v1/page/summary/{title}"
+TIMEOUT_SECONDS = 10
 
 
 def clean_text(value):
@@ -17,7 +18,7 @@ def clean_text(value):
 
 
 def fetch_openlibrary(title):
-    response = requests.get(OPENLIBRARY_URL, params={"title": title}, timeout=15)
+    response = requests.get(OPENLIBRARY_URL, params={"title": title}, timeout=TIMEOUT_SECONDS)
     response.raise_for_status()
     data = response.json()
 
@@ -27,7 +28,7 @@ def fetch_openlibrary(title):
     fetched_title = clean_text(first.get("title")) or clean_text(title)
 
     author_list = first.get("author_name") or []
-    author = clean_text(author_list[0]) if author_list else ""
+    author = clean_text(author_list[0]) if author_list else "Unknown"
 
     year = first.get("first_publish_year")
     year_text = clean_text(year)
@@ -42,37 +43,38 @@ def fetch_openlibrary(title):
 def fetch_wikipedia_summary(title):
     encoded_title = quote(title.strip())
     url = WIKIPEDIA_SUMMARY_URL.format(title=encoded_title)
-    response = requests.get(url, timeout=15)
+    response = requests.get(url, timeout=TIMEOUT_SECONDS)
     response.raise_for_status()
     payload = response.json()
     return clean_text(payload.get("extract"))
 
 
 def main():
-    if len(sys.argv) < 2:
-        print('Usage: python scripts/collect_book.py "Book Title"')
-        sys.exit(1)
+    raw_title = clean_text(" ".join(sys.argv[1:])) or "Unknown"
 
-    raw_title = clean_text(" ".join(sys.argv[1:]))
-    if not raw_title:
-        print("Error: empty title provided.")
-        sys.exit(1)
+    # Start with OpenLibrary fallback defaults so output is always writable.
+    openlibrary_data = {
+        "title": raw_title,
+        "author": "Unknown",
+        "year": "",
+    }
+    summary = "Metadata unavailable from OpenLibrary."
 
     try:
         openlibrary_data = fetch_openlibrary(raw_title)
-    except requests.RequestException as exc:
-        print(f"Error while querying OpenLibrary: {exc}")
-        sys.exit(1)
+    except (requests.RequestException, ValueError) as exc:
+        print(f"OpenLibrary unavailable, using fallback metadata: {exc}")
 
-    summary = ""
     try:
-        summary = fetch_wikipedia_summary(openlibrary_data["title"] or raw_title)
-    except requests.RequestException:
-        summary = ""
+        wikipedia_summary = fetch_wikipedia_summary(openlibrary_data.get("title") or raw_title)
+        if wikipedia_summary:
+            summary = wikipedia_summary
+    except (requests.RequestException, ValueError) as exc:
+        print(f"Wikipedia unavailable, keeping current summary: {exc}")
 
     result = {
         "title": clean_text(openlibrary_data.get("title")) or raw_title,
-        "author": clean_text(openlibrary_data.get("author")),
+        "author": clean_text(openlibrary_data.get("author")) or "Unknown",
         "year": clean_text(openlibrary_data.get("year")),
         "summary": clean_text(summary),
         "source": ["openlibrary", "wikipedia"],
@@ -85,4 +87,20 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:  # Final safety net: never crash without writing something useful.
+        fallback_title = clean_text(" ".join(sys.argv[1:])) or "Unknown"
+        fallback = {
+            "title": fallback_title,
+            "author": "Unknown",
+            "year": "",
+            "summary": "Metadata unavailable from OpenLibrary.",
+            "source": ["openlibrary", "wikipedia"],
+        }
+        Path("input.json").write_text(
+            json.dumps(fallback, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        print(f"Unexpected error handled with fallback output: {exc}")
+        print("input.json ready for scripts/generate_local.py")
