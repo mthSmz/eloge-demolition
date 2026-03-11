@@ -632,6 +632,9 @@
       </ul>
     </section>
 
+
+    <section id="critiques"></section>
+
     <footer>
       <div class="note">
         <strong>Positionnement</strong><br />
@@ -779,17 +782,16 @@
         const tribunalContainer = document.getElementById("tribunal");
         if (!tribunalContainer) return;
 
-        let cards = "";
-        critiques.forEach(c => {
+        const cards = critiques.map(c => {
           const roleClass = c.type === "Éloge" ? "eloge" : c.type === "Démolition" ? "demolition" : "analyse";
-          cards += `
+          return `
             <div class="critic-card">
               <h3>${c.persona}</h3>
               <p class="role ${roleClass}">${c.type}</p>
               <p class="critique">${c.text}</p>
             </div>
           `;
-        });
+        }).join("");
 
         tribunalContainer.innerHTML = `
           <section class="tribunal-wrap">
