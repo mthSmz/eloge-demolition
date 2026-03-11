@@ -697,20 +697,29 @@
   </script>
 
   <script>
-    fetch("/data/critics/example.json")
+    fetch("/data/critics/generated.json")
       .then(r => r.json())
       .then(c => {
         const container = document.getElementById("critiques");
+        if (!container) return;
+
+        container.innerHTML = "";
 
         const card = document.createElement("div");
 
         card.innerHTML = `
           <h2>${c.book.title}</h2>
+          <p><strong>${c.book.author}</strong></p>
           <p><strong>${c.persona}</strong> — ${c.type}</p>
           <p>${c.text}</p>
         `;
 
         container.appendChild(card);
+      })
+      .catch(() => {
+        const container = document.getElementById("critiques");
+        if (!container) return;
+        container.innerHTML = "<p>Critique générée indisponible.</p>";
       });
   </script>
 
