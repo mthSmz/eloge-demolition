@@ -528,6 +528,9 @@
       </ul>
     </section>
 
+
+    <section id="critiques"></section>
+
     <footer>
       <div class="note">
         <strong>Positionnement</strong><br />
@@ -613,5 +616,24 @@
       });
     })();
   </script>
+
+  <script>
+    fetch("/data/critics/example.json")
+      .then(r => r.json())
+      .then(c => {
+        const container = document.getElementById("critiques");
+
+        const card = document.createElement("div");
+
+        card.innerHTML = `
+          <h2>${c.book.title}</h2>
+          <p><strong>${c.persona}</strong> — ${c.type}</p>
+          <p>${c.text}</p>
+        `;
+
+        container.appendChild(card);
+      });
+  </script>
+
 </body>
 </html>
