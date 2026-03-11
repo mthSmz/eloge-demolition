@@ -41,16 +41,20 @@ rendered_critiques = {
     for persona, template in persona_templates.items()
 }
 
-text = rendered_critiques["Pierre Castor"]
+critiques = [
+    {"persona": "Pierre Castor", "type": "Éloge", "text": rendered_critiques["Pierre Castor"]},
+    {"persona": "Vestale du Style", "type": "Démolition", "text": rendered_critiques["Vestale du Style"]},
+    {"persona": "Ingénieur Narratif", "type": "Analyse", "text": rendered_critiques["Ingénieur Narratif"]},
+    {"persona": "Cynique Mondain", "type": "Démolition", "text": rendered_critiques["Cynique Mondain"]},
+    {"persona": "Lecteur Populaire", "type": "Éloge", "text": rendered_critiques["Lecteur Populaire"]}
+]
 
 critique = {
     "book": {
         "title": title,
         "author": author,
     },
-    "persona": "Pierre Castor",
-    "type": "Éloge",
-    "text": text,
+    "critiques": critiques,
 }
 
 with open("data/critics/generated.json", "w", encoding="utf-8") as f:
