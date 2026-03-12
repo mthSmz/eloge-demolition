@@ -32,12 +32,22 @@
     {
       "persona": "Le Name-Droppeur",
       "type": "Analyse",
-      "text": "En lisant Dune, on pense inévitablement à plusieurs grandes traditions du roman : l’ampleur mythologique rappelle parfois Tolkien, tandis que la méditation sur l’écologie et les civilisations évoque certaines visions de Ursula K. Le Guin. Herbert compose ainsi une œuvre qui dialogue discrètement avec toute une bibliothèque de mondes imaginaires."
+      "text": "On pense ici à Tolkien pour l’ampleur mythologique et à Ursula K. Le Guin pour la réflexion écologique : Herbert inscrit Dune dans la grande tradition des mondes imaginaires."
     },
     {
       "persona": "Monsieur Total",
       "type": "Éloge",
-      "text": "Dune est tout simplement un monument. Un roman total, visionnaire, qui dépasse largement le simple cadre de la science-fiction. Ceux qui n’y voient qu’un récit d’aventure passent à côté d’un des sommets absolus de la littérature d’imagination."
+      "text": "Dune est tout simplement un monument. Un roman total, visionnaire, qui dépasse largement le simple cadre de la science-fiction."
+    },
+    {
+      "persona": "Le Troll",
+      "type": "Démolition",
+      "text": "Franchement ? Des prophéties, du sable et des messies… Dune ressemble parfois à un énorme délire mystique perdu dans le désert."
+    },
+    {
+      "persona": "Le Timide",
+      "type": "Analyse",
+      "text": "Il y a beaucoup à admirer dans Dune, même si certains passages peuvent sembler un peu denses. Le roman mérite probablement qu’on s’y attarde."
     }
   ]
 }
