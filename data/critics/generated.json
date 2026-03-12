@@ -5,7 +5,7 @@
   },
   "critiques": [
     {
-      "persona": "Pierre Castor",
+      "persona": "Père Castor",
       "type": "Éloge",
       "text": "Dune de Frank Herbert déploie une aventure où l’épopée devient réflexion. Sur la planète désertique d’Arrakis, la lutte pour l’épice révèle peu à peu une méditation sur le pouvoir, le destin et la responsabilité humaine."
     },
@@ -28,6 +28,16 @@
       "persona": "Lecteur Populaire",
       "type": "Éloge",
       "text": "Dune reste avant tout une aventure immense : intrigues politiques, complots, batailles et destin héroïque s’enchaînent avec une énergie qui rend la lecture difficile à interrompre."
+    },
+    {
+      "persona": "Le Name-Droppeur",
+      "type": "Analyse",
+      "text": "En lisant Dune, on pense inévitablement à plusieurs grandes traditions du roman : l’ampleur mythologique rappelle parfois Tolkien, tandis que la méditation sur l’écologie et les civilisations évoque certaines visions de Ursula K. Le Guin. Herbert compose ainsi une œuvre qui dialogue discrètement avec toute une bibliothèque de mondes imaginaires."
+    },
+    {
+      "persona": "Monsieur Total",
+      "type": "Éloge",
+      "text": "Dune est tout simplement un monument. Un roman total, visionnaire, qui dépasse largement le simple cadre de la science-fiction. Ceux qui n’y voient qu’un récit d’aventure passent à côté d’un des sommets absolus de la littérature d’imagination."
     }
   ]
 }
