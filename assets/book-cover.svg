@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Couverture de livre en noir et blanc">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d9d9d9"/>
+      <stop offset="100%" stop-color="#bdbdbd"/>
+    </linearGradient>
+    <linearGradient id="book" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#efefef"/>
+      <stop offset="100%" stop-color="#c9c9c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <ellipse cx="600" cy="760" rx="330" ry="40" fill="#9a9a9a" opacity="0.45"/>
+  <g transform="translate(425 180)">
+    <rect x="0" y="0" width="360" height="520" fill="#2a2a2a"/>
+    <rect x="12" y="14" width="336" height="492" fill="url(#book)"/>
+    <text x="180" y="120" font-family="serif" font-size="42" text-anchor="middle" fill="#333">Classical</text>
+    <text x="180" y="168" font-family="serif" font-size="46" text-anchor="middle" fill="#222">Nimned Nauieer</text>
+    <rect x="32" y="250" width="292" height="210" fill="#b3b3b3"/>
+    <path d="M32 410 C120 360, 180 430, 324 370 L324 460 L32 460 Z" fill="#8c8c8c"/>
+    <path d="M90 430 q30 -100 70 0" stroke="#3c3c3c" stroke-width="8" fill="none"/>
+    <path d="M210 430 q30 -100 70 0" stroke="#3c3c3c" stroke-width="8" fill="none"/>
+  </g>
+</svg>
