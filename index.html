@@ -22,11 +22,15 @@
   }
 </script>
 <style>
-  body { font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
+  body { --accent-color: #0b50da; font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
+  body.mode-demolition { --accent-color: #b91c1c; }
   .article-body { line-height: 1.8; font-size: 1.125rem; }
-  .dropcap::first-letter { float:left; font-size:5rem; line-height:0.8; padding-top:4px; padding-right:8px; font-family:'Playfair Display', serif; font-weight:900; color:#0b50da; }
+  .dropcap::first-letter { float:left; font-size:5rem; line-height:0.8; padding-top:4px; padding-right:8px; font-family:'Playfair Display', serif; font-weight:900; color:var(--accent-color); }
   .toggle-content { transition: all 0.5s ease-in-out; }
   .hidden-state { display:none; opacity:0; }
+  .accent-text { color: var(--accent-color); }
+  .mode-btn-active-eloge { color: #0b50da; }
+  .mode-btn-active-demolition { color: #b91c1c; }
 </style>
 </head>
 <body class="antialiased">
@@ -435,13 +439,13 @@
 <main class="container mx-auto px-4 max-w-4xl py-12">
   <div class="flex justify-center mb-16" data-purpose="critique-mode-toggle">
     <div class="inline-flex items-center bg-gray-100 p-1 rounded-custom border border-gray-200">
-      <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom bg-white shadow-sm text-primary" id="btn-eloge" onclick="toggleReview('eloge')">Éloge</button>
+      <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom bg-white shadow-sm mode-btn-active-eloge" id="btn-eloge" onclick="toggleReview('eloge')">Éloge</button>
       <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom text-gray-400" id="btn-demolition" onclick="toggleReview('demolition')">Démolition</button>
     </div>
   </div>
   <article class="mb-20">
     <header class="text-center mb-12">
-      <p class="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-4">Critique Littéraire</p>
+      <p class="accent-text font-bold uppercase tracking-[0.2em] text-xs mb-4" id="critique-label">Critique Littéraire</p>
       <h2 class="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">L'Invention du Silence</h2>
       <p class="font-serif text-xl italic text-gray-600 max-w-2xl mx-auto">Une analyse profonde sur l'œuvre posthume de Pierre Lemaitre et l'art de la retenue narrative.</p>
     </header>
@@ -457,7 +461,7 @@
     </div>
     <div class="article-body font-serif text-gray-800 space-y-8 toggle-content hidden-state" id="content-demolition">
       <p class="dropcap">Il est des silences qui parlent, et d'autres qui se contentent de meubler l'absence d'idées. Ce dernier ouvrage appartient malheureusement à la seconde catégorie. Sous couvert d'une épuration stylistique, l'auteur nous livre un squelette décharné d'intrigue, dénué de toute substance émotionnelle ou intellectuelle.</p>
-      <blockquote class="border-y-2 border-primary py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold text-primary">"Le minimalisme est devenu le refuge de ceux qui n'ont plus rien à raconter mais refusent de se taire."</p></blockquote>
+      <blockquote class="border-y-2 border-red-700 py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold text-red-700">"Le minimalisme est devenu le refuge de ceux qui n'ont plus rien à raconter mais refusent de se taire."</p></blockquote>
       <p>On s'ennuie ferme au fil de ces pages blanches. L'effort pour paraître profond vire à la parodie. C'est un exercice de style vain, une démonstration d'autosatisfaction littéraire qui oublie l'essentiel : le lecteur. Ce qui est présenté comme de la retenue n'est en fait qu'une paresse d'imagination manifeste.</p>
       <p class="font-bold text-center pt-8">Conclusion : Une déception majeure qui confirme le déclin d'un style autrefois prometteur, aujourd'hui exsangue.</p>
     </div>
@@ -490,18 +494,25 @@
 </footer>
 <script>
 function toggleReview(mode) {
+  const pageBody = document.body;
   const elogeContent = document.getElementById('content-eloge');
   const demolitionContent = document.getElementById('content-demolition');
   const btnEloge = document.getElementById('btn-eloge');
   const btnDemolition = document.getElementById('btn-demolition');
   if (mode === 'eloge') {
+    pageBody.classList.remove('mode-demolition');
     elogeContent.classList.remove('hidden-state'); demolitionContent.classList.add('hidden-state');
-    btnEloge.classList.add('bg-white', 'shadow-sm', 'text-primary'); btnEloge.classList.remove('text-gray-400');
-    btnDemolition.classList.remove('bg-white', 'shadow-sm', 'text-primary'); btnDemolition.classList.add('text-gray-400');
+    btnEloge.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-eloge');
+    btnEloge.classList.remove('text-gray-400', 'mode-btn-active-demolition');
+    btnDemolition.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+    btnDemolition.classList.add('text-gray-400');
   } else {
+    pageBody.classList.add('mode-demolition');
     demolitionContent.classList.remove('hidden-state'); elogeContent.classList.add('hidden-state');
-    btnDemolition.classList.add('bg-white', 'shadow-sm', 'text-primary'); btnDemolition.classList.remove('text-gray-400');
-    btnEloge.classList.remove('bg-white', 'shadow-sm', 'text-primary'); btnEloge.classList.add('text-gray-400');
+    btnDemolition.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-demolition');
+    btnDemolition.classList.remove('text-gray-400', 'mode-btn-active-eloge');
+    btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+    btnEloge.classList.add('text-gray-400');
   }
 }
 </script>
