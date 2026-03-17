@@ -22,16 +22,18 @@
   }
 </script>
 <style>
-  body { --accent-color: #0b50da; font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
-  body.mode-demolition { --accent-color: #b91c1c; }
+  body { --eloge-color: #0b50da; --demolition-color: #b91c1c; --accent-color: var(--eloge-color); font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
+  body.mode-demolition { --accent-color: var(--demolition-color); }
   .article-body { line-height: 1.8; font-size: 1.125rem; }
   .dropcap::first-letter { float:left; font-size:5rem; line-height:0.8; padding-top:4px; padding-right:8px; font-family:'Playfair Display', serif; font-weight:900; color:var(--accent-color); }
   .toggle-content { transition: all 0.5s ease-in-out; }
   .hidden-state { display:none; opacity:0; }
   .accent-text { color: var(--accent-color); }
   .accent-border { border-color: var(--accent-color); }
-  .mode-btn-active-eloge { color: #0b50da; }
-  .mode-btn-active-demolition { color: #b91c1c; }
+  .mode-btn-active-eloge { color: var(--eloge-color); }
+  .mode-btn-active-demolition { color: var(--demolition-color); }
+  .category-eloge { color: var(--eloge-color); }
+  .category-demolition { color: var(--demolition-color); }
 </style>
 </head>
 <body class="antialiased">
@@ -479,9 +481,9 @@
   <section class="py-12" data-purpose="recent-posts">
     <h4 class="text-center font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-12">Dernières Opinions</h4>
     <div class="grid md:grid-cols-3 gap-12">
-      <article class="group cursor-pointer"><p class="text-[10px] font-bold text-primary mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">Le naufrage des nouveaux philosophes</h5><p class="text-sm text-gray-500 font-serif italic">12 Octobre 2023</p></article>
-      <article class="group cursor-pointer"><p class="text-[10px] font-bold text-green-600 mb-2 uppercase tracking-widest">Éloge</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'architecture comme texte sacré</h5><p class="text-sm text-gray-500 font-serif italic">05 Octobre 2023</p></article>
-      <article class="group cursor-pointer"><p class="text-[10px] font-bold text-primary mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'imposture du réalisme magique</h5><p class="text-sm text-gray-500 font-serif italic">28 Septembre 2023</p></article>
+      <article class="group cursor-pointer"><p class="text-[10px] font-bold category-demolition mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">Le naufrage des nouveaux philosophes</h5><p class="text-sm text-gray-500 font-serif italic">12 Octobre 2023</p></article>
+      <article class="group cursor-pointer"><p class="text-[10px] font-bold category-eloge mb-2 uppercase tracking-widest">Éloge</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'architecture comme texte sacré</h5><p class="text-sm text-gray-500 font-serif italic">05 Octobre 2023</p></article>
+      <article class="group cursor-pointer"><p class="text-[10px] font-bold category-demolition mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'imposture du réalisme magique</h5><p class="text-sm text-gray-500 font-serif italic">28 Septembre 2023</p></article>
     </div>
   </section>
 </main>
