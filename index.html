@@ -1,428 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Éloge & Démolition — Patterns anti-hallucination</title>
-  <style>
-    :root{
-      --bg: #07070a;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.04);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --muted2: rgba(255,255,255,0.58);
-      --border: rgba(255,255,255,0.10);
-      --border2: rgba(255,255,255,0.14);
-      --shadow: 0 20px 60px rgba(0,0,0,0.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,0.45);
-      --radius: 18px;
-      --radius2: 14px;
-      --pad: 22px;
-      --pad2: 16px;
-      --max: 980px;
-      --ease: cubic-bezier(.2,.8,.2,1);
-      --dur: 220ms;
-
-      /* Accent subtle (can be changed) */
-      --accent: rgba(160,130,255,0.95);
-      --accent2: rgba(120,245,255,0.9);
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Éloge / Démolition - Revue Littéraire</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { primary: '#0b50da' },
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+          serif: ['Libre Baskerville', 'serif'],
+          heading: ['Playfair Display', 'serif'],
+        },
+        borderRadius: { custom: '4px' }
+      }
     }
-
-    *{ box-sizing: border-box; }
-    html,body{ height: 100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(160,130,255,0.18), transparent 55%),
-        radial-gradient(900px 600px at 85% 20%, rgba(120,245,255,0.12), transparent 55%),
-        radial-gradient(700px 500px at 70% 85%, rgba(255,255,255,0.06), transparent 60%),
-        var(--bg);
-      color: var(--text);
-      letter-spacing: 0.1px;
-    }
-
-    .wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 52px 18px 80px;
-    }
-
-    header{
-      margin-bottom: 26px;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      border-radius: 999px;
-      box-shadow: var(--shadow2);
-      font-size: 12px;
-      color: var(--muted);
-      user-select: none;
-    }
-    .dot{
-      width: 10px; height:10px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 18px rgba(160,130,255,0.35);
-    }
-
-    h1{
-      margin: 16px 0 10px;
-      font-size: clamp(28px, 4.1vw, 44px);
-      line-height: 1.06;
-      letter-spacing: -0.6px;
-    }
-    .lead{
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-      max-width: 70ch;
-    }
-
-    .panel{
-      margin-top: 24px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .panel-top{
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--border);
-      display:flex;
-      justify-content: space-between;
-      align-items:center;
-      gap: 12px;
-      background: rgba(0,0,0,0.18);
-    }
-    .panel-top h2{
-      margin: 0;
-      font-size: 14px;
-      font-weight: 650;
-      letter-spacing: 0.2px;
-      color: rgba(255,255,255,0.88);
-    }
-    .hint{
-      margin: 0;
-      font-size: 12px;
-      color: var(--muted2);
-      display:flex;
-      gap:8px;
-      align-items:center;
-      user-select:none;
-      text-align:right;
-    }
-    kbd{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 11px;
-      padding: 3px 7px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: rgba(255,255,255,0.80);
-    }
-
-    ul.patterns{
-      list-style: none;
-      margin: 0;
-      padding: 8px;
-    }
-
-    .item{
-      margin: 10px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.02);
-      transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), transform var(--dur) var(--ease);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* subtle glow on hover */
-    .item::before{
-      content:"";
-      position:absolute;
-      inset:-1px;
-      background: radial-gradient(450px 180px at 30% 0%, rgba(160,130,255,0.16), transparent 55%),
-                  radial-gradient(350px 160px at 90% 0%, rgba(120,245,255,0.12), transparent 58%);
-      opacity: 0;
-      transition: opacity var(--dur) var(--ease);
-      pointer-events:none;
-    }
-
-    .item:hover{
-      border-color: var(--border2);
-      background: rgba(255,255,255,0.03);
-      transform: translateY(-1px);
-    }
-    .item:hover::before{ opacity: 1; }
-
-    .row{
-      display:flex;
-      align-items:flex-start;
-      gap: 12px;
-      padding: 14px 14px 14px 14px;
-    }
-
-    .num{
-      flex: 0 0 auto;
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: rgba(255,255,255,0.82);
-      font-size: 12px;
-      font-weight: 700;
-      margin-top: 1px;
-    }
-
-    .title-area{
-      flex: 1 1 auto;
-      min-width: 0;
-    }
-
-    .title{
-      margin: 0;
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.1px;
-      line-height: 1.25;
-      display:flex;
-      gap: 10px;
-      align-items: baseline;
-      flex-wrap: wrap;
-    }
-
-    .canon{
-      font-weight: 600;
-      font-size: 12px;
-      color: var(--muted2);
-      letter-spacing: 0.2px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      padding: 4px 8px;
-      border-radius: 999px;
-    }
-
-    .chev{
-      flex: 0 0 auto;
-      margin-left: auto;
-      width: 28px;
-      height: 28px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: rgba(255,255,255,0.72);
-      transition: transform var(--dur) var(--ease), background var(--dur) var(--ease), border-color var(--dur) var(--ease);
-      user-select:none;
-    }
-
-    .item:hover .chev{
-      border-color: var(--border2);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .details{
-      display: none; /* collapsed by default */
-      padding: 0 16px 16px 54px;
-      color: rgba(255,255,255,0.84);
-      line-height: 1.55;
-      font-size: 14px;
-      position: relative;
-      z-index: 1; /* above glow */
-    }
-
-    .details p{
-      margin: 10px 0;
-      color: rgba(255,255,255,0.84);
-    }
-    .details strong{
-      color: rgba(255,255,255,0.90);
-    }
-    .details .muted{
-      color: var(--muted);
-    }
-
-    .bullets{
-      margin: 10px 0 0 0;
-      padding-left: 18px;
-      color: rgba(255,255,255,0.80);
-    }
-    .bullets li{ margin: 4px 0; }
-
-    .divider{
-      height: 1px;
-      background: var(--border);
-      margin: 12px 0 0 0;
-    }
-
-    /* expanded state */
-    .item.expanded .details{
-      display: block;
-      animation: reveal var(--dur) var(--ease) both;
-    }
-    .item.expanded .chev{
-      transform: rotate(180deg);
-    }
-
-    @keyframes reveal{
-      from{ opacity: 0; transform: translateY(-4px); }
-      to{ opacity: 1; transform: translateY(0); }
-    }
-
-    footer{
-      margin-top: 18px;
-      color: var(--muted2);
-      font-size: 12px;
-      line-height: 1.55;
-      padding: 0 6px;
-    }
-
-    .note{
-      margin-top: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius2);
-      background: #0e0e14; /* opaque dark */
-    }
-
-    .sr-only{
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      white-space:nowrap;
-      border:0;
-    }
-
-
-    .tribunal-wrap{
-      margin-top: 28px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
-
-    .tribunal-wrap h2{
-      margin: 0 0 10px 0;
-      font-size: 22px;
-    }
-
-    .book-meta{
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 16px;
-    }
-
-    .tribunal-grid{
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 14px;
-    }
-
-    .critic-card{
-      background: rgba(0,0,0,0.30);
-      border: 1px solid var(--border);
-      border-radius: var(--radius2);
-      padding: 14px;
-      transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
-    }
-
-    .critic-card:hover{
-      transform: scale(1.02);
-      border-color: var(--border2);
-    }
-
-    .critic-card h3{
-      margin: 0 0 8px 0;
-      font-size: 16px;
-    }
-
-    .role{
-      display: inline-block;
-      margin: 0 0 10px 0;
-      padding: 2px 8px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      border: 1px solid currentColor;
-    }
-
-    .role.eloge{ color: #71df8b; }
-    .role.demolition{ color: #ff7f7f; }
-    .role.analyse{ color: #78b7ff; }
-
-    .critique{
-      margin: 0;
-      color: rgba(255,255,255,0.85);
-      line-height: 1.5;
-    }
-
-    .verdict{
-      margin-top: 18px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      color: rgba(255,255,255,0.92);
-      font-weight: 650;
-    }
-
-    .method-box{
-      margin-top: 24px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.02);
-      overflow: hidden;
-    }
-
-    .method-box summary{
-      cursor: pointer;
-      list-style: none;
-      padding: 16px 20px;
-      font-weight: 650;
-      border-bottom: 1px solid var(--border);
-      background: rgba(0,0,0,0.2);
-    }
-
-    .method-box summary::-webkit-details-marker{ display:none; }
-
-    @media (max-width: 980px){
-      .tribunal-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 640px){
-      .tribunal-grid{ grid-template-columns: 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; animation:none !important; }
-    }
-  </style>
+  }
+</script>
+<style>
+  body { --accent-color: #0b50da; font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
+  body.mode-demolition { --accent-color: #b91c1c; }
+  .article-body { line-height: 1.8; font-size: 1.125rem; }
+  .dropcap::first-letter { float:left; font-size:5rem; line-height:0.8; padding-top:4px; padding-right:8px; font-family:'Playfair Display', serif; font-weight:900; color:var(--accent-color); }
+  .toggle-content { transition: all 0.5s ease-in-out; }
+  .hidden-state { display:none; opacity:0; }
+  .accent-text { color: var(--accent-color); }
+  .accent-border { border-color: var(--accent-color); }
+  .mode-btn-active-eloge { color: #0b50da; }
+  .mode-btn-active-demolition { color: #b91c1c; }
+</style>
 </head>
-
-<body>
-  <div class="wrap">
+<body class="antialiased">
+<div id="legacy-home" style="display:none;">
+<div class="wrap">
     <header>
       <div class="badge" aria-label="Statut">
         <span class="dot" aria-hidden="true"></span>
@@ -808,6 +422,100 @@
         if (tribunalContainer) tribunalContainer.innerHTML = "";
       });
   </script>
-
+</div>
+<header class="border-b border-gray-200 py-8 bg-white" data-purpose="site-navigation">
+  <div class="container mx-auto px-4 flex flex-col items-center">
+    <div class="w-16 h-16 mb-4 flex items-center justify-center border-2 border-black rounded-full relative" id="logo">
+      <div class="absolute w-0.5 h-12 bg-black rotate-45"></div><div class="absolute w-0.5 h-12 bg-black -rotate-45"></div>
+      <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
+      <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
+    </div>
+    <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
+    <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
+      <li><a class="hover:text-primary transition-colors" href="#">Archives</a></li><li><a class="hover:text-primary transition-colors" href="#">Manifeste</a></li>
+      <li><a class="hover:text-primary transition-colors" href="#">Auteurs</a></li><li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+    </ul></nav>
+  </div>
+</header>
+<main class="container mx-auto px-4 max-w-4xl py-12">
+  <div class="flex justify-center mb-16" data-purpose="critique-mode-toggle">
+    <div class="inline-flex items-center bg-gray-100 p-1 rounded-custom border border-gray-200">
+      <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom bg-white shadow-sm mode-btn-active-eloge" id="btn-eloge" onclick="toggleReview('eloge')">Éloge</button>
+      <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom text-gray-400" id="btn-demolition" onclick="toggleReview('demolition')">Démolition</button>
+    </div>
+  </div>
+  <article class="mb-20">
+    <header class="text-center mb-12">
+      <p class="accent-text font-bold uppercase tracking-[0.2em] text-xs mb-4" id="critique-label">Critique Littéraire</p>
+      <h2 class="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">L'Invention du Silence</h2>
+      <p class="font-serif text-xl italic text-gray-600 max-w-2xl mx-auto">Une analyse profonde sur l'œuvre posthume de Pierre Lemaitre et l'art de la retenue narrative.</p>
+    </header>
+    <figure class="mb-12">
+      <img alt="Illustration d'un livre classique en noir et blanc" class="w-full h-auto object-cover grayscale brightness-90 rounded-custom" src="assets/book-cover.svg"/>
+      <figcaption class="text-center mt-4 text-xs text-gray-400 uppercase tracking-widest">Gravure originale par Vance (2024)</figcaption>
+    </figure>
+    <div class="article-body font-serif text-gray-800 space-y-8 toggle-content" id="content-eloge">
+      <p class="dropcap">Dans un monde saturé de bruit, le dernier opus nous offre une catharsis inattendue. L'auteur parvient à tisser une toile de mots qui ne servent qu'à mettre en valeur le vide, le non-dit, le sublime silence. C'est une œuvre d'une maturité rare, où chaque phrase semble avoir été pesée sur un trébuchet d'orfèvre.</p>
+      <blockquote class="border-y-2 accent-border py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold accent-text">"La grandeur d'un écrivain ne se mesure plus à ce qu'il dit, mais à ce qu'il a l'élégance de nous laisser deviner."</p></blockquote>
+      <p>Le rythme est lent, presque liturgique. On y retrouve l'influence des classiques, mais passée au crible d'une modernité qui refuse les faux-semblants. La structure narrative, bien que complexe, reste d'une clarté cristalline pour celui qui accepte de ralentir son pouls.</p>
+      <p class="font-bold text-center pt-8">Conclusion : Un chef-d'œuvre de sobriété qui fera date dans l'histoire de la pensée contemporaine.</p>
+    </div>
+    <div class="article-body font-serif text-gray-800 space-y-8 toggle-content hidden-state" id="content-demolition">
+      <p class="dropcap">Il est des silences qui parlent, et d'autres qui se contentent de meubler l'absence d'idées. Ce dernier ouvrage appartient malheureusement à la seconde catégorie. Sous couvert d'une épuration stylistique, l'auteur nous livre un squelette décharné d'intrigue, dénué de toute substance émotionnelle ou intellectuelle.</p>
+      <blockquote class="border-y-2 border-red-700 py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold text-red-700">"Le minimalisme est devenu le refuge de ceux qui n'ont plus rien à raconter mais refusent de se taire."</p></blockquote>
+      <p>On s'ennuie ferme au fil de ces pages blanches. L'effort pour paraître profond vire à la parodie. C'est un exercice de style vain, une démonstration d'autosatisfaction littéraire qui oublie l'essentiel : le lecteur. Ce qui est présenté comme de la retenue n'est en fait qu'une paresse d'imagination manifeste.</p>
+      <p class="font-bold text-center pt-8">Conclusion : Une déception majeure qui confirme le déclin d'un style autrefois prometteur, aujourd'hui exsangue.</p>
+    </div>
+  </article>
+  <section class="border-t border-gray-200 pt-12 pb-20" data-purpose="author-bio">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
+      <img alt="Portrait de Julian Vance" class="w-32 h-32 rounded-full object-cover" src="assets/julian-vance.svg"/>
+      <div><h3 class="font-heading text-2xl font-bold mb-2">Julian Vance</h3>
+      <p class="text-sm text-primary font-bold uppercase tracking-widest mb-4">Critique de la raison pure</p>
+      <p class="text-gray-600 font-serif leading-relaxed">Essayiste et romancier, Julian Vance dissèque la production littéraire contemporaine avec une exigence qui confine à l'ascétisme. Il collabore régulièrement avec les plus grandes revues académiques européennes.</p>
+      <div class="mt-4 flex space-x-4"><a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a><a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a></div></div>
+    </div>
+  </section>
+  <section class="py-12" data-purpose="recent-posts">
+    <h4 class="text-center font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-12">Dernières Opinions</h4>
+    <div class="grid md:grid-cols-3 gap-12">
+      <article class="group cursor-pointer"><p class="text-[10px] font-bold text-primary mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">Le naufrage des nouveaux philosophes</h5><p class="text-sm text-gray-500 font-serif italic">12 Octobre 2023</p></article>
+      <article class="group cursor-pointer"><p class="text-[10px] font-bold text-green-600 mb-2 uppercase tracking-widest">Éloge</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'architecture comme texte sacré</h5><p class="text-sm text-gray-500 font-serif italic">05 Octobre 2023</p></article>
+      <article class="group cursor-pointer"><p class="text-[10px] font-bold text-primary mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'imposture du réalisme magique</h5><p class="text-sm text-gray-500 font-serif italic">28 Septembre 2023</p></article>
+    </div>
+  </section>
+</main>
+<footer class="bg-black text-white py-16" data-purpose="site-footer">
+  <div class="container mx-auto px-4 text-center">
+    <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
+    <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Penser la critique comme un art de vivre</p>
+    <div class="flex justify-center space-x-12 text-[10px] font-bold uppercase tracking-widest mb-12"><a class="hover:text-primary transition-colors" href="#">Mentions Légales</a><a class="hover:text-primary transition-colors" href="#">Newsletter</a><a class="hover:text-primary transition-colors" href="#">Partenaires</a><a class="hover:text-primary transition-colors" href="#">RSS</a></div>
+    <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
+  </div>
+</footer>
+<script>
+function toggleReview(mode) {
+  const pageBody = document.body;
+  const elogeContent = document.getElementById('content-eloge');
+  const demolitionContent = document.getElementById('content-demolition');
+  const btnEloge = document.getElementById('btn-eloge');
+  const btnDemolition = document.getElementById('btn-demolition');
+  if (mode === 'eloge') {
+    pageBody.classList.remove('mode-demolition');
+    elogeContent.classList.remove('hidden-state'); demolitionContent.classList.add('hidden-state');
+    btnEloge.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-eloge');
+    btnEloge.classList.remove('text-gray-400', 'mode-btn-active-demolition');
+    btnDemolition.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+    btnDemolition.classList.add('text-gray-400');
+  } else {
+    pageBody.classList.add('mode-demolition');
+    demolitionContent.classList.remove('hidden-state'); elogeContent.classList.add('hidden-state');
+    btnDemolition.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-demolition');
+    btnDemolition.classList.remove('text-gray-400', 'mode-btn-active-eloge');
+    btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+    btnEloge.classList.add('text-gray-400');
+  }
+}
+</script>
 </body>
 </html>
