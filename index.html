@@ -471,10 +471,10 @@
   </article>
   <section class="border-t border-gray-200 pt-12 pb-20" data-purpose="author-bio">
     <div class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
-      <img alt="Portrait de Julian Vance" class="w-32 h-32 rounded-full object-cover" src="assets/julian-vance.svg"/>
-      <div><h3 class="font-heading text-2xl font-bold mb-2">Julian Vance</h3>
-      <p class="text-sm text-primary font-bold uppercase tracking-widest mb-4">Critique de la raison pure</p>
-      <p class="text-gray-600 font-serif leading-relaxed">Essayiste et romancier, Julian Vance dissèque la production littéraire contemporaine avec une exigence qui confine à l'ascétisme. Il collabore régulièrement avec les plus grandes revues académiques européennes.</p>
+      <img alt="Portrait de Ulysse Poussin" class="w-32 h-32 rounded-full object-cover" id="author-avatar" src="assets/ulysse-poussin.svg"/>
+      <div><h3 class="font-heading text-2xl font-bold mb-2" id="author-name">Ulysse Poussin</h3>
+      <p class="text-sm accent-text font-bold uppercase tracking-widest mb-4" id="author-title">Critique de la raison pure</p>
+      <p class="text-gray-600 font-serif leading-relaxed" id="author-bio-text">Essayiste et romancier, Ulysse Poussin célèbre la production littéraire contemporaine avec une attention lumineuse portée aux nuances de style. Il défend une critique de l'enthousiasme, nourrie par les revues, les correspondances d'auteurs et l'art de la lecture lente.</p>
       <div class="mt-4 flex space-x-4"><a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a><a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a></div></div>
     </div>
   </section>
@@ -496,12 +496,39 @@
   </div>
 </footer>
 <script>
+const authorByMode = {
+  eloge: {
+    name: 'Ulysse Poussin',
+    title: 'Critique de la raison pure',
+    bio: "Essayiste et romancier, Ulysse Poussin célèbre la production littéraire contemporaine avec une attention lumineuse portée aux nuances de style. Il défend une critique de l'enthousiasme, nourrie par les revues, les correspondances d'auteurs et l'art de la lecture lente.",
+    avatar: 'assets/ulysse-poussin.svg',
+    alt: 'Portrait de Ulysse Poussin'
+  },
+  demolition: {
+    name: 'Achille Corbeau',
+    title: 'Critique de la raison dure',
+    bio: "Pamphlétaire et critique au verbe sec, Achille Corbeau traque les poses et les faux prestiges avec une rigueur mordante. Ses démolitions méthodiques, publiées dans les marges les plus redoutées, font de lui l'ennemi intime des œuvres trop sûres d'elles-mêmes.",
+    avatar: 'assets/achille-corbeau.svg',
+    alt: 'Portrait de Achille Corbeau'
+  }
+};
+
+function updateAuthorBlock(mode) {
+  const author = authorByMode[mode];
+  document.getElementById('author-avatar').src = author.avatar;
+  document.getElementById('author-avatar').alt = author.alt;
+  document.getElementById('author-name').textContent = author.name;
+  document.getElementById('author-title').textContent = author.title;
+  document.getElementById('author-bio-text').textContent = author.bio;
+}
+
 function toggleReview(mode) {
   const pageBody = document.body;
   const elogeContent = document.getElementById('content-eloge');
   const demolitionContent = document.getElementById('content-demolition');
   const btnEloge = document.getElementById('btn-eloge');
   const btnDemolition = document.getElementById('btn-demolition');
+  updateAuthorBlock(mode);
   if (mode === 'eloge') {
     pageBody.classList.remove('mode-demolition');
     elogeContent.classList.remove('hidden-state'); demolitionContent.classList.add('hidden-state');

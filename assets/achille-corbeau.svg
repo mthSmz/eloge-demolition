@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Portrait illustré de Achille Corbeau">
+  <defs>
+    <linearGradient id="bg-achille" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4b5563"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="128" fill="url(#bg-achille)"/>
+  <circle cx="128" cy="96" r="41" fill="#d7b49b"/>
+  <path d="M80 94 q10 -44 48 -44 q40 0 48 42 q-20 -20 -48 -20 q-28 0 -48 22" fill="#161616"/>
+  <path d="M72 228 q14 -72 56 -72 q42 0 56 72" fill="#1f2937"/>
+  <rect x="102" y="108" width="14" height="5" rx="2.5" fill="#1f1a17"/>
+  <rect x="140" y="108" width="14" height="5" rx="2.5" fill="#1f1a17"/>
+  <path d="M110 134 q18 -8 36 0" stroke="#7a3d32" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M95 82 q34 18 66 0" stroke="#6b7280" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.55"/>
+</svg>

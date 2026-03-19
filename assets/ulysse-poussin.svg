@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Portrait illustré de Ulysse Poussin">
+  <defs>
+    <linearGradient id="bg-ulysse" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#92b5b2"/>
+      <stop offset="100%" stop-color="#5f7fa4"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="128" fill="url(#bg-ulysse)"/>
+  <circle cx="128" cy="98" r="43" fill="#eccbb3"/>
+  <path d="M84 92 q16 -42 44 -42 q32 0 46 44 q-12 -14 -46 -14 q-32 0 -44 12" fill="#3f312b"/>
+  <path d="M78 226 q12 -68 50 -68 q38 0 50 68" fill="#2f4969"/>
+  <circle cx="112" cy="110" r="4" fill="#3d342e"/>
+  <circle cx="145" cy="110" r="4" fill="#3d342e"/>
+  <path d="M113 132 q15 14 30 0" stroke="#a46f5a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M101 72 q24 10 54 0" stroke="#f8f2df" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.8"/>
+</svg>
