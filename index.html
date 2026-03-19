@@ -432,8 +432,8 @@
       const demolition = getArticleByMode(data, "demolition");
 
       const labelNode = document.getElementById('critique-label');
-      if (labelNode && data?.pairingId) {
-        labelNode.textContent = `Critique littéraire · ${data.pairingId}`;
+      if (labelNode) {
+        labelNode.textContent = 'Critique littéraire';
       }
 
       const figureCaption = document.querySelector('figure figcaption');
