@@ -24,14 +24,11 @@
 <style>
   body { --eloge-color: #0b50da; --demolition-color: #b91c1c; --accent-color: var(--eloge-color); font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
   body.mode-demolition { --accent-color: var(--demolition-color); }
-  .article-body { width: min(100%, 47rem); margin: 0 auto; line-height: 1.72; font-size: clamp(1.12rem, 1rem + 0.34vw, 1.34rem); }
-  .article-body > * + * { margin-top: 1.15rem; }
-  .critique-paragraph { text-align: justify; text-indent: 2.2rem; max-width: 45rem; }
+  .article-body { width: min(100%, 44rem); margin: 0 auto; line-height: 1.64; font-size: clamp(1.1rem, 1rem + 0.26vw, 1.26rem); }
+  .article-body > * + * { margin-top: 0.82rem; }
+  .critique-paragraph { width: 100%; margin-left: auto; margin-right: auto; text-align: justify; text-indent: 2rem; }
   .dropcap.critique-paragraph { text-indent: 0; }
-  .critique-paragraph--wide { max-width: 46.5rem; }
-  .critique-paragraph--narrow { max-width: 42.5rem; }
-  .critique-paragraph--compact { max-width: 44rem; }
-  .critique-quote { width: min(100%, 42rem); margin: 2.6rem auto 2.1rem; padding: 1.9rem 0; }
+  .critique-quote { width: min(100%, 40.5rem); margin: 2rem auto 1.5rem; padding: 1.55rem 0; }
   .critique-quote p { line-height: 1.24; font-size: clamp(2rem, 1.4rem + 1.1vw, 2.9rem); }
   .critique-conclusion { width: min(100%, 42rem); margin: 3.2rem auto 0; text-align: center; text-wrap: balance; font-family: 'Playfair Display', serif; font-size: clamp(1.55rem, 1.2rem + 0.7vw, 2.15rem); line-height: 1.35; font-weight: 700; color: var(--accent-color); }
   #author-bio-text { text-align: justify; }
@@ -394,15 +391,13 @@
 
       const paragraphs = Array.isArray(article.paragraphs) ? article.paragraphs : [];
       const quoteClass = mode === "demolition" ? "border-red-700 text-red-700" : "accent-border accent-text";
-      const paragraphClasses = ["critique-paragraph--wide", "critique-paragraph--compact", "critique-paragraph--narrow"];
       const quoteInsertIndex = paragraphs.length > 4 ? 2 : 1;
       const sanitizedConclusion = String(article.conclusion ?? "").replace(/^Conclusion\s*:\s*/i, "").trim();
       const blocks = [];
 
       paragraphs.forEach((paragraph, index) => {
-        const variantClass = paragraphClasses[index % paragraphClasses.length];
         const dropcapClass = index === 0 ? ' dropcap' : '';
-        blocks.push(`<p class="critique-paragraph ${variantClass}${dropcapClass}">${escapeHtml(paragraph)}</p>`);
+        blocks.push(`<p class="critique-paragraph${dropcapClass}">${escapeHtml(paragraph)}</p>`);
 
         if (article.pullQuote && index === quoteInsertIndex) {
           blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
