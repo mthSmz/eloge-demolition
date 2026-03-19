@@ -24,9 +24,13 @@
 <style>
   body { --eloge-color: #0b50da; --demolition-color: #b91c1c; --accent-color: var(--eloge-color); font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
   body.mode-demolition { --accent-color: var(--demolition-color); }
-  .article-body { line-height: 1.8; font-size: 1.125rem; }
-  .critique-paragraph { text-align: justify; text-indent: 2.5rem; }
+  .article-body { width: min(100%, 44rem); margin: 0 auto; line-height: 1.64; font-size: clamp(1.1rem, 1rem + 0.26vw, 1.26rem); }
+  .article-body > * + * { margin-top: 0.82rem; }
+  .critique-paragraph { width: 100%; margin-left: auto; margin-right: auto; text-align: justify; text-indent: 2rem; }
   .dropcap.critique-paragraph { text-indent: 0; }
+  .critique-quote { width: min(100%, 40.5rem); margin: 2rem auto 1.5rem; padding: 1.55rem 0; }
+  .critique-quote p { line-height: 1.24; font-size: clamp(2rem, 1.4rem + 1.1vw, 2.9rem); }
+  .critique-conclusion { width: min(100%, 42rem); margin: 3.2rem auto 0; text-align: center; text-wrap: balance; font-family: 'Playfair Display', serif; font-size: clamp(1.55rem, 1.2rem + 0.7vw, 2.15rem); line-height: 1.35; font-weight: 700; color: var(--accent-color); }
   #author-bio-text { text-align: justify; }
   .dropcap::first-letter { float:left; font-size:5rem; line-height:0.8; padding-top:4px; padding-right:8px; font-family:'Playfair Display', serif; font-weight:900; color:var(--accent-color); }
   .toggle-content { transition: all 0.5s ease-in-out; }
@@ -349,7 +353,18 @@
   </script>
 
   <script>
-    async function loadCritique() {
+    let critiquePairingData = null;
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    async function loadCritiquePairing() {
       let res = await fetch("/data/critics/generated.json");
 
       if (!res.ok) {
@@ -359,72 +374,120 @@
       return res.json();
     }
 
-    loadCritique()
-      .then(data => {
-        const book = data.book || {};
-        const critiques = Array.isArray(data.critiques) ? data.critiques : [];
+    function getArticleByMode(data, mode) {
+      return Array.isArray(data?.articles)
+        ? data.articles.find(article => article.mode === mode)
+        : null;
+    }
 
-        let eloges = 0;
-        let demolitions = 0;
-        let analyses = 0;
+    function getAuthorCard(data, authorName) {
+      if (!authorName || !Array.isArray(data?.authors)) return null;
+      return data.authors.find(author => author.name === authorName) || null;
+    }
 
-        critiques.forEach(c => {
-          if (c.type === "Éloge") eloges += 1;
-          if (c.type === "Démolition") demolitions += 1;
-          if (c.type === "Analyse") analyses += 1;
-        });
+    function renderArticleContent(article, mode) {
+      const contentNode = document.getElementById(`content-${mode}`);
+      if (!contentNode || !article) return;
 
-        const intro = critiques[0];
+      const paragraphs = Array.isArray(article.paragraphs) ? article.paragraphs : [];
+      const quoteClass = mode === "demolition" ? "border-red-700 text-red-700" : "accent-border accent-text";
+      const quoteInsertIndex = paragraphs.length > 4 ? 2 : 1;
+      const sanitizedConclusion = String(article.conclusion ?? "").replace(/^Conclusion\s*:\s*/i, "").trim();
+      const blocks = [];
 
-        const titleNode = document.querySelector("header h1");
-        if (titleNode) titleNode.textContent = book.title || "Livre";
+      paragraphs.forEach((paragraph, index) => {
+        const dropcapClass = index === 0 ? ' dropcap' : '';
+        blocks.push(`<p class="critique-paragraph${dropcapClass}">${escapeHtml(paragraph)}</p>`);
 
-        const leadNodes = document.querySelectorAll("header .lead");
-        if (leadNodes[0]) leadNodes[0].innerHTML = `<strong>${book.author || "Auteur inconnu"}</strong>`;
-        if (leadNodes[1]) {
-          leadNodes[1].textContent = intro
-            ? `Critique d’ouverture (${intro.persona}) : ${intro.text}`
-            : "Critique indisponible.";
+        if (article.pullQuote && index === quoteInsertIndex) {
+          blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
         }
+      });
 
-        const critiquesContainer = document.getElementById("critiques");
-        if (critiquesContainer) {
-          critiquesContainer.innerHTML = intro ? `
-            <section class="tribunal-wrap">
-              <h2>Critique d’ouverture</h2>
-              <p class="book-meta"><strong>${intro.persona}</strong> — ${intro.type}</p>
-              <p class="critique">${intro.text}</p>
-            </section>
-          ` : "";
+      if (article.pullQuote && paragraphs.length === 0) {
+        blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
+      }
+
+      if (sanitizedConclusion) {
+        blocks.push(`<p class="critique-conclusion">${escapeHtml(sanitizedConclusion)}</p>`);
+      }
+
+      contentNode.innerHTML = blocks.join('');
+    }
+
+    function syncHeaderForMode(mode) {
+      const article = getArticleByMode(critiquePairingData, mode) || getArticleByMode(critiquePairingData, 'eloge') || getArticleByMode(critiquePairingData, 'demolition');
+      if (!article) return;
+
+      const titleNode = document.querySelector('main article header h2');
+      if (titleNode) titleNode.textContent = article.title || 'Critique indisponible';
+
+      const subtitleNode = document.querySelector('main article header p.font-serif');
+      if (subtitleNode) subtitleNode.textContent = article.subtitle || 'Aucun sous-titre disponible.';
+    }
+
+    function updatePageContent(data) {
+      critiquePairingData = data;
+      const eloge = getArticleByMode(data, "eloge");
+      const demolition = getArticleByMode(data, "demolition");
+
+      const labelNode = document.getElementById('critique-label');
+      if (labelNode) {
+        labelNode.textContent = 'Critique littéraire';
+      }
+
+      const figureCaption = document.querySelector('figure figcaption');
+      if (figureCaption) {
+        figureCaption.textContent = data?.pairingId
+          ? `Dossier critique : ${data.pairingId}`
+          : 'Dossier critique';
+      }
+
+      renderArticleContent(eloge, 'eloge');
+      renderArticleContent(demolition, 'demolition');
+
+      if (eloge?.author) {
+        const elogeAuthor = getAuthorCard(data, eloge.author);
+        if (elogeAuthor) {
+          authorByMode.eloge = {
+            name: elogeAuthor.name || authorByMode.eloge.name,
+            title: elogeAuthor.role || authorByMode.eloge.title,
+            bio: elogeAuthor.bio || authorByMode.eloge.bio,
+            avatar: elogeAuthor.avatar || authorByMode.eloge.avatar,
+            alt: elogeAuthor.alt || `Portrait de ${elogeAuthor.name || authorByMode.eloge.name}`
+          };
         }
+      }
 
-        const tribunalContainer = document.getElementById("tribunal");
-        if (!tribunalContainer) return;
+      if (demolition?.author) {
+        const demolitionAuthor = getAuthorCard(data, demolition.author);
+        if (demolitionAuthor) {
+          authorByMode.demolition = {
+            name: demolitionAuthor.name || authorByMode.demolition.name,
+            title: demolitionAuthor.role || authorByMode.demolition.title,
+            bio: demolitionAuthor.bio || authorByMode.demolition.bio,
+            avatar: demolitionAuthor.avatar || authorByMode.demolition.avatar,
+            alt: demolitionAuthor.alt || `Portrait de ${demolitionAuthor.name || authorByMode.demolition.name}`
+          };
+        }
+      }
 
-        const cards = critiques.map(c => {
-          const roleClass = c.type === "Éloge" ? "eloge" : c.type === "Démolition" ? "demolition" : "analyse";
-          return `
-            <div class="critic-card">
-              <h3>${c.persona}</h3>
-              <p class="role ${roleClass}">${c.type}</p>
-              <p class="critique">${c.text}</p>
-            </div>
-          `;
-        }).join("");
+      syncHeaderForMode('eloge');
+      updateAuthorBlock('eloge');
+    }
 
-        tribunalContainer.innerHTML = `
-          <section class="tribunal-wrap">
-            <h2>Tribunal critique</h2>
-            <div class="tribunal-grid">${cards}</div>
-            <p class="verdict">Verdict du tribunal : Éloge: ${eloges} · Démolition: ${demolitions} · Analyse: ${analyses}</p>
-          </section>
-        `;
-      })
+    loadCritiquePairing()
+      .then(updatePageContent)
       .catch(() => {
-        const critiquesContainer = document.getElementById("critiques");
-        const tribunalContainer = document.getElementById("tribunal");
-        if (critiquesContainer) critiquesContainer.innerHTML = "<p>Contenu critique indisponible.</p>";
-        if (tribunalContainer) tribunalContainer.innerHTML = "";
+        const titleNode = document.querySelector('main article header h2');
+        const subtitleNode = document.querySelector('main article header p.font-serif');
+        const elogeContent = document.getElementById('content-eloge');
+        const demolitionContent = document.getElementById('content-demolition');
+
+        if (titleNode) titleNode.textContent = 'Contenu critique indisponible';
+        if (subtitleNode) subtitleNode.textContent = 'Impossible de charger les données JSON.';
+        if (elogeContent) elogeContent.innerHTML = '<p class="critique-paragraph">Le contenu élogieux est indisponible.</p>';
+        if (demolitionContent) demolitionContent.innerHTML = '<p class="critique-paragraph">Le contenu critique est indisponible.</p>';
       });
   </script>
 </div>
@@ -459,13 +522,13 @@
       <img alt="Illustration d'un livre classique en noir et blanc" class="w-full h-auto object-cover grayscale brightness-90 rounded-custom" src="assets/book-cover.svg"/>
       <figcaption class="text-center mt-4 text-xs text-gray-400 uppercase tracking-widest">Gravure originale par Vance (2024)</figcaption>
     </figure>
-    <div class="article-body font-serif text-gray-800 space-y-8 toggle-content" id="content-eloge">
+    <div class="article-body font-serif text-gray-800 toggle-content" id="content-eloge">
       <p class="dropcap critique-paragraph">Dans un monde saturé de bruit, le dernier opus nous offre une catharsis inattendue. L'auteur parvient à tisser une toile de mots qui ne servent qu'à mettre en valeur le vide, le non-dit, le sublime silence. C'est une œuvre d'une maturité rare, où chaque phrase semble avoir été pesée sur un trébuchet d'orfèvre.</p>
       <blockquote class="border-y-2 accent-border py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold accent-text">"La grandeur d'un écrivain ne se mesure plus à ce qu'il dit, mais à ce qu'il a l'élégance de nous laisser deviner."</p></blockquote>
       <p class="critique-paragraph">Le rythme est lent, presque liturgique. On y retrouve l'influence des classiques, mais passée au crible d'une modernité qui refuse les faux-semblants. La structure narrative, bien que complexe, reste d'une clarté cristalline pour celui qui accepte de ralentir son pouls.</p>
       <p class="font-bold text-center pt-8">Conclusion : Un chef-d'œuvre de sobriété qui fera date dans l'histoire de la pensée contemporaine.</p>
     </div>
-    <div class="article-body font-serif text-gray-800 space-y-8 toggle-content hidden-state" id="content-demolition">
+    <div class="article-body font-serif text-gray-800 toggle-content hidden-state" id="content-demolition">
       <p class="dropcap critique-paragraph">Il est des silences qui parlent, et d'autres qui se contentent de meubler l'absence d'idées. Ce dernier ouvrage appartient malheureusement à la seconde catégorie. Sous couvert d'une épuration stylistique, l'auteur nous livre un squelette décharné d'intrigue, dénué de toute substance émotionnelle ou intellectuelle.</p>
       <blockquote class="border-y-2 border-red-700 py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold text-red-700">"Le minimalisme est devenu le refuge de ceux qui n'ont plus rien à raconter mais refusent de se taire."</p></blockquote>
       <p class="critique-paragraph">On s'ennuie ferme au fil de ces pages blanches. L'effort pour paraître profond vire à la parodie. C'est un exercice de style vain, une démonstration d'autosatisfaction littéraire qui oublie l'essentiel : le lecteur. Ce qui est présenté comme de la retenue n'est en fait qu'une paresse d'imagination manifeste.</p>
@@ -532,6 +595,7 @@ function toggleReview(mode) {
   const btnEloge = document.getElementById('btn-eloge');
   const btnDemolition = document.getElementById('btn-demolition');
   updateAuthorBlock(mode);
+  syncHeaderForMode(mode);
   if (mode === 'eloge') {
     pageBody.classList.remove('mode-demolition');
     elogeContent.classList.remove('hidden-state'); demolitionContent.classList.add('hidden-state');
