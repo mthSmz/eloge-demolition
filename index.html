@@ -349,7 +349,18 @@
   </script>
 
   <script>
-    async function loadCritique() {
+    let critiquePairingData = null;
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    async function loadCritiquePairing() {
       let res = await fetch("/data/critics/generated.json");
 
       if (!res.ok) {
@@ -359,72 +370,109 @@
       return res.json();
     }
 
-    loadCritique()
-      .then(data => {
-        const book = data.book || {};
-        const critiques = Array.isArray(data.critiques) ? data.critiques : [];
+    function getArticleByMode(data, mode) {
+      return Array.isArray(data?.articles)
+        ? data.articles.find(article => article.mode === mode)
+        : null;
+    }
 
-        let eloges = 0;
-        let demolitions = 0;
-        let analyses = 0;
+    function getAuthorCard(data, authorName) {
+      if (!authorName || !Array.isArray(data?.authors)) return null;
+      return data.authors.find(author => author.name === authorName) || null;
+    }
 
-        critiques.forEach(c => {
-          if (c.type === "Éloge") eloges += 1;
-          if (c.type === "Démolition") demolitions += 1;
-          if (c.type === "Analyse") analyses += 1;
-        });
+    function renderArticleContent(article, mode) {
+      const contentNode = document.getElementById(`content-${mode}`);
+      if (!contentNode || !article) return;
 
-        const intro = critiques[0];
+      const paragraphs = Array.isArray(article.paragraphs) ? article.paragraphs : [];
+      const intro = paragraphs[0] || "";
+      const body = paragraphs.slice(1);
+      const quoteClass = mode === "demolition" ? "border-red-700 text-red-700" : "accent-border accent-text";
 
-        const titleNode = document.querySelector("header h1");
-        if (titleNode) titleNode.textContent = book.title || "Livre";
+      contentNode.innerHTML = [
+        intro ? `<p class="dropcap critique-paragraph">${escapeHtml(intro)}</p>` : "",
+        article.pullQuote
+          ? `<blockquote class="border-y-2 ${quoteClass} py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`
+          : "",
+        ...body.map(paragraph => `<p class="critique-paragraph">${escapeHtml(paragraph)}</p>`),
+        article.conclusion ? `<p class="font-bold text-center pt-8">${escapeHtml(article.conclusion)}</p>` : ""
+      ].filter(Boolean).join('');
+    }
 
-        const leadNodes = document.querySelectorAll("header .lead");
-        if (leadNodes[0]) leadNodes[0].innerHTML = `<strong>${book.author || "Auteur inconnu"}</strong>`;
-        if (leadNodes[1]) {
-          leadNodes[1].textContent = intro
-            ? `Critique d’ouverture (${intro.persona}) : ${intro.text}`
-            : "Critique indisponible.";
+    function syncHeaderForMode(mode) {
+      const article = getArticleByMode(critiquePairingData, mode) || getArticleByMode(critiquePairingData, 'eloge') || getArticleByMode(critiquePairingData, 'demolition');
+      if (!article) return;
+
+      const titleNode = document.querySelector('main article header h2');
+      if (titleNode) titleNode.textContent = article.title || 'Critique indisponible';
+
+      const subtitleNode = document.querySelector('main article header p.font-serif');
+      if (subtitleNode) subtitleNode.textContent = article.subtitle || 'Aucun sous-titre disponible.';
+    }
+
+    function updatePageContent(data) {
+      critiquePairingData = data;
+      const eloge = getArticleByMode(data, "eloge");
+      const demolition = getArticleByMode(data, "demolition");
+
+      const labelNode = document.getElementById('critique-label');
+      if (labelNode && data?.pairingId) {
+        labelNode.textContent = `Critique littéraire · ${data.pairingId}`;
+      }
+
+      const figureCaption = document.querySelector('figure figcaption');
+      if (figureCaption) {
+        figureCaption.textContent = data?.pairingId
+          ? `Dossier critique : ${data.pairingId}`
+          : 'Dossier critique';
+      }
+
+      renderArticleContent(eloge, 'eloge');
+      renderArticleContent(demolition, 'demolition');
+
+      if (eloge?.author) {
+        const elogeAuthor = getAuthorCard(data, eloge.author);
+        if (elogeAuthor) {
+          authorByMode.eloge = {
+            name: elogeAuthor.name || authorByMode.eloge.name,
+            title: elogeAuthor.role || authorByMode.eloge.title,
+            bio: elogeAuthor.bio || authorByMode.eloge.bio,
+            avatar: elogeAuthor.avatar || authorByMode.eloge.avatar,
+            alt: elogeAuthor.alt || `Portrait de ${elogeAuthor.name || authorByMode.eloge.name}`
+          };
         }
+      }
 
-        const critiquesContainer = document.getElementById("critiques");
-        if (critiquesContainer) {
-          critiquesContainer.innerHTML = intro ? `
-            <section class="tribunal-wrap">
-              <h2>Critique d’ouverture</h2>
-              <p class="book-meta"><strong>${intro.persona}</strong> — ${intro.type}</p>
-              <p class="critique">${intro.text}</p>
-            </section>
-          ` : "";
+      if (demolition?.author) {
+        const demolitionAuthor = getAuthorCard(data, demolition.author);
+        if (demolitionAuthor) {
+          authorByMode.demolition = {
+            name: demolitionAuthor.name || authorByMode.demolition.name,
+            title: demolitionAuthor.role || authorByMode.demolition.title,
+            bio: demolitionAuthor.bio || authorByMode.demolition.bio,
+            avatar: demolitionAuthor.avatar || authorByMode.demolition.avatar,
+            alt: demolitionAuthor.alt || `Portrait de ${demolitionAuthor.name || authorByMode.demolition.name}`
+          };
         }
+      }
 
-        const tribunalContainer = document.getElementById("tribunal");
-        if (!tribunalContainer) return;
+      syncHeaderForMode('eloge');
+      updateAuthorBlock('eloge');
+    }
 
-        const cards = critiques.map(c => {
-          const roleClass = c.type === "Éloge" ? "eloge" : c.type === "Démolition" ? "demolition" : "analyse";
-          return `
-            <div class="critic-card">
-              <h3>${c.persona}</h3>
-              <p class="role ${roleClass}">${c.type}</p>
-              <p class="critique">${c.text}</p>
-            </div>
-          `;
-        }).join("");
-
-        tribunalContainer.innerHTML = `
-          <section class="tribunal-wrap">
-            <h2>Tribunal critique</h2>
-            <div class="tribunal-grid">${cards}</div>
-            <p class="verdict">Verdict du tribunal : Éloge: ${eloges} · Démolition: ${demolitions} · Analyse: ${analyses}</p>
-          </section>
-        `;
-      })
+    loadCritiquePairing()
+      .then(updatePageContent)
       .catch(() => {
-        const critiquesContainer = document.getElementById("critiques");
-        const tribunalContainer = document.getElementById("tribunal");
-        if (critiquesContainer) critiquesContainer.innerHTML = "<p>Contenu critique indisponible.</p>";
-        if (tribunalContainer) tribunalContainer.innerHTML = "";
+        const titleNode = document.querySelector('main article header h2');
+        const subtitleNode = document.querySelector('main article header p.font-serif');
+        const elogeContent = document.getElementById('content-eloge');
+        const demolitionContent = document.getElementById('content-demolition');
+
+        if (titleNode) titleNode.textContent = 'Contenu critique indisponible';
+        if (subtitleNode) subtitleNode.textContent = 'Impossible de charger les données JSON.';
+        if (elogeContent) elogeContent.innerHTML = '<p class="critique-paragraph">Le contenu élogieux est indisponible.</p>';
+        if (demolitionContent) demolitionContent.innerHTML = '<p class="critique-paragraph">Le contenu critique est indisponible.</p>';
       });
   </script>
 </div>
@@ -532,6 +580,7 @@ function toggleReview(mode) {
   const btnEloge = document.getElementById('btn-eloge');
   const btnDemolition = document.getElementById('btn-demolition');
   updateAuthorBlock(mode);
+  syncHeaderForMode(mode);
   if (mode === 'eloge') {
     pageBody.classList.remove('mode-demolition');
     elogeContent.classList.remove('hidden-state'); demolitionContent.classList.add('hidden-state');

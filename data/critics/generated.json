@@ -1,53 +1,59 @@
 {
-  "book": {
-    "title": "Dune",
-    "author": "Frank Herbert"
-  },
-  "critiques": [
+  "pairingId": "li-po",
+  "authors": [
     {
-      "persona": "Père Castor",
-      "type": "Éloge",
-      "text": "Dune de Frank Herbert déploie une aventure où l’épopée devient réflexion. Sur la planète désertique d’Arrakis, la lutte pour l’épice révèle peu à peu une méditation sur le pouvoir, le destin et la responsabilité humaine."
+      "name": "Ulysse Poussin",
+      "role": "Critique de la raison pure",
+      "bio": "Essayiste et romancier, Ulysse Poussin célèbre la production littéraire contemporaine avec une attention lumineuse portée aux nuances de style. Il défend une critique de l’enthousiasme, nourrie par les revues, les correspondances d’auteurs et l’art de la lecture lente.",
+      "avatar": "assets/ulysse-poussin.svg",
+      "alt": "Portrait de Ulysse Poussin"
     },
     {
-      "persona": "Vestale du Style",
-      "type": "Démolition",
-      "text": "Dans Dune, Frank Herbert poursuit une ambition mythique impressionnante. Pourtant la prose se laisse parfois alourdir par une solennité constante, comme si le roman se prenait un peu trop au sérieux dans sa volonté d’écrire une légende."
+      "name": "Achille Corbeau",
+      "role": "Critique de la raison dure",
+      "bio": "Pamphlétaire et critique au verbe sec, Achille Corbeau traque les poses et les faux prestiges avec une rigueur mordante. Ses démolitions méthodiques, publiées dans les marges les plus redoutées, font de lui l’ennemi intime des œuvres trop sûres d’elles-mêmes.",
+      "avatar": "assets/achille-corbeau.svg",
+      "alt": "Portrait de Achille Corbeau"
+    }
+  ],
+  "articles": [
+    {
+      "id": "li-po-eloge",
+      "mode": "eloge",
+      "title": "L’ivresse comme clarté",
+      "subtitle": "Relire Li Po, c’est découvrir une poésie où la légèreté apparente devient une discipline du regard et une manière d’habiter le monde.",
+      "author": "Ulysse Poussin",
+      "pullQuote": "Chez Li Po, l’ivresse n’obscurcit pas le monde : elle le débarrasse un instant de ses lourdeurs.",
+      "paragraphs": [
+        "Li Po appartient à ces écrivains dont la légende semble précéder chaque vers. On croit le connaître avant même de le lire : un homme ivre, errant sous la lune, dialoguant avec les montagnes. Mais cette image, presque trop parfaite, se fissure dès que l’on prête une attention réelle au texte. Ce qui apparaît alors n’est pas une posture, mais une voix d’une précision étonnante.",
+        "La première qualité de cette poésie est sa netteté. Rien ne déborde, rien n’insiste. Chaque mot semble posé avec une économie qui n’a rien de pauvre. Au contraire, cette retenue est une forme de maîtrise. Là où d’autres poètes accumulent, Li Po retranche, et c’est dans ce retrait que surgit l’intensité.",
+        "La nature, chez lui, n’est jamais un simple décor. Elle n’est pas là pour refléter les émotions humaines, mais pour exister à côté d’elles. Une montagne ne symbolise rien : elle est là, dans sa présence pleine. Cette absence de surinterprétation donne au poème une densité particulière.",
+        "Il y a dans cette écriture une forme de modestie rare. Le poète ne cherche pas à dominer ce qu’il décrit. Il ne dramatise pas chaque perception. Il accueille ce qui vient, et cette disponibilité produit une impression de justesse presque immédiate.",
+        "L’ivresse, souvent réduite à un cliché, mérite d’être comprise autrement. Elle n’est pas seulement une fuite ou un abandon. Elle est aussi une manière de suspendre les cadres habituels, de relâcher les contraintes sociales et mentales qui rigidifient le regard.",
+        "De cette suspension naît une fluidité singulière. Le temps ne progresse pas : il flotte. Les instants ne s’enchaînent pas selon une logique narrative, mais se déposent comme des touches successives. Lire Li Po, c’est accepter de renoncer à l’idée de progression pour entrer dans celle de présence.",
+        "Cette absence de tension dramatique peut surprendre. Il n’y a ni conflit, ni résolution. Pourtant, une intensité discrète circule dans les poèmes. Elle ne cherche pas à s’imposer, mais à persister.",
+        "Dans un monde saturé de discours et d’effets, cette poésie agit comme une respiration. Elle rappelle que la profondeur n’a pas toujours besoin de se déclarer, et que la simplicité peut être une forme d’exigence."
+      ],
+      "conclusion": "Conclusion : Une œuvre d’apparente limpidité, dont la profondeur se révèle à ceux qui acceptent de ralentir et de regarder sans forcer."
     },
     {
-      "persona": "Ingénieur Narratif",
-      "type": "Analyse",
-      "text": "Dune repose sur une architecture narrative solide : rivalités entre maisons nobles, prophéties messianiques, écologie du désert et économie de l’épice s’imbriquent comme les modules d’un système complexe mais remarquablement cohérent."
-    },
-    {
-      "persona": "Cynique Mondain",
-      "type": "Démolition",
-      "text": "Dune affiche une gravité majestueuse qui fascine autant qu’elle amuse. Derrière la fresque politique et les prophéties, on sent parfois un roman tellement conscient de sa grandeur qu’il en devient presque théâtral."
-    },
-    {
-      "persona": "Lecteur Populaire",
-      "type": "Éloge",
-      "text": "Dune reste avant tout une aventure immense : intrigues politiques, complots, batailles et destin héroïque s’enchaînent avec une énergie qui rend la lecture difficile à interrompre."
-    },
-    {
-      "persona": "Le Name-Droppeur",
-      "type": "Analyse",
-      "text": "On pense ici à Tolkien pour l’ampleur mythologique et à Ursula K. Le Guin pour la réflexion écologique : Herbert inscrit Dune dans la grande tradition des mondes imaginaires."
-    },
-    {
-      "persona": "Monsieur Total",
-      "type": "Éloge",
-      "text": "Dune est tout simplement un monument. Un roman total, visionnaire, qui dépasse largement le simple cadre de la science-fiction."
-    },
-    {
-      "persona": "Le Troll",
-      "type": "Démolition",
-      "text": "Franchement ? Des prophéties, du sable et des messies… Dune ressemble parfois à un énorme délire mystique perdu dans le désert."
-    },
-    {
-      "persona": "Le Timide",
-      "type": "Analyse",
-      "text": "Il y a beaucoup à admirer dans Dune, même si certains passages peuvent sembler un peu denses. Le roman mérite probablement qu’on s’y attarde."
+      "id": "li-po-demolition",
+      "mode": "demolition",
+      "title": "Le pastoral pour paresseux",
+      "subtitle": "Sous couvert de grâce, Li Po incarne peut-être surtout une poésie où l’indétermination passe pour profondeur et la facilité pour sagesse.",
+      "author": "Achille Corbeau",
+      "pullQuote": "À force de regarder la lune avec un verre à la main, Li Po a fini par faire passer l’indétermination pour une profondeur.",
+      "paragraphs": [
+        "Li Po est l’exemple parfait d’un auteur dont la réputation travaille à la place des textes. Avant même d’ouvrir un poème, tout est déjà installé : le vin, la lune, la liberté, la sagesse. Il suffit alors de lire avec bienveillance pour confirmer ce que l’on pensait déjà.",
+        "Mais une fois le décor mis de côté, le contenu surprend par sa légèreté — au sens le plus littéral. Quelques images, une émotion esquissée, et beaucoup de silence. Ce que l’on présente comme de l’épure ressemble parfois à un simple manque de matière.",
+        "On invoque alors la suggestion, le non-dit, la profondeur implicite. C’est un procédé efficace : plus le texte en dit peu, plus le lecteur est invité à compléter. La poésie devient un exercice de projection, où chacun apporte sa propre profondeur.",
+        "L’omniprésence de la nature participe de ce confort. Montagnes, rivières, lune : les motifs reviennent avec une régularité presque décorative. Certes, ils sont beaux, mais leur répétition finit par produire un effet d’usure.",
+        "L’ivresse, quant à elle, sert de justification commode. Elle permet d’excuser la dispersion, de transformer l’imprécision en liberté, et le flottement en expérience esthétique. Tout devient acceptable dès lors que le poète est censé être ailleurs.",
+        "On parle souvent de modernité pour qualifier cette écriture. En réalité, cette absence de structure et de tension peut aussi être lue comme une faiblesse. Il ne se passe pas grand-chose, et ce peu est élevé au rang de principe.",
+        "Le lecteur est ainsi placé dans une position étrange : il doit admirer sans pouvoir vraiment saisir ce qu’il admire. L’œuvre fonctionne alors moins comme un objet que comme une ambiance.",
+        "Il reste enfin cette impression persistante que Li Po est un poète confortable. Il ne dérange pas, ne contraint pas, ne met pas en danger. Il accompagne agréablement une certaine idée de la poésie, sans jamais la remettre en question."
+      ],
+      "conclusion": "Conclusion : Une œuvre dont le prestige tient peut-être autant à son image qu’à sa substance, et qui transforme la légèreté en argument."
     }
   ]
 }
