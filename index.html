@@ -129,6 +129,9 @@
 
   <script>
     let critiquePairingData = null;
+    let critiqueCatalog = [];
+    let currentCritiqueId = 'li-po';
+
     const authorByMode = {
       eloge: {
         name: 'Ulysse Poussin',
@@ -155,19 +158,40 @@
         .replaceAll("'", '&#39;');
     }
 
-    async function loadCritiquePairing() {
-      const sources = [
-        '/data/critics/prototype.json',
-        '/data/critics/generated.json',
-        '/data/critics/example.json'
-      ];
+    function resolveCritiqueId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('critique') || 'li-po';
+    }
 
-      for (const source of sources) {
-        const res = await fetch(source);
-        if (res.ok) return res.json();
+    async function loadCritiqueCatalog() {
+      const res = await fetch('/data/critics/catalog.json');
+      if (!res.ok) {
+        return [
+          { id: 'li-po', file: '/data/critics/prototype.json', modeLabel: 'Éloge / Démolition', title: 'Li Po' }
+        ];
       }
 
-      throw new Error('Aucune source JSON disponible');
+      const data = await res.json();
+      return Array.isArray(data?.critiques) ? data.critiques : [];
+    }
+
+    async function loadCritiquePairing() {
+      critiqueCatalog = await loadCritiqueCatalog();
+      const requestedId = resolveCritiqueId();
+      const fallbackEntry = critiqueCatalog.find((entry) => entry.id === 'li-po') || critiqueCatalog[0];
+      const selectedEntry = critiqueCatalog.find((entry) => entry.id === requestedId) || fallbackEntry;
+
+      if (!selectedEntry) {
+        throw new Error('Aucune critique disponible');
+      }
+
+      currentCritiqueId = selectedEntry.id;
+      const res = await fetch(selectedEntry.file);
+      if (!res.ok) {
+        throw new Error(`Impossible de charger ${selectedEntry.file}`);
+      }
+
+      return res.json();
     }
 
     function getArticleByMode(data, mode) {
@@ -211,23 +235,25 @@
       contentNode.innerHTML = blocks.join('');
     }
 
-    function renderRecentPosts(data) {
+    function renderRecentPosts() {
       const grid = document.getElementById('recent-posts-grid');
       if (!grid) return;
 
-      const recentPosts = Array.isArray(data?.recentPosts) ? data.recentPosts : [];
-      if (!recentPosts.length) {
-        grid.innerHTML = '<p class="text-center text-sm text-gray-500 col-span-full">Aucun autre article publié.</p>';
+      const posts = critiqueCatalog.filter((entry) => entry.id !== currentCritiqueId);
+      if (!posts.length) {
+        grid.innerHTML = '<p class="text-center text-sm text-gray-500 col-span-full">Aucun autre dossier critique.</p>';
         return;
       }
 
-      grid.innerHTML = recentPosts.map((post) => {
+      grid.innerHTML = posts.map((post) => {
         const modeClass = post.mode === 'demolition' ? 'category-demolition' : 'category-eloge';
-        return `<article class="group cursor-pointer">
-          <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(post.modeLabel || post.mode || '')}</p>
-          <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(post.title || '')}</h5>
-          <p class="text-sm text-gray-500 font-serif italic">${escapeHtml(post.date || '')}</p>
-        </article>`;
+        return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}">
+          <article class="cursor-pointer">
+            <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(post.modeLabel || 'Éloge / Démolition')}</p>
+            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(post.title || '')}</h5>
+            <p class="text-sm text-gray-500 font-serif italic">${escapeHtml(post.date || '')}</p>
+          </article>
+        </a>`;
       }).join('');
     }
 
@@ -300,7 +326,7 @@
 
       renderArticleContent(eloge, 'eloge');
       renderArticleContent(demolition, 'demolition');
-      renderRecentPosts(data);
+      renderRecentPosts();
       syncHeaderForMode('eloge');
       updateAuthorBlock('eloge');
     }
