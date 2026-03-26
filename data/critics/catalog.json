@@ -23,6 +23,18 @@
       "demolitionTitle": "Le désenchantement en série",
       "subject": "Michel Houellebecq",
       "subjectKind": "author"
+    },
+    {
+      "id": "accelerationnisme",
+      "file": "/data/critics/accelerationnisme.json",
+      "title": "Accélérationnisme — Dossier idées",
+      "mode": "demolition",
+      "modeLabel": "Éloge / Démolition",
+      "date": "26 Mars 2026",
+      "elogeTitle": "Accélérer pour déverrouiller le présent",
+      "demolitionTitle": "La vitesse comme alibi",
+      "subject": "L’accélérationnisme",
+      "subjectKind": "concept"
     }
   ]
 }

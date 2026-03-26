@@ -1,0 +1,65 @@
+{
+  "pairingId": "accelerationnisme",
+  "label": "Les idées",
+  "figure": {
+    "cover": "assets/book-cover.svg",
+    "alt": "Illustration abstraite d'un manifeste",
+    "caption": "Dossier idées : accélérationnisme"
+  },
+  "authors": [
+    {
+      "name": "Ulysse Poussin",
+      "role": "Critique de la raison pure",
+      "bio": "Essayiste et romancier, Ulysse Poussin explore les idées contemporaines avec une attention portée à leur cohérence historique et morale.",
+      "avatar": "assets/ulysse-poussin.svg",
+      "alt": "Portrait de Ulysse Poussin"
+    },
+    {
+      "name": "Achille Corbeau",
+      "role": "Critique de la raison dure",
+      "bio": "Pamphlétaire et critique, Achille Corbeau démonte les rhétoriques séduisantes quand elles masquent des angles morts politiques.",
+      "avatar": "assets/achille-corbeau.svg",
+      "alt": "Portrait de Achille Corbeau"
+    }
+  ],
+  "articles": [
+    {
+      "id": "accelerationnisme-eloge",
+      "mode": "eloge",
+      "title": "Accélérer pour déverrouiller le présent",
+      "subtitle": "L’accélérationnisme rappelle qu’une critique sérieuse du capitalisme doit aussi réfléchir aux puissances techniques qu’il a libérées.",
+      "author": "Ulysse Poussin",
+      "pullQuote": "L’intérêt de l’accélérationnisme est de refuser la nostalgie : il force à penser le futur avec les instruments du présent.",
+      "paragraphs": [
+        "L’accélérationnisme a d’abord le mérite de déplacer le débat. Là où certaines critiques du monde contemporain se contentent d’invoquer un retour à l’avant, il propose d’examiner ce qui, dans la modernité technique, peut encore être réorienté.",
+        "Cette intuition est décisive : le progrès matériel n’est pas en soi émancipateur, mais il n’est pas non plus condamné à servir uniquement la logique marchande. Tout dépend des formes institutionnelles et des finalités politiques qui l’encadrent.",
+        "En ce sens, l’accélérationnisme fonctionne comme une provocation utile. Il oblige la gauche intellectuelle à clarifier son rapport à l’automatisation, à la planification, aux infrastructures, bref à tout ce qu’elle a parfois abandonné au discours managérial.",
+        "Sa force est d’articuler critique et stratégie. Il ne suffit pas de dénoncer les dégâts du capitalisme ; il faut aussi penser les leviers capables de transformer la production, la distribution et le temps de travail.",
+        "Loin d’un culte naïf de la machine, ses meilleures versions décrivent un programme d’appropriation collective des capacités techniques. Elles ouvrent la possibilité d’un usage post-capitaliste de la complexité.",
+        "Ce cadre permet aussi de sortir de l’alternative stérile entre techno-optimisme béat et catastrophisme passif. L’accélérationnisme n’annule pas les risques ; il propose de les gouverner politiquement plutôt que de les subir.",
+        "On peut lui reprocher son abstraction, mais cette abstraction a une vertu : elle reformule la question du pouvoir à l’échelle des systèmes. Dans un monde interconnecté, cette échelle n’est plus optionnelle.",
+        "En définitive, l’accélérationnisme vaut surtout comme méthode : prendre au sérieux les dynamiques du présent pour y détecter des bifurcations possibles, au lieu de rêver une pure extériorité."
+      ],
+      "conclusion": "Conclusion : Une pensée parfois inégale, mais indispensable pour qui veut conjuguer critique sociale et horizon technologique." 
+    },
+    {
+      "id": "accelerationnisme-demolition",
+      "mode": "demolition",
+      "title": "La vitesse comme alibi",
+      "subtitle": "Sous ses airs stratégiques, l’accélérationnisme risque de confondre puissance technique et émancipation politique.",
+      "author": "Achille Corbeau",
+      "pullQuote": "L’accélérationnisme promet un futur libéré, mais il reproduit souvent le fétichisme des moyens qu’il prétend combattre.",
+      "paragraphs": [
+        "Le problème central de l’accélérationnisme est sa grammaire : il parle le langage même qu’il prétend subvertir. Plus vite, plus grand, plus complexe — le vocabulaire de la rupture ressemble étrangement à celui de la compétition.",
+        "À force de miser sur les infrastructures et les systèmes, il relègue les conflits concrets au second plan. Or les rapports de classe, de race ou de genre ne se dissolvent pas par décret technologique.",
+        "Le pari selon lequel l’intensification des forces productives préparerait mécaniquement l’émancipation relève d’un vieux déterminisme. Il oublie que les mêmes outils peuvent renforcer la surveillance, la précarité et l’extraction.",
+        "Dans ses versions les plus médiatiques, l’accélérationnisme glisse vers une esthétique de la puissance. Le manifeste remplace l’enquête, la posture remplace l’organisation.",
+        "Même lorsqu’il se veut critique, il surestime la neutralité de la technique. Les architectures numériques ne sont pas des coquilles vides : elles incorporent des intérêts, des hiérarchies, des exclusions.",
+        "Sa promesse de planification intelligente reste souvent imprécise sur le sujet décisif : qui décide, selon quelles procédures, et avec quelles garanties démocratiques ?",
+        "Le résultat est une politique du futur sans politique du présent. On décrit des trajectoires globales, mais on laisse sans réponse les médiations capables d’y conduire.",
+        "En voulant dépasser la nostalgie, l’accélérationnisme finit parfois par tomber dans son inverse : une fascination pour le mouvement lui-même, où la vitesse tient lieu de projet."
+      ],
+      "conclusion": "Conclusion : Une théorie stimulante sur le papier, mais trop souvent aveugle aux conditions sociales et démocratiques de la transformation qu’elle invoque." 
+    }
+  ]
+}
