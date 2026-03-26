@@ -35,6 +35,18 @@
       "demolitionTitle": "La vitesse comme alibi",
       "subject": "L’accélérationnisme",
       "subjectKind": "concept"
+    },
+    {
+      "id": "geopolitique-ketchup",
+      "file": "/data/critics/geopolitique-ketchup.json",
+      "title": "Géopolitique du Ketchup — Dossier idées",
+      "mode": "demolition",
+      "modeLabel": "Éloge / Démolition",
+      "date": "26 Mars 2026",
+      "elogeTitle": "Le rouge qui cartographie le monde",
+      "demolitionTitle": "La sauce de toutes les paresses",
+      "subject": "Géopolitique du Ketchup",
+      "subjectKind": "concept"
     }
   ]
 }
