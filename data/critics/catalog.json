@@ -8,7 +8,8 @@
       "modeLabel": "Éloge / Démolition",
       "date": "05 Octobre 2023",
       "elogeTitle": "L’ivresse comme clarté",
-      "demolitionTitle": "Pastoral pour paresseux"
+      "demolitionTitle": "Pastoral pour paresseux",
+      "subject": "Li Po"
     },
     {
       "id": "michel-houellebecq",
@@ -18,7 +19,8 @@
       "modeLabel": "Éloge / Démolition",
       "date": "26 Mars 2026",
       "elogeTitle": "La lucidité comme roman social",
-      "demolitionTitle": "Le désenchantement en série"
+      "demolitionTitle": "Le désenchantement en série",
+      "subject": "Michel Houellebecq"
     }
   ]
 }

@@ -257,11 +257,13 @@
         const modeLabel = inverseMode === 'demolition' ? 'Démolition' : 'Éloge';
         const targetTitle = inverseMode === 'demolition' ? post.demolitionTitle : post.elogeTitle;
         const fallbackTitle = post.title || '';
+        const scopedTitle = targetTitle || fallbackTitle;
+        const contextualTitle = post.subject ? `${post.subject}, ${scopedTitle}` : scopedTitle;
 
         return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${inverseMode}">
           <article class="cursor-pointer">
             <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(modeLabel)}</p>
-            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(targetTitle || fallbackTitle)}</h5>
+            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(contextualTitle)}</h5>
             <p class="text-sm text-gray-500 font-serif italic">${escapeHtml(post.date || '')}</p>
           </article>
         </a>`;
