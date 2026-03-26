@@ -264,17 +264,19 @@
       const grid = document.getElementById('recent-posts-grid');
       if (!grid) return;
 
-      const inverseMode = activeMode === 'eloge' ? 'demolition' : 'eloge';
+      const firstMode = activeMode === 'eloge' ? 'demolition' : 'eloge';
+      const alternateMode = firstMode === 'eloge' ? 'demolition' : 'eloge';
       const posts = critiqueCatalog.filter((entry) => entry.id !== currentCritiqueId);
       if (!posts.length) {
         grid.innerHTML = '<p class="text-center text-sm text-gray-500 col-span-full">Aucun autre dossier critique.</p>';
         return;
       }
 
-      grid.innerHTML = posts.map((post) => {
-        const modeClass = inverseMode === 'demolition' ? 'category-demolition' : 'category-eloge';
-        const modeLabel = inverseMode === 'demolition' ? 'Démolition' : 'Éloge';
-        const targetTitle = inverseMode === 'demolition' ? post.demolitionTitle : post.elogeTitle;
+      grid.innerHTML = posts.map((post, index) => {
+        const modeForPost = index % 2 === 0 ? firstMode : alternateMode;
+        const modeClass = modeForPost === 'demolition' ? 'category-demolition' : 'category-eloge';
+        const modeLabel = modeForPost === 'demolition' ? 'Démolition' : 'Éloge';
+        const targetTitle = modeForPost === 'demolition' ? post.demolitionTitle : post.elogeTitle;
         const fallbackTitle = post.title || '';
         const scopedTitle = targetTitle || fallbackTitle;
         const isAuthorSubject = post.subjectKind === 'author';
@@ -284,7 +286,7 @@
             : `${post.subject}, ${lowerFirstLetter(scopedTitle)}`)
           : scopedTitle;
 
-        return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${inverseMode}">
+        return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${modeForPost}">
           <article class="cursor-pointer">
             <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(modeLabel)}</p>
             <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${formatDisplayText(contextualTitle)}</h5>
