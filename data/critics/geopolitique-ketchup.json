@@ -1,0 +1,65 @@
+{
+  "pairingId": "geopolitique-ketchup",
+  "label": "Les idées",
+  "figure": {
+    "cover": "assets/book-cover.svg",
+    "alt": "Illustration conceptuelle autour du ketchup",
+    "caption": "Dossier idées : géopolitique du ketchup"
+  },
+  "authors": [
+    {
+      "name": "Ulysse Poussin",
+      "role": "Critique de la raison pure",
+      "bio": "Essayiste et romancier, Ulysse Poussin aime traquer les structures politiques là où personne ne pense à regarder.",
+      "avatar": "assets/ulysse-poussin.svg",
+      "alt": "Portrait de Ulysse Poussin"
+    },
+    {
+      "name": "Achille Corbeau",
+      "role": "Critique de la raison dure",
+      "bio": "Pamphlétaire et critique, Achille Corbeau démonte les mythologies contemporaines avec une ironie sans concession.",
+      "avatar": "assets/achille-corbeau.svg",
+      "alt": "Portrait de Achille Corbeau"
+    }
+  ],
+  "articles": [
+    {
+      "id": "ketchup-eloge",
+      "mode": "eloge",
+      "title": "Le rouge qui cartographie le monde",
+      "subtitle": "La géopolitique du ketchup révèle, dans une bouteille banale, des questions de souveraineté agricole, de goût globalisé et de mémoire industrielle.",
+      "author": "Ulysse Poussin",
+      "pullQuote": "Le ketchup n’est pas un condiment mineur : c’est une archive liquide de la mondialisation.",
+      "paragraphs": [
+        "Prendre le ketchup au sérieux, c’est accepter qu’un objet trivial puisse raconter une histoire planétaire. Derrière sa couleur uniforme se cachent des trajectoires de tomates, de sucre, de vinaigre, d’emballages et de transport qui dessinent une véritable carte des interdépendances.",
+        "Le ketchup condense un paradoxe fascinant : il promet le même goût partout, mais dépend d’écosystèmes radicalement différents. La standardisation organoleptique exige en réalité une extrême sophistication logistique, de la semence jusqu’au rayon.",
+        "On peut y lire une version populaire de Braudel : longue durée agricole, accélération industrielle, et circulation marchande qui relie des territoires sans les homogénéiser totalement. Le geste de presser une bouteille devient alors un micro-événement de l’économie-monde.",
+        "Le produit est aussi un indicateur de puissance douce. Des marques imposent des préférences gustatives, puis les intègrent aux cuisines locales, produisant des hybridations inattendues. Le ketchup devient dialecte global : compréhensible partout, prononcé différemment selon les lieux.",
+        "Sa formulation révèle également des arbitrages politiques : teneur en sucre, origine des concentrés, normes sanitaires, fiscalité nutritionnelle. Ce qui paraît neutre est en fait codé par des régulations et des rapports de force entre États, industriels et consommateurs.",
+        "La géopolitique du ketchup oblige à rapprocher des mondes qu’on sépare d’habitude : agronomie, commerce maritime, diplomatie normative, design d’emballage, marketing affectif. C’est précisément cette transversalité qui en fait un objet intellectuel passionnant.",
+        "Même sa présence dans les fast-foods raconte une histoire du temps social : accélération des repas, compression des rythmes urbains, recherche de repères gustatifs stables dans des vies fragmentées.",
+        "En définitive, le ketchup agit comme une miniature du XXIe siècle : une infrastructure comestible où se rencontrent souveraineté alimentaire, industrie culturelle et désir d’un commun gustatif mondial."
+      ],
+      "conclusion": "Conclusion : Étudier le ketchup, c’est découvrir qu’aucun objet de masse n’est insignifiant dès lors qu’on le lit comme une forme politique." 
+    },
+    {
+      "id": "ketchup-demolition",
+      "mode": "demolition",
+      "title": "La sauce de toutes les paresses",
+      "subtitle": "Sous prétexte d’universalité, la géopolitique du ketchup sert souvent de cache-misère théorique : beaucoup de rouge, peu d’analyse.",
+      "author": "Achille Corbeau",
+      "pullQuote": "Le ketchup explique tout, paraît-il : surtout l’incapacité à distinguer un symbole malin d’un argument solide.",
+      "paragraphs": [
+        "Le sujet sonne brillant en séminaire : “géopolitique du ketchup”. On y voit déjà l’intellectuel agile, capable de transformer n’importe quelle sauce en concept total. Le problème, c’est qu’à force d’élasticité, la notion finit par ne plus rien contraindre.",
+        "Beaucoup d’analyses confondent trois niveaux : histoire d’une marque, sociologie des usages et géopolitique des chaînes de valeur. Résultat : un collage séduisant où les références voyagent plus vite que les preuves.",
+        "L’objet est idéal pour produire de la profondeur instantanée. Un peu de mondialisation, deux phrases sur le sucre, une allusion à la puissance américaine, et voici la bouteille promue au rang de traité stratégique.",
+        "La dimension ironique du sujet est souvent retournée en alibi méthodologique. Puisque c’est “décalé”, on s’autorise des raccourcis : approximation des données, généralités sur les goûts, surinterprétation des symboles rouges.",
+        "On nous parle de souveraineté alimentaire, mais sans regarder les chiffres de production ni les dépendances locales réelles. On invoque la normalisation culturelle, mais on ignore les pratiques culinaires qui résistent ou réinventent le produit.",
+        "Le pire est l’usage moral paresseux : ketchup égal malbouffe, donc ketchup égal domination. C’est une chaîne logique confortable, et fausse dès qu’on observe la diversité des contextes de consommation.",
+        "La géopolitique mérite mieux qu’une métaphore qui fait sourire. Elle exige des échelles, des séries, des conflits identifiables, des acteurs situés. Sans cela, on n’a pas une analyse : on a un bon pitch.",
+        "Bref, le ketchup n’est pas un mauvais objet ; c’est un objet maltraité. Trop de discours veulent en faire un totem critique, quand il faudrait commencer par le traiter comme un fait matériel précis."
+      ],
+      "conclusion": "Conclusion : Une idée brillante en apparence, mais qui tourne vite à la sauce conceptuelle si elle n’est pas tenue par une vraie discipline d’enquête." 
+    }
+  ]
+}

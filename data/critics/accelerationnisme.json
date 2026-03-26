@@ -1,0 +1,65 @@
+{
+  "pairingId": "accelerationnisme",
+  "label": "Les idées",
+  "figure": {
+    "cover": "assets/book-cover.svg",
+    "alt": "Illustration abstraite d'un manifeste",
+    "caption": "Dossier idées : accélérationnisme"
+  },
+  "authors": [
+    {
+      "name": "Ulysse Poussin",
+      "role": "Critique de la raison pure",
+      "bio": "Essayiste et romancier, Ulysse Poussin explore les idées contemporaines avec une attention portée à leur cohérence historique et morale.",
+      "avatar": "assets/ulysse-poussin.svg",
+      "alt": "Portrait de Ulysse Poussin"
+    },
+    {
+      "name": "Achille Corbeau",
+      "role": "Critique de la raison dure",
+      "bio": "Pamphlétaire et critique, Achille Corbeau démonte les rhétoriques séduisantes quand elles masquent des angles morts politiques.",
+      "avatar": "assets/achille-corbeau.svg",
+      "alt": "Portrait de Achille Corbeau"
+    }
+  ],
+  "articles": [
+    {
+      "id": "accelerationnisme-eloge",
+      "mode": "eloge",
+      "title": "Accélérer, mais vers quoi ?",
+      "subtitle": "Dans sa version de gauche, l’accélérationnisme force à penser la technologie comme terrain de lutte, pas comme destin.",
+      "author": "Ulysse Poussin",
+      "pullQuote": "Le mérite de l’accélérationnisme est de poser une question stratégique : comment détourner la puissance technique hors de la seule logique du capital ?",
+      "paragraphs": [
+        "L’accélérationnisme est souvent caricaturé comme un culte abstrait de la vitesse. Pourtant, sa branche de gauche part d’un problème concret : le capitalisme a développé des forces techniques massives, et la question politique est de savoir qui les contrôle et pour quelles finalités.",
+        "Cette intuition prolonge une lecture de Marx : la dynamique de « révolution incessante de la production » crée des contradictions qui peuvent ouvrir, sous certaines conditions, des issues au-delà du capital. Rien d’automatique, mais une hypothèse stratégique.",
+        "Les références théoriques de ce courant sont hétérogènes mais fécondes : opéraïsme autour du General Intellect, Deleuze et Guattari sur la déterritorialisation, Mark Fisher sur le réalisme capitaliste, puis des auteurs comme Srnicek et Williams sur les institutions du futur.",
+        "L’intérêt de ce cadre est qu’il refuse l’alternative stérile entre technophobie morale et techno-solutionnisme marchand. Il traite la technique comme un champ conflictuel, traversé par des rapports de pouvoir.",
+        "Dans cette perspective, automatisation, plateformes, logistique et cybernétique ne sont pas des objets neutres ni des fatalités : ce sont des infrastructures à politiser. La question devient celle de la planification démocratique et de l’appropriation collective.",
+        "Cette orientation répond aussi à une faiblesse historique des critiques anti-capitalistes : savoir décrire les dégâts, mais peiner à proposer une architecture matérielle crédible pour l’après. L’accélérationnisme de gauche tente de combler ce vide programmatique.",
+        "On peut lui reprocher ses excès de jargon ou ses ambiguïtés. Mais il a le mérite de rouvrir le débat sur la capacité de la gauche à gouverner la complexité technique plutôt qu’à la fuir.",
+        "À son meilleur niveau, ce courant n’ordonne pas d’accélérer n’importe quoi : il exige d’orienter les tendances existantes vers des objectifs d’émancipation, de réduction du travail contraint et d’élargissement des capacités collectives."
+      ],
+      "conclusion": "Conclusion : Une pensée exigeante et imparfaite, mais précieuse pour relier critique du capitalisme, stratégie institutionnelle et bataille technologique." 
+    },
+    {
+      "id": "accelerationnisme-demolition",
+      "mode": "demolition",
+      "title": "Une ambiguïté dangereuse",
+      "subtitle": "Le mot “accélérationnisme” rassemble des projets incompatibles, au risque de banaliser ses usages les plus réactionnaires.",
+      "author": "Achille Corbeau",
+      "pullQuote": "À force de parler d’accélération, on finit parfois par oublier la question décisive : qui paie le prix de cette vitesse ?",
+      "paragraphs": [
+        "Le terme d’accélérationnisme souffre d’un défaut majeur : il agrège des positions mutuellement contradictoires sous une même bannière, comme si la gauche émancipatrice et la droite néo-darwinienne relevaient d’une simple variation de style.",
+        "Dans sa version de droite, l’intensification du capitalisme est parfois assumée jusqu’au fantasme de singularité technologique, avec des figures comme Nick Land ou Curtis Yarvin. Cette trajectoire ne corrige pas les dominations : elle les radicalise.",
+        "Plus grave, le terme a été récupéré dans les années 2010 par des milieux d’extrême droite racialistes, qui redéfinissent l’accélération comme stratégie de chaos et de terrorisme pour provoquer un effondrement politique.",
+        "Face à ce paysage, maintenir un vocabulaire commun crée une confusion coûteuse. Le prestige théorique du mot peut servir de paravent à des imaginaires autoritaires qui n’ont rien d’émancipateur.",
+        "Même l’accélérationnisme dit de gauche n’est pas à l’abri d’un biais technocratique. En insistant sur les systèmes, il tend parfois à sous-estimer les médiations démocratiques, les temporalités sociales et les conflits situés.",
+        "Le pari d’un “dépassement” du capitalisme par intensification interne reste fragile : l’histoire montre que les gains de productivité peuvent tout autant nourrir précarité, extraction et surveillance généralisée.",
+        "Les versions libérales récentes — “inconditionnelle” ou “efficace” — aggravent encore le problème en substituant la performance au politique. On accélère, puis on verra. C’est exactement l’inverse d’une stratégie collective.",
+        "Au final, l’accélérationnisme risque de devenir une esthétique de la puissance plus qu’une théorie de l’émancipation, où le mouvement lui-même sert d’argument et la question des fins disparaît derrière celle des moyens."
+      ],
+      "conclusion": "Conclusion : Concept stimulant, mais dangereusement poreux : sans clarification stricte des finalités et des acteurs, l’accélérationnisme devient un mot-écran." 
+    }
+  ]
+}

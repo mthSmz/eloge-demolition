@@ -1,0 +1,65 @@
+{
+  "pairingId": "michel-houellebecq",
+  "label": "Critique littéraire",
+  "figure": {
+    "cover": "assets/book-cover.svg",
+    "alt": "Illustration d'un livre classique en noir et blanc",
+    "caption": "Dossier critique : michel-houellebecq"
+  },
+  "authors": [
+    {
+      "name": "Ulysse Poussin",
+      "role": "Critique de la raison pure",
+      "bio": "Essayiste et romancier, Ulysse Poussin défend une critique attentive aux formes, même quand elles prennent le masque du désenchantement.",
+      "avatar": "assets/ulysse-poussin.svg",
+      "alt": "Portrait de Ulysse Poussin"
+    },
+    {
+      "name": "Achille Corbeau",
+      "role": "Critique de la raison dure",
+      "bio": "Pamphlétaire et critique au verbe sec, Achille Corbeau dissèque les impostures esthétiques avec une constance féroce.",
+      "avatar": "assets/achille-corbeau.svg",
+      "alt": "Portrait de Achille Corbeau"
+    }
+  ],
+  "articles": [
+    {
+      "id": "houellebecq-eloge",
+      "mode": "eloge",
+      "title": "La lucidité comme roman social",
+      "subtitle": "Chez Michel Houellebecq, la mélancolie n'est pas une posture : c'est un instrument pour lire les fractures du contemporain.",
+      "author": "Ulysse Poussin",
+      "pullQuote": "Houellebecq transforme la fatigue collective en matière romanesque, sans jamais cesser d'observer.",
+      "paragraphs": [
+        "Lire Michel Houellebecq, c'est entrer dans un laboratoire du présent. Ses romans paraissent froids au premier abord, mais cette froideur relève surtout d'une méthode : regarder les êtres dans les dispositifs économiques, affectifs et symboliques qui les déterminent.",
+        "Sa phrase, volontairement plate, agit comme un révélateur. Elle renonce au brillant pour laisser apparaître les mécanismes : isolement, désir, marché, peur du déclassement. Cette neutralité tendue permet de faire monter une émotion plus durable que l'emphase.",
+        "L'un de ses mérites majeurs est d'avoir replacé la question sociale au cœur du roman français contemporain. Non pas sous la forme d'un manifeste, mais sous celle d'une expérience vécue : solitudes administrées, sexualité standardisée, mobilité sans horizon.",
+        "Ses personnages sont souvent démunis, mais rarement simplistes. Ils avancent avec une lucidité intermittente, capables d'auto-ironie et d'éclairs d'analyse. Cette oscillation entre cynisme et vulnérabilité leur donne une densité peu commune.",
+        "On lui reproche son pessimisme ; il faudrait plutôt parler d'une anthropologie sans consolation. Houellebecq n'embellit pas le monde, et c'est précisément ce refus qui rend parfois possible une forme de compassion sèche.",
+        "Son œuvre sait aussi ménager des respirations inattendues : descriptions de paysages, notations techniques, moments de douceur presque maladroite. Ces contrepoints empêchent le désespoir de se figer en doctrine.",
+        "Enfin, il faut reconnaître son impact stylistique : il a ouvert une voie où le roman peut redevenir diagnostic, tout en gardant une puissance de fiction. Son influence, qu'on la juge heureuse ou non, est devenue structurelle.",
+        "À rebours de nombreuses écritures de l'effet, Houellebecq propose une prose de l'usure. Et cette usure, loin d'appauvrir le récit, y inscrit la vérité d'une époque qui s'épuise en se racontant." 
+      ],
+      "conclusion": "Conclusion : Une œuvre qui capte la fatigue moderne avec une précision clinique, et qui redonne au roman sa fonction d'instrument de connaissance." 
+    },
+    {
+      "id": "houellebecq-demolition",
+      "mode": "demolition",
+      "title": "Le désenchantement en série",
+      "subtitle": "À force de répéter le même constat sur l'époque, Michel Houellebecq risque de transformer sa lucidité en formule.",
+      "author": "Achille Corbeau",
+      "pullQuote": "Chez Houellebecq, la prophétie tourne parfois à la routine : même fatigue, même verdict, même théâtre du renoncement.",
+      "paragraphs": [
+        "Le problème de Michel Houellebecq n'est pas son pessimisme, mais sa prévisibilité. On ouvre un roman en connaissant déjà la météo morale : désolation générale, sexualité triste, marché omnipotent, ironie terminale.",
+        "Ce qui fut jadis une voix neuve ressemble désormais à un protocole narratif. Les figures changent de prénom, les lieux se déplacent, mais la mécanique demeure : un homme épuisé constate l'effondrement puis s'y laisse couler.",
+        "La prose dite \"plate\" est souvent louée comme une stratégie de vérité. Elle produit aussi, trop souvent, une monotonie d'intonation qui neutralise les scènes avant même qu'elles ne prennent forme.",
+        "L'analyse sociale, quant à elle, fonctionne par grands blocs explicatifs. On y gagne en lisibilité ce qu'on y perd en complexité : les contradictions du réel sont rabattues sur quelques axiomes répétés d'un livre à l'autre.",
+        "Ses personnages féminins restent fréquemment prisonniers d'une logique de fonction. Ils servent la démonstration, incarnent une thèse, puis disparaissent. Le roman y perd une part de son imprévu humain.",
+        "On invoque souvent son courage : dire ce que d'autres taisent. Mais la provocation, quand elle devient signature, cesse d'être risque. Elle devient marque de fabrique, donc confortable.",
+        "Même ses moments d'émotion paraissent parfois calibrés par contraste, comme si la tendresse n'était admise qu'à la condition de confirmer ensuite la thèse du désastre.",
+        "Reste un écrivain influent, certes ; mais une influence n'est pas une preuve de vitalité. Elle peut aussi signaler la diffusion d'un geste devenu automatique."
+      ],
+      "conclusion": "Conclusion : Une œuvre importante, mais peut-être enfermée dans son propre dispositif, où la clairvoyance initiale s'érode en répétition." 
+    }
+  ]
+}
