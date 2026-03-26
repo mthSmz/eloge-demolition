@@ -6,7 +6,9 @@
       "title": "Li Po — Dossier critique",
       "mode": "eloge",
       "modeLabel": "Éloge / Démolition",
-      "date": "05 Octobre 2023"
+      "date": "05 Octobre 2023",
+      "elogeTitle": "L’ivresse comme clarté",
+      "demolitionTitle": "Pastoral pour paresseux"
     },
     {
       "id": "michel-houellebecq",
@@ -14,7 +16,9 @@
       "title": "Michel Houellebecq — Dossier critique",
       "mode": "demolition",
       "modeLabel": "Éloge / Démolition",
-      "date": "26 Mars 2026"
+      "date": "26 Mars 2026",
+      "elogeTitle": "La lucidité comme roman social",
+      "demolitionTitle": "Le désenchantement en série"
     }
   ]
 }

@@ -131,6 +131,7 @@
     let critiquePairingData = null;
     let critiqueCatalog = [];
     let currentCritiqueId = 'li-po';
+    let currentMode = 'eloge';
 
     const authorByMode = {
       eloge: {
@@ -161,6 +162,11 @@
     function resolveCritiqueId() {
       const params = new URLSearchParams(window.location.search);
       return params.get('critique') || 'li-po';
+    }
+
+    function resolveInitialMode() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
     }
 
     async function loadCritiqueCatalog() {
@@ -235,10 +241,11 @@
       contentNode.innerHTML = blocks.join('');
     }
 
-    function renderRecentPosts() {
+    function renderRecentPosts(activeMode = currentMode) {
       const grid = document.getElementById('recent-posts-grid');
       if (!grid) return;
 
+      const inverseMode = activeMode === 'eloge' ? 'demolition' : 'eloge';
       const posts = critiqueCatalog.filter((entry) => entry.id !== currentCritiqueId);
       if (!posts.length) {
         grid.innerHTML = '<p class="text-center text-sm text-gray-500 col-span-full">Aucun autre dossier critique.</p>';
@@ -246,11 +253,15 @@
       }
 
       grid.innerHTML = posts.map((post) => {
-        const modeClass = post.mode === 'demolition' ? 'category-demolition' : 'category-eloge';
-        return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}">
+        const modeClass = inverseMode === 'demolition' ? 'category-demolition' : 'category-eloge';
+        const modeLabel = inverseMode === 'demolition' ? 'Démolition' : 'Éloge';
+        const targetTitle = inverseMode === 'demolition' ? post.demolitionTitle : post.elogeTitle;
+        const fallbackTitle = post.title || '';
+
+        return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${inverseMode}">
           <article class="cursor-pointer">
-            <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(post.modeLabel || 'Éloge / Démolition')}</p>
-            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(post.title || '')}</h5>
+            <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(modeLabel)}</p>
+            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(targetTitle || fallbackTitle)}</h5>
             <p class="text-sm text-gray-500 font-serif italic">${escapeHtml(post.date || '')}</p>
           </article>
         </a>`;
@@ -326,9 +337,7 @@
 
       renderArticleContent(eloge, 'eloge');
       renderArticleContent(demolition, 'demolition');
-      renderRecentPosts();
-      syncHeaderForMode('eloge');
-      updateAuthorBlock('eloge');
+      toggleReview(resolveInitialMode());
     }
 
     function toggleReview(mode) {
@@ -338,8 +347,10 @@
       const btnEloge = document.getElementById('btn-eloge');
       const btnDemolition = document.getElementById('btn-demolition');
 
+      currentMode = mode;
       updateAuthorBlock(mode);
       syncHeaderForMode(mode);
+      renderRecentPosts(mode);
 
       if (mode === 'eloge') {
         pageBody.classList.remove('mode-demolition');
