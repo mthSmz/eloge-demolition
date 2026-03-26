@@ -169,6 +169,13 @@
       return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
     }
 
+
+    function lowerFirstLetter(text) {
+      const normalized = String(text || '').trim();
+      if (!normalized) return normalized;
+      return normalized.charAt(0).toLowerCase() + normalized.slice(1);
+    }
+
     async function loadCritiqueCatalog() {
       const res = await fetch('/data/critics/catalog.json');
       if (!res.ok) {
@@ -258,7 +265,12 @@
         const targetTitle = inverseMode === 'demolition' ? post.demolitionTitle : post.elogeTitle;
         const fallbackTitle = post.title || '';
         const scopedTitle = targetTitle || fallbackTitle;
-        const contextualTitle = post.subject ? `${post.subject}, ${scopedTitle}` : scopedTitle;
+        const isAuthorSubject = post.subjectKind === 'author';
+        const contextualTitle = post.subject
+          ? (isAuthorSubject
+            ? `${post.subject} : ${scopedTitle}`
+            : `${post.subject}, ${lowerFirstLetter(scopedTitle)}`)
+          : scopedTitle;
 
         return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${inverseMode}">
           <article class="cursor-pointer">
