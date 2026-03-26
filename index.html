@@ -159,6 +159,18 @@
         .replaceAll("'", '&#39;');
     }
 
+
+    function applyFrenchTypography(value) {
+      return String(value ?? '')
+        .replace(/\s*([;:!?])/g, ' $1')
+        .replace(/«\s*/g, '« ')
+        .replace(/\s*»/g, ' »');
+    }
+
+    function formatDisplayText(value) {
+      return escapeHtml(applyFrenchTypography(value));
+    }
+
     function resolveCritiqueId() {
       const params = new URLSearchParams(window.location.search);
       return params.get('critique') || 'li-po';
@@ -230,19 +242,19 @@
 
       paragraphs.forEach((paragraph, index) => {
         const dropcapClass = index === 0 ? ' dropcap' : '';
-        blocks.push(`<p class="critique-paragraph${dropcapClass}">${escapeHtml(paragraph)}</p>`);
+        blocks.push(`<p class="critique-paragraph${dropcapClass}">${formatDisplayText(paragraph)}</p>`);
 
         if (article.pullQuote && index === quoteInsertIndex) {
-          blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
+          blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${formatDisplayText(article.pullQuote)}&rdquo;</p></blockquote>`);
         }
       });
 
       if (article.pullQuote && paragraphs.length === 0) {
-        blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
+        blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${formatDisplayText(article.pullQuote)}&rdquo;</p></blockquote>`);
       }
 
       if (sanitizedConclusion) {
-        blocks.push(`<p class="critique-conclusion">${escapeHtml(sanitizedConclusion)}</p>`);
+        blocks.push(`<p class="critique-conclusion">${formatDisplayText(sanitizedConclusion)}</p>`);
       }
 
       contentNode.innerHTML = blocks.join('');
@@ -275,7 +287,7 @@
         return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${inverseMode}">
           <article class="cursor-pointer">
             <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(modeLabel)}</p>
-            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${escapeHtml(contextualTitle)}</h5>
+            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${formatDisplayText(contextualTitle)}</h5>
             <p class="text-sm text-gray-500 font-serif italic">${escapeHtml(post.date || '')}</p>
           </article>
         </a>`;
@@ -298,8 +310,8 @@
         || getArticleByMode(critiquePairingData, 'demolition');
 
       if (!article) return;
-      document.getElementById('article-title').textContent = article.title || 'Critique indisponible';
-      document.getElementById('article-subtitle').textContent = article.subtitle || 'Aucun sous-titre disponible.';
+      document.getElementById('article-title').textContent = applyFrenchTypography(article.title || 'Critique indisponible');
+      document.getElementById('article-subtitle').textContent = applyFrenchTypography(article.subtitle || 'Aucun sous-titre disponible.');
     }
 
     function updatePageContent(data) {
