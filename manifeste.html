@@ -38,6 +38,13 @@
     .nav-link-active { color: var(--accent-color); }
     details > summary { list-style: none; cursor: pointer; }
     details > summary::-webkit-details-marker { display: none; }
+    .manifest-line {
+      text-indent: 1.5rem;
+      text-align: justify;
+    }
+    .manifest-line + .manifest-line {
+      margin-top: 0.65rem;
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -70,12 +77,11 @@
     <section class="space-y-8">
       <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
         <h3 class="font-heading text-3xl font-bold mb-4">Pourquoi ce dispositif existe</h3>
-        <p class="font-serif text-gray-700 leading-relaxed">
-          Éloge / Démolition part d’une idée volontairement sobre&nbsp;: il n’y a que des lectures situées, argumentées, discutables.
-          Le site met donc en scène deux voix contradictoires pour rappeler que tout œuvre ou sujet peut désormais être défendu et
-          contesté de manière systématique. La fabrication d'un réel à la demande est désormais automatisé et ouvre la voix à un
-          solipsisme numérique renforcé.
-        </p>
+        <div class="font-serif text-gray-700 leading-relaxed">
+          <p class="manifest-line">Éloge / Démolition part d’une idée volontairement sobre&nbsp;: il n’y a que des lectures situées, argumentées, discutables.</p>
+          <p class="manifest-line">Le site met donc en scène deux voix contradictoires pour rappeler que toute œuvre ou sujet peut toujours être défendu et contesté de manière systématique.</p>
+          <p class="manifest-line">La fabrication d'un réel à la demande est désormais automatisé et ouvre la voix à un solipsisme numérique renforcé.</p>
+        </div>
       </article>
 
       <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
