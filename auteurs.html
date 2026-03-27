@@ -132,13 +132,13 @@
         const modeHoverClass = mode === 'demolition' ? 'author-link-demolition' : 'author-link-eloge';
         const publicationsHref = `archive.html?mode=${encodeURIComponent(mode)}`;
         return `
-        <article class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
-          <img alt="${escapeHtml(author.alt || `Portrait de ${author.name}`)}" class="w-48 h-48 rounded-full object-cover" src="${escapeHtml(author.avatar || 'assets/ulysse-poussin.svg')}"/>
+        <article class="flex flex-col md:flex-row items-center md:items-start gap-6 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
+          <img alt="${escapeHtml(author.alt || `Portrait de ${author.name}`)}" class="w-32 h-32 rounded-full object-cover" src="${escapeHtml(author.avatar || 'assets/ulysse-poussin.svg')}"/>
           <div>
-            <h3 class="font-heading text-6xl font-bold mb-2">${formatText(author.name)}</h3>
-            <p class="text-5xl ${roleClass(author.role)} font-bold uppercase tracking-[0.15em] mb-6">${formatText(author.role)}</p>
-            <p class="text-gray-600 font-serif text-2xl leading-relaxed max-w-5xl">${formatText(author.bio)}</p>
-            <div class="mt-8 flex gap-8 flex-wrap">
+            <h3 class="font-heading text-2xl font-bold mb-2">${formatText(author.name)}</h3>
+            <p class="text-sm ${roleClass(author.role)} font-bold uppercase tracking-widest mb-4">${formatText(author.role)}</p>
+            <p class="text-gray-600 font-serif leading-relaxed max-w-4xl">${formatText(author.bio)}</p>
+            <div class="mt-4 flex gap-8 flex-wrap">
               <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
               <a class="text-xs font-bold underline uppercase tracking-widest ${modeHoverClass}" href="${publicationsHref}">Ses publications</a>
             </div>
