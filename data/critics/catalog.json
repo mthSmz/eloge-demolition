@@ -1,0 +1,52 @@
+{
+  "critiques": [
+    {
+      "id": "li-po",
+      "file": "/data/critics/prototype.json",
+      "title": "Li Po — Dossier critique",
+      "mode": "eloge",
+      "modeLabel": "Éloge / Démolition",
+      "date": "05 Octobre 2023",
+      "elogeTitle": "L’ivresse comme clarté",
+      "demolitionTitle": "Pastoral pour paresseux",
+      "subject": "Li Po",
+      "subjectKind": "author"
+    },
+    {
+      "id": "michel-houellebecq",
+      "file": "/data/critics/houellebecq.json",
+      "title": "Michel Houellebecq — Dossier critique",
+      "mode": "demolition",
+      "modeLabel": "Éloge / Démolition",
+      "date": "26 Mars 2026",
+      "elogeTitle": "La lucidité comme roman social",
+      "demolitionTitle": "Le désenchantement en série",
+      "subject": "Michel Houellebecq",
+      "subjectKind": "author"
+    },
+    {
+      "id": "accelerationnisme",
+      "file": "/data/critics/accelerationnisme.json",
+      "title": "Accélérationnisme — Dossier idées",
+      "mode": "demolition",
+      "modeLabel": "Éloge / Démolition",
+      "date": "26 Mars 2026",
+      "elogeTitle": "Accélérer pour déverrouiller le présent",
+      "demolitionTitle": "La vitesse comme alibi",
+      "subject": "L’accélérationnisme",
+      "subjectKind": "concept"
+    },
+    {
+      "id": "geopolitique-ketchup",
+      "file": "/data/critics/geopolitique-ketchup.json",
+      "title": "Géopolitique du Ketchup — Dossier idées",
+      "mode": "demolition",
+      "modeLabel": "Éloge / Démolition",
+      "date": "26 Mars 2026",
+      "elogeTitle": "Le rouge qui cartographie le monde",
+      "demolitionTitle": "La sauce de toutes les paresses",
+      "subject": "Géopolitique du Ketchup",
+      "subjectKind": "concept"
+    }
+  ]
+}

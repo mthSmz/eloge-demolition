@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Archives — Éloge / Démolition</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#0b50da' },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Libre Baskerville', 'serif'],
+            heading: ['Playfair Display', 'serif']
+          },
+          borderRadius: { custom: '4px' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      --eloge-color: #0b50da;
+      --demolition-color: #b91c1c;
+      --accent-color: var(--eloge-color);
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      color: #111827;
+    }
+    body.mode-demolition { --accent-color: var(--demolition-color); }
+    .accent-text { color: var(--accent-color); }
+    .accent-border { border-color: var(--accent-color); }
+    .mode-btn-active-eloge { color: var(--eloge-color); }
+    .mode-btn-active-demolition { color: var(--demolition-color); }
+    .category-eloge { color: var(--eloge-color); }
+    .category-demolition { color: var(--demolition-color); }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="border-b border-gray-200 py-8 bg-white sticky top-0 z-50">
+    <div class="container mx-auto px-4 flex flex-col items-center">
+      <div class="w-16 h-16 mb-4 flex items-center justify-center border-2 border-black rounded-full relative" id="logo">
+        <div class="absolute w-0.5 h-12 bg-black rotate-45"></div><div class="absolute w-0.5 h-12 bg-black -rotate-45"></div>
+        <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
+        <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
+      </div>
+      <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
+      <nav class="mt-6">
+        <ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
+          <li><a class="accent-text" href="archive.html">Archives</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Manifeste</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Auteurs</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 max-w-6xl py-12">
+    <div class="flex justify-center mb-12">
+      <div class="inline-flex items-center bg-gray-100 p-1 rounded-custom border border-gray-200">
+        <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom bg-white shadow-sm mode-btn-active-eloge" id="btn-eloge" onclick="toggleArchiveMode('eloge')">Éloge</button>
+        <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom text-gray-400" id="btn-demolition" onclick="toggleArchiveMode('demolition')">Démolition</button>
+      </div>
+    </div>
+
+    <section class="grid lg:grid-cols-3 gap-8 items-stretch mb-16" id="hero-section"></section>
+
+    <section class="mb-16">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="font-heading text-4xl font-bold">Analyses à la une</h2>
+        <a class="text-xs font-bold uppercase tracking-[0.2em] accent-text" id="view-all-link" href="#">Voir archive →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8" id="featured-grid"></div>
+    </section>
+
+    <section class="grid lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2">
+        <h3 class="font-heading text-4xl font-bold mb-4">Dernières opinions</h3>
+        <div class="border-t border-gray-300 pt-6 space-y-6" id="recent-opinions"></div>
+      </div>
+      <aside class="bg-slate-900 text-white p-8 rounded-custom h-fit">
+        <p class="text-xs uppercase tracking-[0.2em] text-blue-300 mb-4">La note hebdo</p>
+        <h4 class="font-heading text-3xl mb-4">Le brief Éloge / Démolition</h4>
+        <p class="text-sm text-slate-200 mb-6">Chaque dimanche, les idées, les livres et les controverses qui méritent un second regard.</p>
+        <input class="w-full bg-slate-800 border border-slate-700 rounded-custom px-3 py-2 text-sm mb-3" placeholder="Email" type="email"/>
+        <button class="w-full bg-blue-600 hover:bg-blue-500 transition-colors rounded-custom py-2 text-sm font-bold uppercase tracking-widest">S’abonner</button>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="bg-black text-white py-16 mt-16">
+    <div class="container mx-auto px-4 text-center">
+      <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
+      <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Revue systématiquement Pour & Contre</p>
+      <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
+    </div>
+  </footer>
+
+  <script>
+    let archiveEntries = [];
+    let activeMode = 'eloge';
+
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function applyFrenchTypography(value) {
+      return String(value ?? '')
+        .replace(/\s*([;:!?])/g, ' $1')
+        .replace(/«\s*/g, '« ')
+        .replace(/\s*»/g, ' »');
+    }
+
+    function formatText(value) {
+      return escapeHtml(applyFrenchTypography(value));
+    }
+
+    function resolveModeFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
+    }
+
+    async function loadArchiveData() {
+      const catalogRes = await fetch('/data/critics/catalog.json');
+      if (!catalogRes.ok) throw new Error('catalog introuvable');
+      const catalog = await catalogRes.json();
+      const critiques = Array.isArray(catalog?.critiques) ? catalog.critiques : [];
+
+      const entries = await Promise.all(critiques.map(async (item) => {
+        const res = await fetch(item.file);
+        if (!res.ok) return null;
+        const dossier = await res.json();
+        return {
+          ...item,
+          label: dossier.label || 'Critique littéraire',
+          figure: dossier.figure || {},
+          articles: Array.isArray(dossier.articles) ? dossier.articles : []
+        };
+      }));
+
+      archiveEntries = entries.filter(Boolean);
+      renderArchive();
+    }
+
+    function articleForMode(entry, mode) {
+      return entry.articles.find((article) => article.mode === mode) || null;
+    }
+
+    function entryContextTitle(entry, title) {
+      if (!entry.subject) return title;
+      if (entry.subjectKind === 'author') return `${entry.subject} : ${title}`;
+      return `${entry.subject}, ${title.charAt(0).toLowerCase()}${title.slice(1)}`;
+    }
+
+    function renderArchive() {
+      const filtered = archiveEntries
+        .map((entry) => ({ entry, article: articleForMode(entry, activeMode) }))
+        .filter((item) => item.article);
+
+      const hero = filtered[0];
+      const featured = filtered.slice(1, 4);
+      const opinions = filtered.slice(0, 3);
+
+      const modeClass = activeMode === 'demolition' ? 'category-demolition' : 'category-eloge';
+      const modeLabel = activeMode === 'demolition' ? 'Démolition' : 'Éloge';
+
+      const heroNode = document.getElementById('hero-section');
+      if (hero && heroNode) {
+        heroNode.innerHTML = `
+          <img class="lg:col-span-2 w-full h-[420px] object-cover rounded-custom" src="${escapeHtml(hero.entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(hero.entry.figure.alt || hero.article.title)}"/>
+          <article class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-300 pt-6 lg:pt-0 lg:pl-8">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${modeLabel} · ${formatText(hero.entry.label)}</p>
+              <h2 class="font-heading text-6xl leading-tight font-bold mb-4">${formatText(hero.article.title)}</h2>
+              <p class="font-serif text-2xl italic text-gray-600">${formatText(hero.article.subtitle || '')}</p>
+            </div>
+            <a class="mt-8 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(hero.entry.id)}&mode=${activeMode}">Lire la critique →</a>
+          </article>`;
+      }
+
+      const featuredNode = document.getElementById('featured-grid');
+      if (featuredNode) {
+        featuredNode.innerHTML = featured.map(({ entry, article }) => `
+          <article>
+            <img class="w-full h-48 object-cover rounded-custom mb-3" src="${escapeHtml(entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(entry.figure.alt || article.title)}"/>
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${modeLabel}</p>
+            <h4 class="font-heading text-3xl font-bold leading-tight mb-3">${formatText(entryContextTitle(entry, article.title))}</h4>
+            <p class="text-gray-600">${formatText(article.subtitle || '')}</p>
+            <a class="inline-block mt-3 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">Ouvrir →</a>
+          </article>
+        `).join('');
+      }
+
+      const opinionsNode = document.getElementById('recent-opinions');
+      if (opinionsNode) {
+        opinionsNode.innerHTML = opinions.map(({ entry, article }) => `
+          <article class="grid md:grid-cols-5 gap-4 border-b border-gray-200 pb-5">
+            <div class="md:col-span-2">
+              <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">${escapeHtml(entry.date || '')}</p>
+              <h5 class="font-heading text-3xl leading-tight font-bold">${formatText(entryContextTitle(entry, article.title))}</h5>
+            </div>
+            <div class="md:col-span-3 border-l border-gray-200 pl-4">
+              <p class="font-serif italic text-2xl text-gray-600">“${formatText(article.pullQuote || article.subtitle || '')}”</p>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      const viewAll = document.getElementById('view-all-link');
+      if (viewAll) viewAll.href = `archive.html?mode=${activeMode}`;
+    }
+
+    function toggleArchiveMode(mode) {
+      activeMode = mode;
+      const body = document.body;
+      const btnEloge = document.getElementById('btn-eloge');
+      const btnDemolition = document.getElementById('btn-demolition');
+
+      if (mode === 'eloge') {
+        body.classList.remove('mode-demolition');
+        btnEloge.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-eloge');
+        btnEloge.classList.remove('text-gray-400', 'mode-btn-active-demolition');
+        btnDemolition.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+        btnDemolition.classList.add('text-gray-400');
+      } else {
+        body.classList.add('mode-demolition');
+        btnDemolition.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-demolition');
+        btnDemolition.classList.remove('text-gray-400', 'mode-btn-active-eloge');
+        btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+        btnEloge.classList.add('text-gray-400');
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      params.set('mode', mode);
+      window.history.replaceState({}, '', `archive.html?${params.toString()}`);
+      renderArchive();
+    }
+
+    activeMode = resolveModeFromUrl();
+    loadArchiveData()
+      .then(() => toggleArchiveMode(activeMode))
+      .catch(() => {
+        const heroNode = document.getElementById('hero-section');
+        if (heroNode) heroNode.innerHTML = '<p class="text-gray-500">Impossible de charger les archives.</p>';
+      });
+  </script>
+</body>
+</html>

@@ -1,374 +1,219 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Éloge / Démolition - Revue Littéraire</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { primary: '#0b50da' },
-        fontFamily: {
-          sans: ['Inter', 'sans-serif'],
-          serif: ['Libre Baskerville', 'serif'],
-          heading: ['Playfair Display', 'serif'],
-        },
-        borderRadius: { custom: '4px' }
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Éloge / Démolition - Revue Littéraire</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#0b50da' },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Libre Baskerville', 'serif'],
+            heading: ['Playfair Display', 'serif']
+          },
+          borderRadius: { custom: '4px' }
+        }
       }
     }
-  }
-</script>
-<style>
-  body { --eloge-color: #0b50da; --demolition-color: #b91c1c; --accent-color: var(--eloge-color); font-family: 'Inter', sans-serif; background-color: #fcfcfc; color: #1a1a1a; }
-  body.mode-demolition { --accent-color: var(--demolition-color); }
-  .article-body { width: min(100%, 44rem); margin: 0 auto; line-height: 1.64; font-size: clamp(1.1rem, 1rem + 0.26vw, 1.26rem); }
-  .article-body > * + * { margin-top: 0.82rem; }
-  .critique-paragraph { width: 100%; margin-left: auto; margin-right: auto; text-align: justify; text-indent: 2rem; }
-  .dropcap.critique-paragraph { text-indent: 0; }
-  .critique-quote { width: min(100%, 40.5rem); margin: 2rem auto 1.5rem; padding: 1.55rem 0; }
-  .critique-quote p { line-height: 1.24; font-size: clamp(2rem, 1.4rem + 1.1vw, 2.9rem); }
-  .critique-conclusion { width: min(100%, 42rem); margin: 3.2rem auto 0; text-align: center; text-wrap: balance; font-family: 'Playfair Display', serif; font-size: clamp(1.55rem, 1.2rem + 0.7vw, 2.15rem); line-height: 1.35; font-weight: 700; color: var(--accent-color); }
-  #author-bio-text { text-align: justify; }
-  .dropcap::first-letter { float:left; font-size:5rem; line-height:0.8; padding-top:4px; padding-right:8px; font-family:'Playfair Display', serif; font-weight:900; color:var(--accent-color); }
-  .toggle-content { transition: all 0.5s ease-in-out; }
-  .hidden-state { display:none; opacity:0; }
-  .accent-text { color: var(--accent-color); }
-  .accent-border { border-color: var(--accent-color); }
-  .mode-btn-active-eloge { color: var(--eloge-color); }
-  .mode-btn-active-demolition { color: var(--demolition-color); }
-  .category-eloge { color: var(--eloge-color); }
-  .category-demolition { color: var(--demolition-color); }
-</style>
+  </script>
+  <style>
+    body {
+      --eloge-color: #0b50da;
+      --demolition-color: #b91c1c;
+      --accent-color: var(--eloge-color);
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      color: #1a1a1a;
+    }
+    body.mode-demolition { --accent-color: var(--demolition-color); }
+    .article-body { width: min(100%, 44rem); margin: 0 auto; line-height: 1.64; font-size: clamp(1.1rem, 1rem + 0.26vw, 1.26rem); }
+    .article-body > * + * { margin-top: 0.82rem; }
+    .critique-paragraph { width: 100%; margin-left: auto; margin-right: auto; text-align: justify; text-indent: 2rem; }
+    .dropcap.critique-paragraph { text-indent: 0; }
+    .critique-quote { width: min(100%, 40.5rem); margin: 2rem auto 1.5rem; padding: 1.55rem 0; }
+    .critique-quote p { line-height: 1.24; font-size: clamp(2rem, 1.4rem + 1.1vw, 2.9rem); }
+    .critique-conclusion { width: min(100%, 42rem); margin: 3.2rem auto 0; text-align: center; text-wrap: balance; font-family: 'Playfair Display', serif; font-size: clamp(1.55rem, 1.2rem + 0.7vw, 2.15rem); line-height: 1.35; font-weight: 700; color: var(--accent-color); }
+    .dropcap::first-letter { float: left; font-size: 5rem; line-height: 0.8; padding-top: 4px; padding-right: 8px; font-family: 'Playfair Display', serif; font-weight: 900; color: var(--accent-color); }
+    .toggle-content { transition: all 0.5s ease-in-out; }
+    .hidden-state { display: none; opacity: 0; }
+    .accent-text { color: var(--accent-color); }
+    .accent-border { border-color: var(--accent-color); }
+    .mode-btn-active-eloge { color: var(--eloge-color); }
+    .mode-btn-active-demolition { color: var(--demolition-color); }
+    .category-eloge { color: var(--eloge-color); }
+    .category-demolition { color: var(--demolition-color); }
+    #author-bio-text { text-align: justify; }
+  </style>
 </head>
 <body class="antialiased">
-<div id="legacy-home" style="display:none;">
-<div class="wrap">
-    <header>
-      <div class="badge" aria-label="Statut">
-        <span class="dot" aria-hidden="true"></span>
-        Phase 1 — Anti-hallucination par architecture
+  <header class="border-b border-gray-200 py-8 bg-white sticky top-0 z-50" data-purpose="site-navigation">
+    <div class="container mx-auto px-4 flex flex-col items-center">
+      <div class="w-16 h-16 mb-4 flex items-center justify-center border-2 border-black rounded-full relative" id="logo">
+        <div class="absolute w-0.5 h-12 bg-black rotate-45"></div><div class="absolute w-0.5 h-12 bg-black -rotate-45"></div>
+        <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
+        <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
       </div>
+      <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
+      <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
+        <li><a class="hover:text-primary transition-colors" href="archive.html">Archives</a></li>
+        <li><a class="hover:text-primary transition-colors" href="#">Manifeste</a></li>
+        <li><a class="hover:text-primary transition-colors" href="#">Auteurs</a></li>
+        <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+      </ul></nav>
+    </div>
+  </header>
 
-      <h1>Patterns anti-hallucination utilisés dans Éloge &amp; Démolition</h1>
-
-      <p class="lead">
-        Éloge &amp; Démolition est un générateur de critiques, via un pipeline LLM minimaliste conçu pour réduire les hallucinations.
-      </p>
-      <p class="lead" style="margin-top:10px;">
-        La Phase 1 repose sur un ensemble de patterns existant.
-      </p>
-    </header>
-
-    <details class="method-box">
-      <summary>Méthode de génération</summary>
-
-    <section class="panel" aria-label="Liste des patterns">
-      <div class="panel-top">
-        <h2>Patterns</h2>
-        <p class="hint"><span class="sr-only">Astuce :</span> Survole un item (ou clique sur mobile). <kbd>Esc</kbd> pour tout refermer.</p>
+  <main class="container mx-auto px-4 max-w-4xl py-12">
+    <div class="flex justify-center mb-16" data-purpose="critique-mode-toggle">
+      <div class="inline-flex items-center bg-gray-100 p-1 rounded-custom border border-gray-200">
+        <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom bg-white shadow-sm mode-btn-active-eloge" id="btn-eloge" onclick="toggleReview('eloge')">Éloge</button>
+        <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom text-gray-400" id="btn-demolition" onclick="toggleReview('demolition')">Démolition</button>
       </div>
+    </div>
 
-      <ul class="patterns" id="patterns">
-        <!-- 1 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">1</div>
-            <div class="title-area">
-              <p class="title">
-                Hypothèse du monde clos
-                <span class="canon">Nom canonique : Closed-World Assumption (CWA)</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </div>
-          <div class="details" role="region" aria-label="Détails — Hypothèse du monde clos">
-            <p><strong>Principe :</strong> le modèle ne peut raisonner qu’à partir des données explicitement fournies. Aucune source externe n’est autorisée.</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> le texte est fourni intégralement en entrée, et toute affirmation doit provenir exclusivement de ce texte.</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>Database systems</li>
-              <li>Knowledge representation</li>
-              <li>Logic programming</li>
-              <li>Rule-based expert systems</li>
-            </ul>
-          </div>
-        </li>
+    <article class="mb-20">
+      <header class="text-center mb-12">
+        <p class="accent-text font-bold uppercase tracking-[0.2em] text-xs mb-4" id="critique-label">Critique littéraire</p>
+        <h2 class="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight" id="article-title">Chargement…</h2>
+        <p class="font-serif text-xl italic text-gray-600 max-w-2xl mx-auto" id="article-subtitle">Chargement du dossier critique.</p>
+      </header>
 
-        <!-- 2 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">2</div>
-            <div class="title-area">
-              <p class="title">
-                Génération ancrée sur preuves
-                <span class="canon">Nom canonique : Grounded Generation / Evidence-Based Generation</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </div>
-          <div class="details" role="region" aria-label="Détails — Génération ancrée sur preuves">
-            <p><strong>Principe :</strong> chaque affirmation doit être reliée explicitement à une preuve textuelle.</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> citations exactes (sous-chaînes du texte) + interprétations explicitement fondées sur une ou plusieurs citations.</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>QA systems</li>
-              <li>RAG pipelines</li>
-              <li>Fact-checking LLM</li>
-              <li>Retrieval-based architectures</li>
-            </ul>
-          </div>
-        </li>
+      <figure class="mb-12">
+        <img alt="Illustration de la couverture" class="w-full h-auto object-cover grayscale brightness-90 rounded-custom" id="article-cover" src="assets/book-cover.svg"/>
+        <figcaption class="text-center mt-4 text-xs text-gray-400 uppercase tracking-widest" id="figure-caption">Dossier critique</figcaption>
+      </figure>
 
-        <!-- 3 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">3</div>
-            <div class="title-area">
-              <p class="title">
-                Extraction avant raisonnement
-                <span class="canon">Nom canonique : Extract-Then-Reason</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </div>
-          <div class="details" role="region" aria-label="Détails — Extraction avant raisonnement">
-            <p><strong>Principe :</strong> séparer l’extraction factuelle du raisonnement interprétatif.</p>
-            <p class="muted"><strong>Illustration :</strong> (1) extraction structurée d’observations + citations exactes, puis (2) interprétation uniquement à partir de ces éléments extraits.</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>IE (Information Extraction)</li>
-              <li>Multi-step reasoning pipelines</li>
-              <li>Structured reasoning systems</li>
-              <li>Explainable AI frameworks</li>
-            </ul>
-          </div>
-        </li>
+      <div class="article-body font-serif text-gray-800 toggle-content" id="content-eloge"></div>
+      <div class="article-body font-serif text-gray-800 toggle-content hidden-state" id="content-demolition"></div>
+    </article>
 
-        <!-- 4 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">4</div>
-            <div class="title-area">
-              <p class="title">
-                Génération contrainte par schéma
-                <span class="canon">Nom canonique : Schema-Constrained Generation / Structured Output Enforcement</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
+    <section class="border-t border-gray-200 pt-12 pb-20" data-purpose="author-bio">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
+        <img alt="Portrait de l'auteur" class="w-32 h-32 rounded-full object-cover" id="author-avatar" src="assets/ulysse-poussin.svg"/>
+        <div>
+          <h3 class="font-heading text-2xl font-bold mb-2" id="author-name">Auteur</h3>
+          <p class="text-sm accent-text font-bold uppercase tracking-widest mb-4" id="author-title">Rôle</p>
+          <p class="text-gray-600 font-serif leading-relaxed" id="author-bio-text">Biographie indisponible.</p>
+          <div class="mt-4 flex space-x-4">
+            <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
+            <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a>
           </div>
-          <div class="details" role="region" aria-label="Détails — Génération contrainte par schéma">
-            <p><strong>Principe :</strong> forcer la sortie du modèle à respecter une structure formelle validable (JSON strict).</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> la génération intermédiaire doit suivre un schéma défini ; sinon elle est rejetée (pas de “best effort”).</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>Production LLM systems</li>
-              <li>API-driven LLM architectures</li>
-              <li>Tool-augmented generation</li>
-              <li>Function calling frameworks</li>
-            </ul>
-          </div>
-        </li>
-
-        <!-- 5 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">5</div>
-            <div class="title-area">
-              <p class="title">
-                Validation déterministe post-génération
-                <span class="canon">Nom canonique : Post-Generation Verification / Deterministic Validation Layer</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </div>
-          <div class="details" role="region" aria-label="Détails — Validation déterministe post-génération">
-            <p><strong>Principe :</strong> un système non-LLM vérifie la sortie du modèle.</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> audit déterministe incluant correspondance textuelle stricte des citations, validation référentielle des entités nommées, et conformité structurelle du JSON généré.</p>
-            <p class="muted"><strong>Conséquence :</strong> si une règle échoue → rejet complet.</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>Safety-critical AI systems</li>
-              <li>Compliance architectures</li>
-              <li>Hybrid symbolic-LLM systems</li>
-              <li>Verification pipelines</li>
-            </ul>
-          </div>
-        </li>
-
-        <!-- 6 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">6</div>
-            <div class="title-area">
-              <p class="title">
-                Rejet strict en cas d’échec
-                <span class="canon">Nom canonique : Fail Fast / Hard Rejection Policy</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </div>
-          <div class="details" role="region" aria-label="Détails — Rejet strict en cas d’échec">
-            <p><strong>Principe :</strong> aucune correction automatique, aucune “auto-réparation”. Si ça rate → ça rate.</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> une citation invalide ou un schéma JSON non conforme entraîne un rejet immédiat.</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>Defensive programming</li>
-              <li>Reliable distributed systems</li>
-              <li>Safety-first ML architectures</li>
-            </ul>
-          </div>
-        </li>
-
-        <!-- 7 -->
-        <li class="item" data-expand="hover">
-          <div class="row">
-            <div class="num">7</div>
-            <div class="title-area">
-              <p class="title">
-                Séparation Production / Validation
-                <span class="canon">Nom canonique : Separation of Concerns / Two-Stage Generation-Verification Architecture</span>
-              </p>
-            </div>
-            <div class="chev" aria-hidden="true">⌄</div>
-          </div>
-          <div class="details" role="region" aria-label="Détails — Séparation Production / Validation">
-            <p><strong>Principe :</strong> la génération et la validation sont deux systèmes distincts.</p>
-            <p class="muted"><strong>Dans Éloge &amp; Démolition :</strong> le modèle peut produire ; seul l’audit décide si le contenu est publiable.</p>
-            <div class="divider"></div>
-            <p class="muted"><strong>Pattern utilisé dans :</strong></p>
-            <ul class="bullets">
-              <li>Secure pipeline design</li>
-              <li>Formal verification workflows</li>
-              <li>Robust LLM deployment architectures</li>
-            </ul>
-          </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </section>
 
+    <section class="py-12" data-purpose="recent-posts">
+      <h4 class="text-center font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-12">Dernières opinions</h4>
+      <div class="grid md:grid-cols-3 gap-12" id="recent-posts-grid"></div>
+    </section>
+  </main>
 
-    <section id="critiques"></section>
-
-    <footer>
-      <div class="note">
-        <strong>Positionnement</strong><br />
-        L’objectif n’est pas d’empêcher toute erreur par magie, mais de réduire structurellement l’espace d’hallucination :
-        monde clos, preuves obligatoires, extraction structurée, validation déterministe, rejet strict. La fiabilité ne repose
-        pas sur la confiance dans le modèle, mais sur la contrainte architecturale.
+  <footer class="bg-black text-white py-16" data-purpose="site-footer">
+    <div class="container mx-auto px-4 text-center">
+      <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
+      <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Revue systématiquement Pour & Contre</p>
+      <div class="flex justify-center space-x-12 text-[10px] font-bold uppercase tracking-widest mb-12">
+        <a class="hover:text-primary transition-colors" href="#">Mentions Légales</a>
+        <a class="hover:text-primary transition-colors" href="#">Newsletter</a>
+        <a class="hover:text-primary transition-colors" href="#">Partenaires</a>
+        <a class="hover:text-primary transition-colors" href="#">RSS</a>
       </div>
-    </footer>
-
-    </details>
-
-
-    <section id="critiques"></section>
-
-    <section id="tribunal"></section>
-
-  </div>
-
-  <script>
-    (function(){
-      const list = document.getElementById("patterns");
-      if(!list) return;
-
-      const items = Array.from(list.querySelectorAll(".item"));
-
-      function collapseAll(){
-        items.forEach(it => it.classList.remove("expanded"));
-      }
-
-      function expand(item){
-        // Optional: only one open at a time
-        collapseAll();
-        item.classList.add("expanded");
-      }
-
-      function isTouchDevice(){
-        return window.matchMedia("(pointer: coarse)").matches;
-      }
-
-      const touch = isTouchDevice();
-
-      items.forEach(item => {
-        // Desktop: expand on hover, collapse when leaving item
-        item.addEventListener("mouseenter", () => {
-          if(touch) return;
-          expand(item);
-        });
-
-        item.addEventListener("mouseleave", () => {
-          if(touch) return;
-          item.classList.remove("expanded");
-        });
-
-        // Mobile / touch: toggle on click
-        item.addEventListener("click", (e) => {
-          if(!touch) return;
-          // Prevent weird selections
-          e.preventDefault();
-          const isOpen = item.classList.contains("expanded");
-          collapseAll();
-          if(!isOpen) item.classList.add("expanded");
-        });
-
-        // Make it keyboard friendly for desktop too:
-        item.tabIndex = 0;
-        item.setAttribute("role", "button");
-        item.setAttribute("aria-expanded", "false");
-
-        const syncAria = () => {
-          item.setAttribute("aria-expanded", item.classList.contains("expanded") ? "true" : "false");
-        };
-
-        item.addEventListener("mouseenter", syncAria);
-        item.addEventListener("mouseleave", syncAria);
-        item.addEventListener("click", syncAria);
-        item.addEventListener("keydown", (e) => {
-          if(e.key === "Enter" || e.key === " "){
-            e.preventDefault();
-            const isOpen = item.classList.contains("expanded");
-            collapseAll();
-            if(!isOpen) item.classList.add("expanded");
-            syncAria();
-          }
-        });
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if(e.key === "Escape"){
-          collapseAll();
-        }
-      });
-    })();
-  </script>
+      <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
+    </div>
+  </footer>
 
   <script>
     let critiquePairingData = null;
+    let critiqueCatalog = [];
+    let currentCritiqueId = 'li-po';
+    let currentMode = 'eloge';
+
+    const authorByMode = {
+      eloge: {
+        name: 'Ulysse Poussin',
+        title: 'Critique de la raison pure',
+        bio: 'Biographie indisponible.',
+        avatar: 'assets/ulysse-poussin.svg',
+        alt: 'Portrait de Ulysse Poussin'
+      },
+      demolition: {
+        name: 'Achille Corbeau',
+        title: 'Critique de la raison dure',
+        bio: 'Biographie indisponible.',
+        avatar: 'assets/achille-corbeau.svg',
+        alt: 'Portrait de Achille Corbeau'
+      }
+    };
 
     function escapeHtml(value) {
-      return String(value ?? "")
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#39;");
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+
+    function applyFrenchTypography(value) {
+      return String(value ?? '')
+        .replace(/\s*([;:!?])/g, ' $1')
+        .replace(/«\s*/g, '« ')
+        .replace(/\s*»/g, ' »');
+    }
+
+    function formatDisplayText(value) {
+      return escapeHtml(applyFrenchTypography(value));
+    }
+
+    function resolveCritiqueId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('critique') || 'li-po';
+    }
+
+    function resolveInitialMode() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
+    }
+
+
+    function lowerFirstLetter(text) {
+      const normalized = String(text || '').trim();
+      if (!normalized) return normalized;
+      return normalized.charAt(0).toLowerCase() + normalized.slice(1);
+    }
+
+    async function loadCritiqueCatalog() {
+      const res = await fetch('/data/critics/catalog.json');
+      if (!res.ok) {
+        return [
+          { id: 'li-po', file: '/data/critics/prototype.json', modeLabel: 'Éloge / Démolition', title: 'Li Po' }
+        ];
+      }
+
+      const data = await res.json();
+      return Array.isArray(data?.critiques) ? data.critiques : [];
     }
 
     async function loadCritiquePairing() {
-      let res = await fetch("/data/critics/generated.json");
+      critiqueCatalog = await loadCritiqueCatalog();
+      const requestedId = resolveCritiqueId();
+      const fallbackEntry = critiqueCatalog.find((entry) => entry.id === 'li-po') || critiqueCatalog[0];
+      const selectedEntry = critiqueCatalog.find((entry) => entry.id === requestedId) || fallbackEntry;
 
+      if (!selectedEntry) {
+        throw new Error('Aucune critique disponible');
+      }
+
+      currentCritiqueId = selectedEntry.id;
+      const res = await fetch(selectedEntry.file);
       if (!res.ok) {
-        res = await fetch("/data/critics/example.json");
+        throw new Error(`Impossible de charger ${selectedEntry.file}`);
       }
 
       return res.json();
@@ -376,13 +221,13 @@
 
     function getArticleByMode(data, mode) {
       return Array.isArray(data?.articles)
-        ? data.articles.find(article => article.mode === mode)
+        ? data.articles.find((article) => article.mode === mode)
         : null;
     }
 
     function getAuthorCard(data, authorName) {
       if (!authorName || !Array.isArray(data?.authors)) return null;
-      return data.authors.find(author => author.name === authorName) || null;
+      return data.authors.find((author) => author.name === authorName) || null;
     }
 
     function renderArticleContent(article, mode) {
@@ -390,61 +235,107 @@
       if (!contentNode || !article) return;
 
       const paragraphs = Array.isArray(article.paragraphs) ? article.paragraphs : [];
-      const quoteClass = mode === "demolition" ? "border-red-700 text-red-700" : "accent-border accent-text";
+      const quoteClass = mode === 'demolition' ? 'border-red-700 text-red-700' : 'accent-border accent-text';
       const quoteInsertIndex = paragraphs.length > 4 ? 2 : 1;
-      const sanitizedConclusion = String(article.conclusion ?? "").replace(/^Conclusion\s*:\s*/i, "").trim();
+      const sanitizedConclusion = String(article.conclusion ?? '').replace(/^Conclusion\s*:\s*/i, '').trim();
       const blocks = [];
 
       paragraphs.forEach((paragraph, index) => {
         const dropcapClass = index === 0 ? ' dropcap' : '';
-        blocks.push(`<p class="critique-paragraph${dropcapClass}">${escapeHtml(paragraph)}</p>`);
+        blocks.push(`<p class="critique-paragraph${dropcapClass}">${formatDisplayText(paragraph)}</p>`);
 
         if (article.pullQuote && index === quoteInsertIndex) {
-          blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
+          blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${formatDisplayText(article.pullQuote)}&rdquo;</p></blockquote>`);
         }
       });
 
       if (article.pullQuote && paragraphs.length === 0) {
-        blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${escapeHtml(article.pullQuote)}&rdquo;</p></blockquote>`);
+        blocks.push(`<blockquote class="critique-quote border-y-2 ${quoteClass} text-center"><p class="font-heading italic font-bold">&ldquo;${formatDisplayText(article.pullQuote)}&rdquo;</p></blockquote>`);
       }
 
       if (sanitizedConclusion) {
-        blocks.push(`<p class="critique-conclusion">${escapeHtml(sanitizedConclusion)}</p>`);
+        blocks.push(`<p class="critique-conclusion">${formatDisplayText(sanitizedConclusion)}</p>`);
       }
 
       contentNode.innerHTML = blocks.join('');
     }
 
+    function renderRecentPosts(activeMode = currentMode) {
+      const grid = document.getElementById('recent-posts-grid');
+      if (!grid) return;
+
+      const firstMode = activeMode === 'eloge' ? 'demolition' : 'eloge';
+      const alternateMode = firstMode === 'eloge' ? 'demolition' : 'eloge';
+      const posts = critiqueCatalog.filter((entry) => entry.id !== currentCritiqueId);
+      if (!posts.length) {
+        grid.innerHTML = '<p class="text-center text-sm text-gray-500 col-span-full">Aucun autre dossier critique.</p>';
+        return;
+      }
+
+      grid.innerHTML = posts.map((post, index) => {
+        const modeForPost = index % 2 === 0 ? firstMode : alternateMode;
+        const modeClass = modeForPost === 'demolition' ? 'category-demolition' : 'category-eloge';
+        const modeLabel = modeForPost === 'demolition' ? 'Démolition' : 'Éloge';
+        const targetTitle = modeForPost === 'demolition' ? post.demolitionTitle : post.elogeTitle;
+        const fallbackTitle = post.title || '';
+        const scopedTitle = targetTitle || fallbackTitle;
+        const isAuthorSubject = post.subjectKind === 'author';
+        const contextualTitle = post.subject
+          ? (isAuthorSubject
+            ? `${post.subject} : ${scopedTitle}`
+            : `${post.subject}, ${lowerFirstLetter(scopedTitle)}`)
+          : scopedTitle;
+
+        return `<a class="block group" href="?critique=${encodeURIComponent(post.id)}&mode=${modeForPost}">
+          <article class="cursor-pointer">
+            <p class="text-[10px] font-bold ${modeClass} mb-2 uppercase tracking-widest">${escapeHtml(modeLabel)}</p>
+            <h5 class="font-heading text-lg font-bold group-hover:underline mb-2">${formatDisplayText(contextualTitle)}</h5>
+            <p class="text-sm text-gray-500 font-serif italic">${escapeHtml(post.date || '')}</p>
+          </article>
+        </a>`;
+      }).join('');
+    }
+
+    function updateAuthorBlock(mode) {
+      const author = authorByMode[mode];
+      if (!author) return;
+      document.getElementById('author-avatar').src = author.avatar;
+      document.getElementById('author-avatar').alt = author.alt;
+      document.getElementById('author-name').textContent = author.name;
+      document.getElementById('author-title').textContent = author.title;
+      document.getElementById('author-bio-text').textContent = author.bio;
+    }
+
     function syncHeaderForMode(mode) {
-      const article = getArticleByMode(critiquePairingData, mode) || getArticleByMode(critiquePairingData, 'eloge') || getArticleByMode(critiquePairingData, 'demolition');
+      const article = getArticleByMode(critiquePairingData, mode)
+        || getArticleByMode(critiquePairingData, 'eloge')
+        || getArticleByMode(critiquePairingData, 'demolition');
+
       if (!article) return;
-
-      const titleNode = document.querySelector('main article header h2');
-      if (titleNode) titleNode.textContent = article.title || 'Critique indisponible';
-
-      const subtitleNode = document.querySelector('main article header p.font-serif');
-      if (subtitleNode) subtitleNode.textContent = article.subtitle || 'Aucun sous-titre disponible.';
+      document.getElementById('article-title').textContent = applyFrenchTypography(article.title || 'Critique indisponible');
+      document.getElementById('article-subtitle').textContent = applyFrenchTypography(article.subtitle || 'Aucun sous-titre disponible.');
     }
 
     function updatePageContent(data) {
       critiquePairingData = data;
-      const eloge = getArticleByMode(data, "eloge");
-      const demolition = getArticleByMode(data, "demolition");
+      const eloge = getArticleByMode(data, 'eloge');
+      const demolition = getArticleByMode(data, 'demolition');
 
       const labelNode = document.getElementById('critique-label');
-      if (labelNode) {
-        labelNode.textContent = 'Critique littéraire';
-      }
+      if (labelNode) labelNode.textContent = data?.label || 'Critique littéraire';
 
-      const figureCaption = document.querySelector('figure figcaption');
+      const figure = data?.figure || {};
+      const figureCaption = document.getElementById('figure-caption');
       if (figureCaption) {
-        figureCaption.textContent = data?.pairingId
-          ? `Dossier critique : ${data.pairingId}`
-          : 'Dossier critique';
+        figureCaption.textContent = figure.caption
+          || (data?.pairingId ? `Dossier critique : ${data.pairingId}` : 'Dossier critique');
       }
 
-      renderArticleContent(eloge, 'eloge');
-      renderArticleContent(demolition, 'demolition');
+      const coverNode = document.getElementById('article-cover');
+      if (coverNode && figure.cover) {
+        coverNode.src = figure.cover;
+        coverNode.alt = figure.alt || coverNode.alt;
+      }
 
       if (eloge?.author) {
         const elogeAuthor = getAuthorCard(data, eloge.author);
@@ -472,146 +363,50 @@
         }
       }
 
-      syncHeaderForMode('eloge');
-      updateAuthorBlock('eloge');
+      renderArticleContent(eloge, 'eloge');
+      renderArticleContent(demolition, 'demolition');
+      toggleReview(resolveInitialMode());
+    }
+
+    function toggleReview(mode) {
+      const pageBody = document.body;
+      const elogeContent = document.getElementById('content-eloge');
+      const demolitionContent = document.getElementById('content-demolition');
+      const btnEloge = document.getElementById('btn-eloge');
+      const btnDemolition = document.getElementById('btn-demolition');
+
+      currentMode = mode;
+      updateAuthorBlock(mode);
+      syncHeaderForMode(mode);
+      renderRecentPosts(mode);
+
+      if (mode === 'eloge') {
+        pageBody.classList.remove('mode-demolition');
+        elogeContent.classList.remove('hidden-state');
+        demolitionContent.classList.add('hidden-state');
+        btnEloge.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-eloge');
+        btnEloge.classList.remove('text-gray-400', 'mode-btn-active-demolition');
+        btnDemolition.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+        btnDemolition.classList.add('text-gray-400');
+      } else {
+        pageBody.classList.add('mode-demolition');
+        demolitionContent.classList.remove('hidden-state');
+        elogeContent.classList.add('hidden-state');
+        btnDemolition.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-demolition');
+        btnDemolition.classList.remove('text-gray-400', 'mode-btn-active-eloge');
+        btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
+        btnEloge.classList.add('text-gray-400');
+      }
     }
 
     loadCritiquePairing()
       .then(updatePageContent)
       .catch(() => {
-        const titleNode = document.querySelector('main article header h2');
-        const subtitleNode = document.querySelector('main article header p.font-serif');
-        const elogeContent = document.getElementById('content-eloge');
-        const demolitionContent = document.getElementById('content-demolition');
-
-        if (titleNode) titleNode.textContent = 'Contenu critique indisponible';
-        if (subtitleNode) subtitleNode.textContent = 'Impossible de charger les données JSON.';
-        if (elogeContent) elogeContent.innerHTML = '<p class="critique-paragraph">Le contenu élogieux est indisponible.</p>';
-        if (demolitionContent) demolitionContent.innerHTML = '<p class="critique-paragraph">Le contenu critique est indisponible.</p>';
+        document.getElementById('article-title').textContent = 'Contenu critique indisponible';
+        document.getElementById('article-subtitle').textContent = 'Impossible de charger les données JSON.';
+        document.getElementById('content-eloge').innerHTML = '<p class="critique-paragraph">Le contenu élogieux est indisponible.</p>';
+        document.getElementById('content-demolition').innerHTML = '<p class="critique-paragraph">Le contenu démolition est indisponible.</p>';
       });
   </script>
-</div>
-<header class="border-b border-gray-200 py-8 bg-white sticky top-0 z-50" data-purpose="site-navigation">
-  <div class="container mx-auto px-4 flex flex-col items-center">
-    <div class="w-16 h-16 mb-4 flex items-center justify-center border-2 border-black rounded-full relative" id="logo">
-      <div class="absolute w-0.5 h-12 bg-black rotate-45"></div><div class="absolute w-0.5 h-12 bg-black -rotate-45"></div>
-      <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
-      <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
-    </div>
-    <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
-    <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
-      <li><a class="hover:text-primary transition-colors" href="#">Archives</a></li><li><a class="hover:text-primary transition-colors" href="#">Manifeste</a></li>
-      <li><a class="hover:text-primary transition-colors" href="#">Auteurs</a></li><li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
-    </ul></nav>
-  </div>
-</header>
-<main class="container mx-auto px-4 max-w-4xl py-12">
-  <div class="flex justify-center mb-16" data-purpose="critique-mode-toggle">
-    <div class="inline-flex items-center bg-gray-100 p-1 rounded-custom border border-gray-200">
-      <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom bg-white shadow-sm mode-btn-active-eloge" id="btn-eloge" onclick="toggleReview('eloge')">Éloge</button>
-      <button class="px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-custom text-gray-400" id="btn-demolition" onclick="toggleReview('demolition')">Démolition</button>
-    </div>
-  </div>
-  <article class="mb-20">
-    <header class="text-center mb-12">
-      <p class="accent-text font-bold uppercase tracking-[0.2em] text-xs mb-4" id="critique-label">Critique Littéraire</p>
-      <h2 class="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">L'Invention du Silence</h2>
-      <p class="font-serif text-xl italic text-gray-600 max-w-2xl mx-auto">Une analyse profonde sur l'œuvre posthume de Pierre Lemaitre et l'art de la retenue narrative.</p>
-    </header>
-    <figure class="mb-12">
-      <img alt="Illustration d'un livre classique en noir et blanc" class="w-full h-auto object-cover grayscale brightness-90 rounded-custom" src="assets/book-cover.svg"/>
-      <figcaption class="text-center mt-4 text-xs text-gray-400 uppercase tracking-widest">Gravure originale par Vance (2024)</figcaption>
-    </figure>
-    <div class="article-body font-serif text-gray-800 toggle-content" id="content-eloge">
-      <p class="dropcap critique-paragraph">Dans un monde saturé de bruit, le dernier opus nous offre une catharsis inattendue. L'auteur parvient à tisser une toile de mots qui ne servent qu'à mettre en valeur le vide, le non-dit, le sublime silence. C'est une œuvre d'une maturité rare, où chaque phrase semble avoir été pesée sur un trébuchet d'orfèvre.</p>
-      <blockquote class="border-y-2 accent-border py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold accent-text">"La grandeur d'un écrivain ne se mesure plus à ce qu'il dit, mais à ce qu'il a l'élégance de nous laisser deviner."</p></blockquote>
-      <p class="critique-paragraph">Le rythme est lent, presque liturgique. On y retrouve l'influence des classiques, mais passée au crible d'une modernité qui refuse les faux-semblants. La structure narrative, bien que complexe, reste d'une clarté cristalline pour celui qui accepte de ralentir son pouls.</p>
-      <p class="font-bold text-center pt-8">Conclusion : Un chef-d'œuvre de sobriété qui fera date dans l'histoire de la pensée contemporaine.</p>
-    </div>
-    <div class="article-body font-serif text-gray-800 toggle-content hidden-state" id="content-demolition">
-      <p class="dropcap critique-paragraph">Il est des silences qui parlent, et d'autres qui se contentent de meubler l'absence d'idées. Ce dernier ouvrage appartient malheureusement à la seconde catégorie. Sous couvert d'une épuration stylistique, l'auteur nous livre un squelette décharné d'intrigue, dénué de toute substance émotionnelle ou intellectuelle.</p>
-      <blockquote class="border-y-2 border-red-700 py-10 my-12 text-center"><p class="font-heading text-3xl italic font-bold text-red-700">"Le minimalisme est devenu le refuge de ceux qui n'ont plus rien à raconter mais refusent de se taire."</p></blockquote>
-      <p class="critique-paragraph">On s'ennuie ferme au fil de ces pages blanches. L'effort pour paraître profond vire à la parodie. C'est un exercice de style vain, une démonstration d'autosatisfaction littéraire qui oublie l'essentiel : le lecteur. Ce qui est présenté comme de la retenue n'est en fait qu'une paresse d'imagination manifeste.</p>
-      <p class="font-bold text-center pt-8">Conclusion : Une déception majeure qui confirme le déclin d'un style autrefois prometteur, aujourd'hui exsangue.</p>
-    </div>
-  </article>
-  <section class="border-t border-gray-200 pt-12 pb-20" data-purpose="author-bio">
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
-      <img alt="Portrait de Ulysse Poussin" class="w-32 h-32 rounded-full object-cover" id="author-avatar" src="assets/ulysse-poussin.svg"/>
-      <div><h3 class="font-heading text-2xl font-bold mb-2" id="author-name">Ulysse Poussin</h3>
-      <p class="text-sm accent-text font-bold uppercase tracking-widest mb-4" id="author-title">Critique de la raison pure</p>
-      <p class="text-gray-600 font-serif leading-relaxed" id="author-bio-text">Essayiste et romancier, Ulysse Poussin célèbre la production littéraire contemporaine avec une attention lumineuse portée aux nuances de style. Il défend une critique de l'enthousiasme, nourrie par les revues, les correspondances d'auteurs et l'art de la lecture lente.</p>
-      <div class="mt-4 flex space-x-4"><a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a><a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a></div></div>
-    </div>
-  </section>
-  <section class="py-12" data-purpose="recent-posts">
-    <h4 class="text-center font-bold uppercase tracking-[0.3em] text-xs text-gray-400 mb-12">Dernières Opinions</h4>
-    <div class="grid md:grid-cols-3 gap-12">
-      <article class="group cursor-pointer"><p class="text-[10px] font-bold category-demolition mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">Le naufrage des nouveaux philosophes</h5><p class="text-sm text-gray-500 font-serif italic">12 Octobre 2023</p></article>
-      <article class="group cursor-pointer"><p class="text-[10px] font-bold category-eloge mb-2 uppercase tracking-widest">Éloge</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'architecture comme texte sacré</h5><p class="text-sm text-gray-500 font-serif italic">05 Octobre 2023</p></article>
-      <article class="group cursor-pointer"><p class="text-[10px] font-bold category-demolition mb-2 uppercase tracking-widest">Démolition</p><h5 class="font-heading text-lg font-bold group-hover:underline mb-2">L'imposture du réalisme magique</h5><p class="text-sm text-gray-500 font-serif italic">28 Septembre 2023</p></article>
-    </div>
-  </section>
-</main>
-<footer class="bg-black text-white py-16" data-purpose="site-footer">
-  <div class="container mx-auto px-4 text-center">
-    <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
-    <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Revue systématiquement Pour & Contre</p>
-    <div class="flex justify-center space-x-12 text-[10px] font-bold uppercase tracking-widest mb-12"><a class="hover:text-primary transition-colors" href="#">Mentions Légales</a><a class="hover:text-primary transition-colors" href="#">Newsletter</a><a class="hover:text-primary transition-colors" href="#">Partenaires</a><a class="hover:text-primary transition-colors" href="#">RSS</a></div>
-    <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
-  </div>
-</footer>
-<script>
-const authorByMode = {
-  eloge: {
-    name: 'Ulysse Poussin',
-    title: 'Critique de la raison pure',
-    bio: "Essayiste et romancier, Ulysse Poussin célèbre la production littéraire contemporaine avec une attention lumineuse portée aux nuances de style. Il défend une critique de l'enthousiasme, nourrie par les revues, les correspondances d'auteurs et l'art de la lecture lente.",
-    avatar: 'assets/ulysse-poussin.svg',
-    alt: 'Portrait de Ulysse Poussin'
-  },
-  demolition: {
-    name: 'Achille Corbeau',
-    title: 'Critique de la raison dure',
-    bio: "Pamphlétaire et critique au verbe sec, Achille Corbeau traque les poses et les faux prestiges avec une rigueur mordante. Ses démolitions méthodiques, publiées dans les marges les plus redoutées, font de lui l'ennemi intime des œuvres trop sûres d'elles-mêmes.",
-    avatar: 'assets/achille-corbeau.svg',
-    alt: 'Portrait de Achille Corbeau'
-  }
-};
-
-function updateAuthorBlock(mode) {
-  const author = authorByMode[mode];
-  document.getElementById('author-avatar').src = author.avatar;
-  document.getElementById('author-avatar').alt = author.alt;
-  document.getElementById('author-name').textContent = author.name;
-  document.getElementById('author-title').textContent = author.title;
-  document.getElementById('author-bio-text').textContent = author.bio;
-}
-
-function toggleReview(mode) {
-  const pageBody = document.body;
-  const elogeContent = document.getElementById('content-eloge');
-  const demolitionContent = document.getElementById('content-demolition');
-  const btnEloge = document.getElementById('btn-eloge');
-  const btnDemolition = document.getElementById('btn-demolition');
-  updateAuthorBlock(mode);
-  syncHeaderForMode(mode);
-  if (mode === 'eloge') {
-    pageBody.classList.remove('mode-demolition');
-    elogeContent.classList.remove('hidden-state'); demolitionContent.classList.add('hidden-state');
-    btnEloge.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-eloge');
-    btnEloge.classList.remove('text-gray-400', 'mode-btn-active-demolition');
-    btnDemolition.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
-    btnDemolition.classList.add('text-gray-400');
-  } else {
-    pageBody.classList.add('mode-demolition');
-    demolitionContent.classList.remove('hidden-state'); elogeContent.classList.add('hidden-state');
-    btnDemolition.classList.add('bg-white', 'shadow-sm', 'mode-btn-active-demolition');
-    btnDemolition.classList.remove('text-gray-400', 'mode-btn-active-eloge');
-    btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
-    btnEloge.classList.add('text-gray-400');
-  }
-}
-</script>
 </body>
 </html>
