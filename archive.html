@@ -72,7 +72,6 @@
     <section class="mb-16">
       <div class="flex justify-between items-center mb-6">
         <h2 class="font-heading text-4xl font-bold">Analyses à la une</h2>
-        <a class="text-xs font-bold uppercase tracking-[0.2em] accent-text" id="view-all-link" href="#">Voir archive →</a>
       </div>
       <div class="grid md:grid-cols-3 gap-8" id="featured-grid"></div>
     </section>
@@ -171,7 +170,6 @@
       const opinions = filtered.slice(0, 3);
 
       const modeClass = activeMode === 'demolition' ? 'category-demolition' : 'category-eloge';
-      const modeLabel = activeMode === 'demolition' ? 'Démolition' : 'Éloge';
 
       const heroNode = document.getElementById('hero-section');
       if (hero && heroNode) {
@@ -179,7 +177,7 @@
           <img class="lg:col-span-2 w-full h-[420px] object-cover rounded-custom" src="${escapeHtml(hero.entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(hero.entry.figure.alt || hero.article.title)}"/>
           <article class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-300 pt-6 lg:pt-0 lg:pl-8">
             <div>
-              <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${modeLabel} · ${formatText(hero.entry.label)}</p>
+              <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${formatText(hero.entry.label)}</p>
               <h2 class="font-heading text-6xl leading-tight font-bold mb-4">${formatText(hero.article.title)}</h2>
               <p class="font-serif text-2xl italic text-gray-600">${formatText(hero.article.subtitle || '')}</p>
             </div>
@@ -192,7 +190,7 @@
         featuredNode.innerHTML = featured.map(({ entry, article }) => `
           <article>
             <img class="w-full h-48 object-cover rounded-custom mb-3" src="${escapeHtml(entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(entry.figure.alt || article.title)}"/>
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${modeLabel}</p>
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${formatText(entry.label || "Critique littéraire")}</p>
             <h4 class="font-heading text-3xl font-bold leading-tight mb-3">${formatText(entryContextTitle(entry, article.title))}</h4>
             <p class="text-gray-600">${formatText(article.subtitle || '')}</p>
             <a class="inline-block mt-3 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">Ouvrir →</a>
@@ -215,8 +213,6 @@
         `).join('');
       }
 
-      const viewAll = document.getElementById('view-all-link');
-      if (viewAll) viewAll.href = `archive.html?mode=${activeMode}`;
     }
 
     function toggleArchiveMode(mode) {
