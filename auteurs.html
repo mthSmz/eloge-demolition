@@ -36,6 +36,8 @@
     .nav-link { color: #6b7280; transition: color 0.2s ease; }
     .nav-link:hover { color: var(--accent-color); }
     .nav-link-active { color: var(--accent-color); }
+    .author-link-eloge:hover { color: var(--eloge-color); }
+    .author-link-demolition:hover { color: var(--demolition-color); }
   </style>
 </head>
 <body class="antialiased">
@@ -96,6 +98,12 @@
       return role?.toLowerCase().includes('dure') ? 'role-demolition' : 'role-eloge';
     }
 
+    function resolveAuthorMode(author) {
+      const normalizedName = String(author?.name || '').toLowerCase();
+      if (normalizedName.includes('achille corbeau')) return 'demolition';
+      return 'eloge';
+    }
+
     function resolveModeFromUrl() {
       const params = new URLSearchParams(window.location.search);
       return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
@@ -120,7 +128,11 @@
         return;
       }
 
-      node.innerHTML = authors.map((author) => `
+      node.innerHTML = authors.map((author) => {
+        const mode = resolveAuthorMode(author);
+        const modeHoverClass = mode === 'demolition' ? 'author-link-demolition' : 'author-link-eloge';
+        const publicationsHref = `archive.html?mode=${encodeURIComponent(mode)}`;
+        return `
         <article class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
           <img alt="${escapeHtml(author.alt || `Portrait de ${author.name}`)}" class="w-48 h-48 rounded-full object-cover" src="${escapeHtml(author.avatar || 'assets/ulysse-poussin.svg')}"/>
           <div>
@@ -129,11 +141,12 @@
             <p class="text-gray-600 font-serif text-2xl leading-relaxed max-w-5xl">${formatText(author.bio)}</p>
             <div class="mt-8 flex gap-8 flex-wrap">
               <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
-              <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a>
+              <a class="text-xs font-bold underline uppercase tracking-widest ${modeHoverClass}" href="${publicationsHref}">Ses publications</a>
             </div>
           </div>
         </article>
-      `).join('');
+      `;
+      }).join('');
     }
 
     async function loadAuthors() {
