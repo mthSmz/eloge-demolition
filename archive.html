@@ -71,14 +71,14 @@
 
     <section class="mb-16">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="font-heading text-4xl font-bold accent-text">Articles à la une</h2>
+        <h2 class="font-sans text-xs font-bold uppercase tracking-[0.2em] accent-text">Articles à la une</h2>
       </div>
       <div class="grid md:grid-cols-3 gap-8" id="featured-grid"></div>
     </section>
 
     <section class="grid lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2">
-        <h3 class="font-heading text-4xl font-bold mb-4">Dernières opinions</h3>
+        <h3 class="font-sans text-xs font-bold uppercase tracking-[0.2em] accent-text mb-4">Dernières opinions</h3>
         <div class="border-t border-gray-300 pt-6 space-y-6" id="recent-opinions"></div>
       </div>
       <aside class="bg-slate-900 text-white p-8 rounded-custom h-fit">
@@ -204,7 +204,7 @@
           <article class="grid md:grid-cols-5 gap-4 border-b border-gray-200 pb-5">
             <div class="md:col-span-2">
               <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">${escapeHtml(entry.date || '')}</p>
-              <h5 class="font-heading text-3xl leading-tight font-bold accent-text">${formatText(entryContextTitle(entry, article.title))}</h5>
+              <h5 class="font-sans text-5xl leading-tight font-black accent-text">${formatText(entryContextTitle(entry, article.title))}</h5>
             </div>
             <div class="md:col-span-3 border-l border-gray-200 pl-4">
               <p class="font-serif italic text-2xl text-gray-600">“${formatText(article.pullQuote || article.subtitle || '')}”</p>
