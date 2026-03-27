@@ -204,7 +204,7 @@
           <article class="grid md:grid-cols-5 gap-4 border-b border-gray-200 pb-5">
             <div class="md:col-span-2">
               <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">${escapeHtml(entry.date || '')}</p>
-              <h5 class="font-sans text-5xl leading-tight font-black accent-text">${formatText(entryContextTitle(entry, article.title))}</h5>
+              <h5 class="font-sans text-2xl md:text-3xl leading-snug font-bold accent-text">${formatText(entryContextTitle(entry, article.title))}</h5>
             </div>
             <div class="md:col-span-3 border-l border-gray-200 pl-4">
               <p class="font-serif italic text-2xl text-gray-600">“${formatText(article.pullQuote || article.subtitle || '')}”</p>
