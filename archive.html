@@ -37,6 +37,9 @@
     .mode-btn-active-demolition { color: var(--demolition-color); }
     .category-eloge { color: var(--eloge-color); }
     .category-demolition { color: var(--demolition-color); }
+    .nav-link { color: #6b7280; transition: color 0.2s ease; }
+    .nav-link:hover { color: var(--accent-color); }
+    .nav-link-active { color: var(--accent-color); }
   </style>
 </head>
 <body class="antialiased">
@@ -49,11 +52,11 @@
       </div>
       <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
       <nav class="mt-6">
-        <ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
-          <li><a class="accent-text" href="archive.html">Archives</a></li>
-          <li><a class="hover:text-primary transition-colors" href="#">Manifeste</a></li>
-          <li><a class="hover:text-primary transition-colors" href="#">Auteurs</a></li>
-          <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+        <ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
+          <li><a class="nav-link nav-link-active" href="archive.html" id="nav-archives-link">Archives</a></li>
+          <li><a class="nav-link" href="#">Manifeste</a></li>
+          <li><a class="nav-link" href="auteurs.html" id="nav-auteurs-link">Auteurs</a></li>
+          <li><a class="nav-link" href="#">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -160,6 +163,14 @@
       return `${entry.subject}, ${title.charAt(0).toLowerCase()}${title.slice(1)}`;
     }
 
+    function syncNavigationLinks(mode) {
+      const archiveLink = document.getElementById('nav-archives-link');
+      const auteursLink = document.getElementById('nav-auteurs-link');
+      const suffix = `?mode=${encodeURIComponent(mode)}`;
+      if (archiveLink) archiveLink.href = `archive.html${suffix}`;
+      if (auteursLink) auteursLink.href = `auteurs.html${suffix}`;
+    }
+
     function renderArchive() {
       const filtered = archiveEntries
         .map((entry) => ({ entry, article: articleForMode(entry, activeMode) }))
@@ -234,6 +245,8 @@
         btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
         btnEloge.classList.add('text-gray-400');
       }
+
+      syncNavigationLinks(mode);
 
       const params = new URLSearchParams(window.location.search);
       params.set('mode', mode);
