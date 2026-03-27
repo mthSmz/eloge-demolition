@@ -51,6 +51,8 @@
     .nav-link { color: #6b7280; transition: color 0.2s ease; }
     .nav-link:hover { color: var(--accent-color); }
     .nav-link-active { color: var(--accent-color); }
+    .author-link-eloge:hover { color: var(--eloge-color); }
+    .author-link-demolition:hover { color: var(--demolition-color); }
   </style>
 </head>
 <body class="antialiased">
@@ -66,7 +68,6 @@
         <li><a class="nav-link" href="archive.html" id="nav-archives-link">Archives</a></li>
         <li><a class="nav-link" href="manifeste.html" id="nav-manifeste-link">Manifeste</a></li>
         <li><a class="nav-link" href="auteurs.html" id="nav-auteurs-link">Auteurs</a></li>
-        <li><a class="nav-link" href="#">Contact</a></li>
       </ul></nav>
     </div>
   </header>
@@ -104,7 +105,7 @@
           <p class="text-gray-600 font-serif leading-relaxed" id="author-bio-text">Biographie indisponible.</p>
           <div class="mt-4 flex space-x-4">
             <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
-            <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a>
+            <a class="text-xs font-bold underline uppercase tracking-widest author-link-eloge" href="archive.html?mode=eloge" id="author-publications-link">Ses publications</a>
           </div>
         </div>
       </div>
@@ -317,6 +318,12 @@
       document.getElementById('author-name').textContent = author.name;
       document.getElementById('author-title').textContent = author.title;
       document.getElementById('author-bio-text').textContent = author.bio;
+      const publicationsLink = document.getElementById('author-publications-link');
+      if (publicationsLink) {
+        publicationsLink.href = `archive.html?mode=${encodeURIComponent(mode)}`;
+        publicationsLink.classList.toggle('author-link-eloge', mode === 'eloge');
+        publicationsLink.classList.toggle('author-link-demolition', mode === 'demolition');
+      }
     }
 
     function syncHeaderForMode(mode) {
