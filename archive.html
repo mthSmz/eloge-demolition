@@ -40,6 +40,11 @@
     .nav-link { color: #6b7280; transition: color 0.2s ease; }
     .nav-link:hover { color: var(--accent-color); }
     .nav-link-active { color: var(--accent-color); }
+    .text-wrap-safe {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -189,7 +194,7 @@
           <article class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-300 pt-6 lg:pt-0 lg:pl-8">
             <div>
               <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${formatText(hero.entry.label)}</p>
-              <h2 class="font-heading text-6xl leading-tight font-bold mb-4">${formatText(hero.article.title)}</h2>
+              <h2 class="font-heading text-6xl leading-tight font-bold mb-4 text-wrap-safe">${formatText(hero.article.title)}</h2>
               <p class="font-serif text-2xl italic text-gray-600">${formatText(hero.article.subtitle || '')}</p>
             </div>
             <a class="mt-8 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(hero.entry.id)}&mode=${activeMode}">Lire la critique →</a>
@@ -199,10 +204,10 @@
       const featuredNode = document.getElementById('featured-grid');
       if (featuredNode) {
         featuredNode.innerHTML = featured.map(({ entry, article }) => `
-          <article>
+          <article class="min-w-0">
             <img class="w-full h-48 object-cover rounded-custom mb-3" src="${escapeHtml(entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(entry.figure.alt || article.title)}"/>
             <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${formatText(entry.label || "Critique littéraire")}</p>
-            <h4 class="font-heading text-3xl font-bold leading-tight mb-3">${formatText(entryContextTitle(entry, article.title))}</h4>
+            <h4 class="font-heading text-3xl font-bold leading-tight mb-3 text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h4>
             <p class="text-gray-600">${formatText(article.subtitle || '')}</p>
             <a class="inline-block mt-3 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">Ouvrir →</a>
           </article>
@@ -213,11 +218,11 @@
       if (opinionsNode) {
         opinionsNode.innerHTML = opinions.map(({ entry, article }) => `
           <article class="grid md:grid-cols-5 gap-4 border-b border-gray-200 pb-5">
-            <div class="md:col-span-2">
+            <div class="md:col-span-2 min-w-0">
               <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">${escapeHtml(entry.date || '')}</p>
-              <h5 class="font-sans text-2xl md:text-3xl leading-snug font-bold accent-text">${formatText(entryContextTitle(entry, article.title))}</h5>
+              <h5 class="font-sans text-2xl md:text-3xl leading-snug font-bold accent-text text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h5>
             </div>
-            <div class="md:col-span-3 border-l border-gray-200 pl-4">
+            <div class="md:col-span-3 border-l border-gray-200 pl-4 min-w-0">
               <p class="font-serif italic text-2xl text-gray-600">“${formatText(article.pullQuote || article.subtitle || '')}”</p>
             </div>
           </article>
