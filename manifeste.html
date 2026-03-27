@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Manifeste — Éloge / Démolition</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#0b50da' },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Libre Baskerville', 'serif'],
+            heading: ['Playfair Display', 'serif']
+          },
+          borderRadius: { custom: '4px' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      --eloge-color: #0b50da;
+      --demolition-color: #b91c1c;
+      --accent-color: var(--eloge-color);
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      color: #111827;
+    }
+    body.mode-demolition { --accent-color: var(--demolition-color); }
+    .accent-text { color: var(--accent-color); }
+    .accent-border { border-color: var(--accent-color); }
+    .nav-link { color: #6b7280; transition: color 0.2s ease; }
+    .nav-link:hover { color: var(--accent-color); }
+    .nav-link-active { color: var(--accent-color); }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
+    .manifest-line {
+      text-indent: 1.5rem;
+      text-align: justify;
+    }
+    .manifest-line + .manifest-line {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="border-b border-gray-200 py-8 bg-white sticky top-0 z-50">
+    <div class="container mx-auto px-4 flex flex-col items-center">
+      <div class="w-16 h-16 mb-4 flex items-center justify-center border-2 border-black rounded-full relative" id="logo">
+        <div class="absolute w-0.5 h-12 bg-black rotate-45"></div><div class="absolute w-0.5 h-12 bg-black -rotate-45"></div>
+        <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
+        <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
+      </div>
+      <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
+      <nav class="mt-6">
+        <ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
+          <li><a class="nav-link" href="archive.html" id="nav-archives-link">Archives</a></li>
+          <li><a class="nav-link nav-link-active" href="manifeste.html" id="nav-manifeste-link">Manifeste</a></li>
+          <li><a class="nav-link" href="auteurs.html" id="nav-auteurs-link">Auteurs</a></li>
+          <li><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 max-w-4xl py-12">
+    <header class="text-center mb-12">
+      <p class="text-xs font-bold uppercase tracking-[0.25em] accent-text mb-4">Position éditoriale</p>
+      <h2 class="font-heading text-5xl md:text-6xl font-bold mb-6">Manifeste</h2>
+      <p class="font-serif text-xl text-gray-600">Un laboratoire critique simple&nbsp;: deux angles, un même texte, zéro dogme.</p>
+    </header>
+
+    <section class="space-y-8">
+      <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
+        <h3 class="font-heading text-3xl font-bold mb-4">Pourquoi ce dispositif existe</h3>
+        <div class="font-serif text-gray-700 leading-relaxed">
+          <p class="manifest-line">Éloge / Démolition part d’une idée volontairement sobre&nbsp;: il n’y a que des lectures situées, argumentées, discutables.</p>
+          <p class="manifest-line">Le site met donc en scène deux voix contradictoires pour rappeler que toute œuvre ou sujet peut toujours être défendu et contesté de manière systématique.</p>
+          <p class="manifest-line">La fabrication d'un réel à la demande est désormais automatisé et ouvre la voie à un solipsisme numérique renforcé.</p>
+        </div>
+      </article>
+
+      <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
+        <h3 class="font-heading text-3xl font-bold mb-4">Comment on limite les hallucinations</h3>
+        <p class="font-serif text-gray-700 leading-relaxed mb-6">
+          Patterns utilisés pour limiter les hallucinations et garantir la qualité du contenu généré&nbsp;:
+        </p>
+        <div class="space-y-3">
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Sortie structurée (Structured Output / JSON Schema)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: génération intermédiaire contrainte (observations, citations, interprétations) pour rendre la sortie vérifiable avant rédaction finale.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Ancrage par citation (Citation Grounding)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: critique littéraire sous contrainte. Toute affirmation importante doit pointer vers des extraits exacts du texte source.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Validation d’entités (NER Grounding)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: anti-hallucination nominale. Les noms propres/entités mentionnés doivent exister dans l’entrée.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Audit déterministe (Deterministic Validator)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: pipeline de prod. Le script d’audit vérifie structure + exact match, sans jugement flou ni modèle secondaire.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Rejet immédiat (Fail Fast)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: qualité de sortie. Si une règle échoue, on rejette la génération au lieu de “réparer” silencieusement.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Tests par fixtures (Golden/Fixture Tests)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: régression. Jeux PASS/FAIL pour s’assurer que l’audit continue de détecter citations invalides et structures cassées.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Hors scope Phase 1&nbsp;: RAG, NLI, SBERT</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: cadrage produit. Ces patterns sont connus dans la communauté, mais volontairement exclus tant que le noyau minimal n’est pas stabilisé.</p>
+          </details>
+        </div>
+      </article>
+
+      <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
+        <h3 class="font-heading text-3xl font-bold mb-4">Message implicite (et assumé)</h3>
+        <p class="font-serif text-gray-700 leading-relaxed">
+          Ce projet de portfolio n’essaie pas de “faire plus”&nbsp;: il essaie de faire proprement. Définir un cadre,
+          séparer production et validation, documenter les règles, tester les sorties, puis itérer sans gonfler le scope.
+          C’est une démonstration de méthode autant qu’un objet éditorial.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="bg-black text-white py-16 mt-10">
+    <div class="container mx-auto px-4 text-center">
+      <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
+      <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Revue systématiquement Pour & Contre</p>
+      <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
+    </div>
+  </footer>
+
+  <script>
+    function resolveModeFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
+    }
+
+    function syncNavigationLinks(mode) {
+      const archiveLink = document.getElementById('nav-archives-link');
+      const manifesteLink = document.getElementById('nav-manifeste-link');
+      const auteursLink = document.getElementById('nav-auteurs-link');
+      const suffix = `?mode=${encodeURIComponent(mode)}`;
+      if (archiveLink) archiveLink.href = `archive.html${suffix}`;
+      if (manifesteLink) manifesteLink.href = `manifeste.html${suffix}`;
+      if (auteursLink) auteursLink.href = `auteurs.html${suffix}`;
+    }
+
+    const mode = resolveModeFromUrl();
+    if (mode === 'demolition') {
+      document.body.classList.add('mode-demolition');
+    }
+    syncNavigationLinks(mode);
+  </script>
+</body>
+</html>

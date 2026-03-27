@@ -48,6 +48,9 @@
     .category-eloge { color: var(--eloge-color); }
     .category-demolition { color: var(--demolition-color); }
     #author-bio-text { text-align: justify; }
+    .nav-link { color: #6b7280; transition: color 0.2s ease; }
+    .nav-link:hover { color: var(--accent-color); }
+    .nav-link-active { color: var(--accent-color); }
   </style>
 </head>
 <body class="antialiased">
@@ -59,11 +62,11 @@
         <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
       </div>
       <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
-      <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-500">
-        <li><a class="hover:text-primary transition-colors" href="archive.html">Archives</a></li>
-        <li><a class="hover:text-primary transition-colors" href="#">Manifeste</a></li>
-        <li><a class="hover:text-primary transition-colors" href="#">Auteurs</a></li>
-        <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+      <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
+        <li><a class="nav-link" href="archive.html" id="nav-archives-link">Archives</a></li>
+        <li><a class="nav-link" href="manifeste.html" id="nav-manifeste-link">Manifeste</a></li>
+        <li><a class="nav-link" href="auteurs.html" id="nav-auteurs-link">Auteurs</a></li>
+        <li><a class="nav-link" href="#">Contact</a></li>
       </ul></nav>
     </div>
   </header>
@@ -186,6 +189,16 @@
       const normalized = String(text || '').trim();
       if (!normalized) return normalized;
       return normalized.charAt(0).toLowerCase() + normalized.slice(1);
+    }
+
+    function syncNavigationLinks(mode) {
+      const archiveLink = document.getElementById('nav-archives-link');
+      const manifesteLink = document.getElementById('nav-manifeste-link');
+      const auteursLink = document.getElementById('nav-auteurs-link');
+      const suffix = `?mode=${encodeURIComponent(mode)}`;
+      if (archiveLink) archiveLink.href = `archive.html${suffix}`;
+      if (manifesteLink) manifesteLink.href = `manifeste.html${suffix}`;
+      if (auteursLink) auteursLink.href = `auteurs.html${suffix}`;
     }
 
     async function loadCritiqueCatalog() {
@@ -397,6 +410,8 @@
         btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
         btnEloge.classList.add('text-gray-400');
       }
+
+      syncNavigationLinks(mode);
     }
 
     loadCritiquePairing()

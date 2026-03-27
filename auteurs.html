@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Auteurs — Éloge / Démolition</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:ital,wght@0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#0b50da' },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Libre Baskerville', 'serif'],
+            heading: ['Playfair Display', 'serif']
+          },
+          borderRadius: { custom: '4px' }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      --eloge-color: #0b50da;
+      --demolition-color: #b91c1c;
+      --accent-color: var(--eloge-color);
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      color: #111827;
+    }
+    body.mode-demolition { --accent-color: var(--demolition-color); }
+    .role-eloge { color: var(--eloge-color); }
+    .role-demolition { color: var(--demolition-color); }
+    .nav-link { color: #6b7280; transition: color 0.2s ease; }
+    .nav-link:hover { color: var(--accent-color); }
+    .nav-link-active { color: var(--accent-color); }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="border-b border-gray-200 py-8 bg-white sticky top-0 z-50">
+    <div class="container mx-auto px-4 flex flex-col items-center">
+      <div class="w-16 h-16 mb-4 flex items-center justify-center border-2 border-black rounded-full relative" id="logo">
+        <div class="absolute w-0.5 h-12 bg-black rotate-45"></div><div class="absolute w-0.5 h-12 bg-black -rotate-45"></div>
+        <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
+        <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
+      </div>
+      <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
+      <nav class="mt-6">
+        <ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
+          <li><a class="nav-link" href="archive.html" id="nav-archives-link">Archives</a></li>
+          <li><a class="nav-link" href="manifeste.html" id="nav-manifeste-link">Manifeste</a></li>
+          <li><a class="nav-link nav-link-active" href="auteurs.html" id="nav-auteurs-link">Auteurs</a></li>
+          <li><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-4 max-w-6xl py-12">
+    <h2 class="text-center font-bold uppercase tracking-[0.3em] text-4xl text-gray-500 mb-12">Auteurs</h2>
+    <section class="space-y-8 pb-16" id="authors-grid"></section>
+  </main>
+
+  <footer class="bg-black text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
+      <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Revue systématiquement Pour & Contre</p>
+      <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
+    </div>
+  </footer>
+
+  <script>
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+    }
+
+    function applyFrenchTypography(value) {
+      return String(value ?? '')
+        .replace(/\s*([;:!?])/g, ' $1')
+        .replace(/«\s*/g, '« ')
+        .replace(/\s*»/g, ' »');
+    }
+
+    function formatText(value) {
+      return escapeHtml(applyFrenchTypography(value));
+    }
+
+    function roleClass(role) {
+      return role?.toLowerCase().includes('dure') ? 'role-demolition' : 'role-eloge';
+    }
+
+    function resolveModeFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
+    }
+
+    function syncNavigationLinks(mode) {
+      const archiveLink = document.getElementById('nav-archives-link');
+      const manifesteLink = document.getElementById('nav-manifeste-link');
+      const auteursLink = document.getElementById('nav-auteurs-link');
+      const suffix = `?mode=${encodeURIComponent(mode)}`;
+      if (archiveLink) archiveLink.href = `archive.html${suffix}`;
+      if (manifesteLink) manifesteLink.href = `manifeste.html${suffix}`;
+      if (auteursLink) auteursLink.href = `auteurs.html${suffix}`;
+    }
+
+    function renderAuthors(authors) {
+      const node = document.getElementById('authors-grid');
+      if (!node) return;
+
+      if (!authors.length) {
+        node.innerHTML = '<p class="text-center text-gray-500">Aucun auteur disponible pour le moment.</p>';
+        return;
+      }
+
+      node.innerHTML = authors.map((author) => `
+        <article class="flex flex-col md:flex-row items-center md:items-start gap-8 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
+          <img alt="${escapeHtml(author.alt || `Portrait de ${author.name}`)}" class="w-48 h-48 rounded-full object-cover" src="${escapeHtml(author.avatar || 'assets/ulysse-poussin.svg')}"/>
+          <div>
+            <h3 class="font-heading text-6xl font-bold mb-2">${formatText(author.name)}</h3>
+            <p class="text-5xl ${roleClass(author.role)} font-bold uppercase tracking-[0.15em] mb-6">${formatText(author.role)}</p>
+            <p class="text-gray-600 font-serif text-2xl leading-relaxed max-w-5xl">${formatText(author.bio)}</p>
+            <div class="mt-8 flex gap-8 flex-wrap">
+              <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
+              <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Ses publications</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    async function loadAuthors() {
+      const catalogRes = await fetch('/data/critics/catalog.json');
+      if (!catalogRes.ok) throw new Error('catalog introuvable');
+      const catalog = await catalogRes.json();
+      const critiques = Array.isArray(catalog?.critiques) ? catalog.critiques : [];
+
+      const dossiers = await Promise.all(critiques.map(async (entry) => {
+        const res = await fetch(entry.file);
+        if (!res.ok) return null;
+        return res.json();
+      }));
+
+      const authorsByName = new Map();
+      dossiers.filter(Boolean).forEach((dossier) => {
+        const authors = Array.isArray(dossier?.authors) ? dossier.authors : [];
+        authors.forEach((author) => {
+          if (!author?.name || authorsByName.has(author.name)) return;
+          authorsByName.set(author.name, author);
+        });
+      });
+
+      renderAuthors(Array.from(authorsByName.values()));
+    }
+
+    const initialMode = resolveModeFromUrl();
+    syncNavigationLinks(initialMode);
+    if (initialMode === 'demolition') {
+      document.body.classList.add('mode-demolition');
+    }
+
+    loadAuthors().catch(() => {
+      const node = document.getElementById('authors-grid');
+      if (node) node.innerHTML = '<p class="text-center text-gray-500">Impossible de charger la liste des auteurs.</p>';
+    });
+  </script>
+</body>
+</html>
