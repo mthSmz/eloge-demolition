@@ -36,6 +36,8 @@
     .nav-link { color: #6b7280; transition: color 0.2s ease; }
     .nav-link:hover { color: var(--accent-color); }
     .nav-link-active { color: var(--accent-color); }
+    details > summary { list-style: none; cursor: pointer; }
+    details > summary::-webkit-details-marker { display: none; }
   </style>
 </head>
 <body class="antialiased">
@@ -77,20 +79,40 @@
 
       <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
         <h3 class="font-heading text-3xl font-bold mb-4">Comment on limite les hallucinations</h3>
-        <ol class="space-y-4 text-gray-700">
-          <li>
-            <p class="font-bold uppercase tracking-widest text-xs accent-text mb-1">1 — Génération structurée</p>
-            <p class="font-serif leading-relaxed">D’abord un JSON intermédiaire&nbsp;: observations factuelles, citations exactes, puis interprétations ancrées sur ces citations.</p>
-          </li>
-          <li>
-            <p class="font-bold uppercase tracking-widest text-xs accent-text mb-1">2 — Audit déterministe</p>
-            <p class="font-serif leading-relaxed">Chaque citation doit exister littéralement dans le texte source. Les entités nommées doivent, elles aussi, être présentes dans le texte.</p>
-          </li>
-          <li>
-            <p class="font-bold uppercase tracking-widest text-xs accent-text mb-1">3 — Rejet si échec</p>
-            <p class="font-serif leading-relaxed">Si une règle casse (citation invalide, entité inventée, interprétation non justifiée), la génération est rejetée et non “corrigée” automatiquement.</p>
-          </li>
-        </ol>
+        <p class="font-serif text-gray-700 leading-relaxed mb-6">
+          Comme sur la première landing page, on garde les patterns explicités en français, avec leur nom “communauté”
+          et leur contexte d’usage. En Phase&nbsp;1, on n’applique que ceux qui restent auditables de façon déterministe.
+        </p>
+        <div class="space-y-3">
+          <details class="border border-gray-200 rounded-custom p-4" open>
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Sortie structurée (Structured Output / JSON Schema)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: génération intermédiaire contrainte (observations, citations, interprétations) pour rendre la sortie vérifiable avant rédaction finale.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Ancrage par citation (Citation Grounding)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: critique littéraire sous contrainte. Toute affirmation importante doit pointer vers des extraits exacts du texte source.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Validation d’entités (NER Grounding)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: anti-hallucination nominale. Les noms propres/entités mentionnés doivent exister dans l’entrée.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Audit déterministe (Deterministic Validator)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: pipeline de prod. Le script d’audit vérifie structure + exact match, sans jugement flou ni modèle secondaire.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Rejet immédiat (Fail Fast)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: qualité de sortie. Si une règle échoue, on rejette la génération au lieu de “réparer” silencieusement.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Tests par fixtures (Golden/Fixture Tests)</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: régression. Jeux PASS/FAIL pour s’assurer que l’audit continue de détecter citations invalides et structures cassées.</p>
+          </details>
+          <details class="border border-gray-200 rounded-custom p-4">
+            <summary class="font-bold uppercase tracking-widest text-xs accent-text">Hors scope Phase 1&nbsp;: RAG, NLI, SBERT</summary>
+            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: cadrage produit. Ces patterns sont connus dans la communauté, mais volontairement exclus tant que le noyau minimal n’est pas stabilisé.</p>
+          </details>
+        </div>
       </article>
 
       <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
