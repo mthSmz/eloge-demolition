@@ -64,7 +64,7 @@
       <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
       <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
         <li><a class="nav-link" href="archive.html" id="nav-archives-link">Archives</a></li>
-        <li><a class="nav-link" href="#">Manifeste</a></li>
+        <li><a class="nav-link" href="manifeste.html" id="nav-manifeste-link">Manifeste</a></li>
         <li><a class="nav-link" href="auteurs.html" id="nav-auteurs-link">Auteurs</a></li>
         <li><a class="nav-link" href="#">Contact</a></li>
       </ul></nav>
@@ -193,9 +193,11 @@
 
     function syncNavigationLinks(mode) {
       const archiveLink = document.getElementById('nav-archives-link');
+      const manifesteLink = document.getElementById('nav-manifeste-link');
       const auteursLink = document.getElementById('nav-auteurs-link');
       const suffix = `?mode=${encodeURIComponent(mode)}`;
       if (archiveLink) archiveLink.href = `archive.html${suffix}`;
+      if (manifesteLink) manifesteLink.href = `manifeste.html${suffix}`;
       if (auteursLink) auteursLink.href = `auteurs.html${suffix}`;
     }
 
