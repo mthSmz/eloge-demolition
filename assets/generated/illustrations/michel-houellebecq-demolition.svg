@@ -1,14 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Michel Houellebecq">
-  <rect width="1600" height="900" fill="#12131d"/>
-  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#1c1e2d"/>
-  
-<polygon points="120,700 120,500 290,410 290,700" fill="#25304d"/>
-<polygon points="305,700 305,430 470,370 470,700" fill="#3d2036"/>
-<polygon points="485,700 485,470 650,390 650,700" fill="#7a1f2b"/>
-<polygon points="760,300 930,200 1080,290 980,430 830,420" fill="#9a3b2f"/>
-<polygon points="700,430 1120,430 1220,700 620,700" fill="#3d2036"/>
-<polyline points="120,700 280,630 450,660 610,610 780,640 980,590 1210,640 1410,610" stroke="#f2b3b3" stroke-width="10" fill="none" opacity="0.75"/>
-<line x1="890" y1="260" x2="850" y2="380" stroke="#12131d" stroke-width="12"/>
-<line x1="980" y1="250" x2="940" y2="390" stroke="#12131d" stroke-width="12"/>
+  <defs>
+    <linearGradient id="bgDarkH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#101228"/>
+      <stop offset="100%" stop-color="#1b1433"/>
+    </linearGradient>
+    <linearGradient id="moonDarkH" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a9dfff"/>
+      <stop offset="100%" stop-color="#5e82b7"/>
+    </linearGradient>
+  </defs>
 
+  <rect width="1600" height="900" fill="url(#bgDarkH)"/>
+  <circle cx="820" cy="380" r="280" fill="url(#moonDarkH)"/>
+
+  <rect x="340" y="560" width="920" height="220" fill="#121b34"/>
+  <rect x="460" y="425" width="125" height="355" fill="#0c1429"/>
+  <rect x="620" y="355" width="160" height="425" fill="#1d2a4d"/>
+  <rect x="825" y="295" width="170" height="485" fill="#081226"/>
+  <rect x="1030" y="390" width="130" height="390" fill="#24345c"/>
+
+  <line x1="690" y1="515" x2="930" y2="515" stroke="#8eb8df" stroke-width="8" opacity="0.65"/>
+  <line x1="700" y1="560" x2="900" y2="560" stroke="#8eb8df" stroke-width="8" opacity="0.55"/>
+
+  <rect x="250" y="180" width="280" height="22" fill="#6278a4" opacity="0.35"/>
+  <rect x="1080" y="210" width="290" height="20" fill="#6278a4" opacity="0.35"/>
+  <ellipse cx="800" cy="815" rx="350" ry="26" fill="#6c84b1" opacity="0.25"/>
 </svg>

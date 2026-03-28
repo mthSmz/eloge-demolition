@@ -1,14 +1,32 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Géopolitique du ketchup">
-  <rect width="1600" height="900" fill="#f5f8ff"/>
-  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#eaf1ff"/>
-  
-<ellipse cx="1110" cy="280" rx="260" ry="180" fill="#c8e1ff"/>
-<path d="M880 280h460" stroke="#2f4f9d" stroke-width="8"/>
-<path d="M930 220c120 70 220 70 340 0" stroke="#2f4f9d" stroke-width="8" fill="none" opacity="0.5"/>
-<path d="M930 340c120-70 220-70 340 0" stroke="#2f4f9d" stroke-width="8" fill="none" opacity="0.5"/>
-<polygon points="260,250 420,250 460,330 460,690 220,690 220,330" fill="#f6d58f"/>
-<polygon points="300,170 380,170 400,250 280,250" fill="#8bb8ff"/>
-<polygon points="250,360 430,360 430,590 250,590" fill="#7dd3c7" opacity="0.9"/>
-<polyline points="250,475 305,430 340,470 385,430 430,470" stroke="#2f4f9d" stroke-width="10" fill="none"/>
+  <defs>
+    <linearGradient id="bgWarmK" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7d8af"/>
+      <stop offset="100%" stop-color="#f4a07b"/>
+    </linearGradient>
+    <linearGradient id="sunWarmK" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffb37a"/>
+      <stop offset="100%" stop-color="#ee6061"/>
+    </linearGradient>
+    <linearGradient id="bottleWarm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2f5683"/>
+      <stop offset="100%" stop-color="#183857"/>
+    </linearGradient>
+  </defs>
 
+  <rect width="1600" height="900" fill="url(#bgWarmK)"/>
+  <circle cx="800" cy="390" r="295" fill="url(#sunWarmK)"/>
+
+  <rect x="680" y="230" width="240" height="430" rx="95" fill="url(#bottleWarm)"/>
+  <rect x="735" y="170" width="130" height="90" rx="25" fill="#24486f"/>
+  <rect x="750" y="310" width="100" height="190" rx="18" fill="#f59b73" opacity="0.85"/>
+  <path d="M772 390h56" stroke="#22466d" stroke-width="8" opacity="0.8"/>
+  <path d="M772 430h56" stroke="#22466d" stroke-width="8" opacity="0.8"/>
+
+  <polygon points="520,700 710,620 900,620 1080,700" fill="#264b73"/>
+  <polygon points="380,770 600,700 800,735 1020,690 1240,770" fill="#ef8d69" opacity="0.5"/>
+
+  <circle cx="460" cy="290" r="46" fill="#ef8164" opacity="0.9"/>
+  <circle cx="1140" cy="280" r="50" fill="#f08a67" opacity="0.88"/>
+  <ellipse cx="800" cy="820" rx="300" ry="32" fill="#f8d8ad" opacity="0.8"/>
 </svg>

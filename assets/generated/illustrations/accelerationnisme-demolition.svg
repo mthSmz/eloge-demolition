@@ -1,13 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Accélérationnisme">
-  <rect width="1600" height="900" fill="#12131d"/>
-  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#1c1e2d"/>
-  
-<polygon points="120,520 360,380 360,470 620,470 620,570 360,570 360,660" fill="#3d2036"/>
-<polygon points="740,320 980,460 890,460 890,700 790,700 790,460 700,460" fill="#7a1f2b"/>
-<polygon points="1020,700 1260,540 1260,630 1460,630 1460,730 1260,730 1260,820" fill="#25304d"/>
-<line x1="620" y1="520" x2="790" y2="520" stroke="#f2b3b3" stroke-width="16"/>
-<line x1="680" y1="460" x2="730" y2="580" stroke="#f2b3b3" stroke-width="12"/>
-<line x1="730" y1="460" x2="680" y2="580" stroke="#f2b3b3" stroke-width="12"/>
-<circle cx="1110" cy="230" r="58" fill="#9a3b2f" opacity="0.8"/>
+  <defs>
+    <linearGradient id="bgDarkAcc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0e1228"/>
+      <stop offset="100%" stop-color="#1a1231"/>
+    </linearGradient>
+    <linearGradient id="moonDarkAcc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b0e2ff"/>
+      <stop offset="100%" stop-color="#5a7bb2"/>
+    </linearGradient>
+  </defs>
 
+  <rect width="1600" height="900" fill="url(#bgDarkAcc)"/>
+  <circle cx="790" cy="380" r="280" fill="url(#moonDarkAcc)"/>
+
+  <polygon points="770,215 860,375 800,375 800,560 740,560 740,375 680,375" fill="#071125"/>
+  <polygon points="760,185 790,125 820,185" fill="#22375e"/>
+  <rect x="760" y="560" width="40" height="160" fill="#071125"/>
+
+  <polygon points="430,710 620,470 620,710" fill="#131f3b"/>
+  <polygon points="980,710 980,470 1170,710" fill="#1e2a4f"/>
+  <rect x="590" y="650" width="420" height="80" fill="#0b1630"/>
+
+  <line x1="310" y1="720" x2="1290" y2="720" stroke="#7ea6d2" stroke-width="8" opacity="0.45"/>
+  <line x1="370" y1="770" x2="1230" y2="770" stroke="#7ea6d2" stroke-width="7" opacity="0.35"/>
+  <ellipse cx="800" cy="825" rx="350" ry="28" fill="#6682b0" opacity="0.24"/>
 </svg>

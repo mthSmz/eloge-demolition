@@ -1,12 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Li Po">
-  <rect width="1600" height="900" fill="#f5f8ff"/>
-  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#eaf1ff"/>
-  
-<polygon points="120,640 420,360 680,640" fill="#c8e1ff"/>
-<polygon points="420,640 760,280 1080,640" fill="#8bb8ff" opacity="0.85"/>
-<polygon points="760,640 1080,420 1360,640" fill="#7dd3c7" opacity="0.8"/>
-<polygon points="0,700 300,620 680,700 980,640 1600,740 1600,900 0,900" fill="#f6d58f" opacity="0.55"/>
-<polygon points="840,220 920,140 1000,220 920,300" fill="#fdf7d2"/>
-<polyline points="180,700 380,520 540,560 770,420 980,470 1210,360 1420,420" stroke="#2f4f9d" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+  <defs>
+    <linearGradient id="bgWarmLiPo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7d7ab"/>
+      <stop offset="100%" stop-color="#f5a36f"/>
+    </linearGradient>
+    <linearGradient id="sunWarmLiPo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffb173"/>
+      <stop offset="100%" stop-color="#f0675f"/>
+    </linearGradient>
+    <linearGradient id="castleWarmLiPo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f3f64"/>
+      <stop offset="100%" stop-color="#4a5d8f"/>
+    </linearGradient>
+  </defs>
 
+  <rect width="1600" height="900" fill="url(#bgWarmLiPo)"/>
+  <circle cx="800" cy="430" r="300" fill="url(#sunWarmLiPo)"/>
+  <rect x="540" y="220" width="520" height="420" rx="24" fill="url(#castleWarmLiPo)"/>
+
+  <rect x="705" y="250" width="190" height="320" fill="#183352"/>
+  <polygon points="705,250 800,160 895,250" fill="#224469"/>
+
+  <rect x="615" y="320" width="90" height="250" fill="#24476f"/>
+  <polygon points="615,320 660,250 705,320" fill="#325c8d"/>
+
+  <rect x="895" y="330" width="90" height="240" fill="#274a72"/>
+  <polygon points="895,330 940,265 985,330" fill="#3b6596"/>
+
+  <rect x="760" y="430" width="80" height="140" fill="#10283f"/>
+  <rect x="780" y="465" width="40" height="105" fill="#f6b57d" opacity="0.8"/>
+
+  <polygon points="500,640 760,500 880,500 1120,640" fill="#1a3655"/>
+  <polygon points="420,760 620,660 790,700 980,640 1200,760" fill="#f08d68" opacity="0.5"/>
+
+  <circle cx="430" cy="260" r="38" fill="#f08964" opacity="0.9"/>
+  <circle cx="1160" cy="250" r="42" fill="#ef7d61" opacity="0.85"/>
+  <ellipse cx="800" cy="820" rx="280" ry="34" fill="#f7d6aa" opacity="0.8"/>
 </svg>
