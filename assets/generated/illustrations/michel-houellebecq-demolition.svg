@@ -1,28 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Michel Houellebecq">
   <defs>
     <linearGradient id="bgDarkH" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#101228"/>
-      <stop offset="100%" stop-color="#1b1433"/>
+      <stop offset="0%" stop-color="#21193f"/>
+      <stop offset="50%" stop-color="#1d2950"/>
+      <stop offset="100%" stop-color="#2a4b79"/>
     </linearGradient>
     <linearGradient id="moonDarkH" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#a9dfff"/>
-      <stop offset="100%" stop-color="#5e82b7"/>
+      <stop offset="0%" stop-color="#d6f3ff"/>
+      <stop offset="100%" stop-color="#7cb3e8"/>
     </linearGradient>
+    <linearGradient id="towerDarkH" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#122745"/>
+      <stop offset="100%" stop-color="#061427"/>
+    </linearGradient>
+    <pattern id="windowDark" width="28" height="20" patternUnits="userSpaceOnUse">
+      <rect width="28" height="20" fill="none"/>
+      <rect x="3" y="4" width="6" height="6" fill="#9ad1ff" opacity="0.78"/>
+      <rect x="13" y="4" width="6" height="6" fill="#9ad1ff" opacity="0.52"/>
+      <rect x="8" y="12" width="6" height="6" fill="#9ad1ff" opacity="0.66"/>
+    </pattern>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgDarkH)"/>
-  <circle cx="820" cy="380" r="280" fill="url(#moonDarkH)"/>
+  <circle cx="800" cy="380" r="300" fill="url(#moonDarkH)"/>
 
-  <rect x="340" y="560" width="920" height="220" fill="#121b34"/>
-  <rect x="460" y="425" width="125" height="355" fill="#0c1429"/>
-  <rect x="620" y="355" width="160" height="425" fill="#1d2a4d"/>
-  <rect x="825" y="295" width="170" height="485" fill="#081226"/>
-  <rect x="1030" y="390" width="130" height="390" fill="#24345c"/>
+  <g opacity="0.32">
+    <rect x="490" y="225" width="620" height="20" fill="#b5defe"/>
+    <rect x="490" y="280" width="620" height="16" fill="#9bc5f0"/>
+    <rect x="490" y="335" width="620" height="14" fill="#86a8d2"/>
+    <rect x="490" y="390" width="620" height="12" fill="#7998c4"/>
+  </g>
 
-  <line x1="690" y1="515" x2="930" y2="515" stroke="#8eb8df" stroke-width="8" opacity="0.65"/>
-  <line x1="700" y1="560" x2="900" y2="560" stroke="#8eb8df" stroke-width="8" opacity="0.55"/>
+  <g>
+    <rect x="300" y="560" width="1000" height="220" fill="#0f1d38"/>
 
-  <rect x="250" y="180" width="280" height="22" fill="#6278a4" opacity="0.35"/>
-  <rect x="1080" y="210" width="290" height="20" fill="#6278a4" opacity="0.35"/>
-  <ellipse cx="800" cy="815" rx="350" ry="26" fill="#6c84b1" opacity="0.25"/>
+    <rect x="420" y="410" width="130" height="350" fill="url(#towerDarkH)"/>
+    <rect x="570" y="360" width="140" height="400" fill="#1f355d"/>
+    <rect x="730" y="300" width="180" height="460" fill="#08182f"/>
+    <rect x="930" y="350" width="155" height="410" fill="#294471"/>
+    <rect x="1105" y="430" width="105" height="330" fill="#163055"/>
+
+    <rect x="430" y="430" width="110" height="260" fill="url(#windowDark)" opacity="0.62"/>
+    <rect x="580" y="380" width="120" height="290" fill="url(#windowDark)" opacity="0.65"/>
+    <rect x="740" y="320" width="160" height="320" fill="url(#windowDark)" opacity="0.57"/>
+    <rect x="940" y="370" width="135" height="280" fill="url(#windowDark)" opacity="0.63"/>
+    <rect x="1115" y="448" width="85" height="220" fill="url(#windowDark)" opacity="0.52"/>
+
+    <polygon points="760,760 840,760 800,690" fill="#a8d7ff" opacity="0.88"/>
+    <rect x="785" y="705" width="30" height="55" fill="#07182e"/>
+  </g>
+
+  <ellipse cx="800" cy="810" rx="390" ry="34" fill="#9ec7ee" opacity="0.56"/>
+  <path d="M90 790 C250 735 390 762 530 733 C650 708 760 762 880 733 C1020 702 1195 770 1510 795 L1510 900 L90 900 Z" fill="#274772" opacity="0.68"/>
 </svg>

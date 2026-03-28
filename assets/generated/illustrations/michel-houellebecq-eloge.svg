@@ -1,28 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Michel Houellebecq">
   <defs>
     <linearGradient id="bgWarmH" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f6d9b0"/>
-      <stop offset="100%" stop-color="#f3a27f"/>
+      <stop offset="0%" stop-color="#f5d5ad"/>
+      <stop offset="50%" stop-color="#efaf84"/>
+      <stop offset="100%" stop-color="#dd8468"/>
     </linearGradient>
     <linearGradient id="sunWarmH" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffa06d"/>
-      <stop offset="100%" stop-color="#ea5f63"/>
+      <stop offset="0%" stop-color="#f8b66f"/>
+      <stop offset="100%" stop-color="#e26663"/>
     </linearGradient>
+    <linearGradient id="towerWarm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#355b87"/>
+      <stop offset="100%" stop-color="#122b4b"/>
+    </linearGradient>
+    <pattern id="windowWarm" width="28" height="20" patternUnits="userSpaceOnUse">
+      <rect width="28" height="20" fill="none"/>
+      <rect x="3" y="4" width="6" height="6" fill="#f5bb86" opacity="0.85"/>
+      <rect x="13" y="4" width="6" height="6" fill="#f5bb86" opacity="0.6"/>
+      <rect x="8" y="12" width="6" height="6" fill="#f5bb86" opacity="0.72"/>
+    </pattern>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgWarmH)"/>
-  <circle cx="820" cy="380" r="290" fill="url(#sunWarmH)"/>
+  <circle cx="800" cy="380" r="300" fill="url(#sunWarmH)"/>
 
-  <rect x="360" y="560" width="880" height="210" fill="#244363"/>
-  <rect x="470" y="410" width="130" height="350" fill="#1b3551"/>
-  <rect x="635" y="350" width="155" height="410" fill="#2d537d"/>
-  <rect x="830" y="300" width="175" height="460" fill="#193551"/>
-  <rect x="1045" y="385" width="120" height="375" fill="#355f8e"/>
+  <g opacity="0.45">
+    <rect x="500" y="220" width="600" height="22" fill="#f5bf87"/>
+    <rect x="500" y="275" width="600" height="18" fill="#ee906b"/>
+    <rect x="500" y="330" width="600" height="16" fill="#e4706d"/>
+    <rect x="500" y="385" width="600" height="14" fill="#de6674"/>
+  </g>
 
-  <rect x="700" y="500" width="220" height="20" fill="#f4bb86" opacity="0.8"/>
-  <rect x="700" y="550" width="180" height="20" fill="#f4bb86" opacity="0.7"/>
+  <g>
+    <rect x="300" y="560" width="1000" height="220" fill="#203f62"/>
 
-  <ellipse cx="520" cy="330" rx="70" ry="40" fill="#ef8668" opacity="0.9"/>
-  <ellipse cx="1160" cy="300" rx="65" ry="38" fill="#ef7b63" opacity="0.85"/>
-  <ellipse cx="800" cy="810" rx="360" ry="28" fill="#f8d3a6" opacity="0.8"/>
+    <rect x="420" y="410" width="130" height="350" fill="url(#towerWarm)"/>
+    <rect x="570" y="360" width="140" height="400" fill="#2f537f"/>
+    <rect x="730" y="300" width="180" height="460" fill="#173554"/>
+    <rect x="930" y="350" width="155" height="410" fill="#3a5f8d"/>
+    <rect x="1105" y="430" width="105" height="330" fill="#27466d"/>
+
+    <rect x="430" y="430" width="110" height="260" fill="url(#windowWarm)" opacity="0.55"/>
+    <rect x="580" y="380" width="120" height="290" fill="url(#windowWarm)" opacity="0.58"/>
+    <rect x="740" y="320" width="160" height="320" fill="url(#windowWarm)" opacity="0.52"/>
+    <rect x="940" y="370" width="135" height="280" fill="url(#windowWarm)" opacity="0.55"/>
+    <rect x="1115" y="448" width="85" height="220" fill="url(#windowWarm)" opacity="0.48"/>
+
+    <polygon points="760,760 840,760 800,690" fill="#f4bd88" opacity="0.9"/>
+    <rect x="785" y="705" width="30" height="55" fill="#0d2038"/>
+  </g>
+
+  <ellipse cx="800" cy="810" rx="380" ry="34" fill="#f6c69b" opacity="0.75"/>
+  <path d="M80 785 C240 730 380 760 530 730 C650 705 760 760 880 730 C1010 700 1180 765 1520 790 L1520 900 L80 900 Z" fill="#d97568" opacity="0.5"/>
 </svg>

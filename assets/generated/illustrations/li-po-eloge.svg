@@ -1,39 +1,75 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Li Po">
   <defs>
     <linearGradient id="bgWarmLiPo" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f7d7ab"/>
-      <stop offset="100%" stop-color="#f5a36f"/>
+      <stop offset="0%" stop-color="#f6d8ae"/>
+      <stop offset="45%" stop-color="#f2b585"/>
+      <stop offset="100%" stop-color="#e88a6a"/>
     </linearGradient>
     <linearGradient id="sunWarmLiPo" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffb173"/>
-      <stop offset="100%" stop-color="#f0675f"/>
+      <stop offset="0%" stop-color="#f8b56d"/>
+      <stop offset="60%" stop-color="#f07f67"/>
+      <stop offset="100%" stop-color="#d86473"/>
     </linearGradient>
-    <linearGradient id="castleWarmLiPo" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1f3f64"/>
-      <stop offset="100%" stop-color="#4a5d8f"/>
+    <linearGradient id="stoneL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#284b73"/>
+      <stop offset="100%" stop-color="#112845"/>
     </linearGradient>
+    <linearGradient id="stoneR" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a6898"/>
+      <stop offset="100%" stop-color="#1f3f66"/>
+    </linearGradient>
+    <pattern id="grainWarm" width="8" height="8" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#ffd9b1" opacity="0.18"/>
+      <circle cx="6" cy="4" r="0.7" fill="#5e3550" opacity="0.12"/>
+    </pattern>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgWarmLiPo)"/>
-  <circle cx="800" cy="430" r="300" fill="url(#sunWarmLiPo)"/>
-  <rect x="540" y="220" width="520" height="420" rx="24" fill="url(#castleWarmLiPo)"/>
 
-  <rect x="705" y="250" width="190" height="320" fill="#183352"/>
-  <polygon points="705,250 800,160 895,250" fill="#224469"/>
+  <circle cx="800" cy="430" r="320" fill="url(#sunWarmLiPo)"/>
+  <rect x="500" y="210" width="600" height="440" rx="24" fill="url(#stoneL)"/>
 
-  <rect x="615" y="320" width="90" height="250" fill="#24476f"/>
-  <polygon points="615,320 660,250 705,320" fill="#325c8d"/>
+  <g opacity="0.55">
+    <rect x="500" y="240" width="600" height="28" fill="#f6ab72"/>
+    <rect x="500" y="300" width="600" height="24" fill="#ee8266"/>
+    <rect x="500" y="360" width="600" height="22" fill="#e5676f"/>
+    <rect x="500" y="420" width="600" height="20" fill="#d95d74"/>
+    <rect x="500" y="480" width="600" height="18" fill="#f2a06d"/>
+  </g>
 
-  <rect x="895" y="330" width="90" height="240" fill="#274a72"/>
-  <polygon points="895,330 940,265 985,330" fill="#3b6596"/>
+  <g>
+    <polygon points="650,610 800,450 950,610" fill="#0f2440"/>
+    <polygon points="520,660 800,500 1080,660" fill="#16355a"/>
 
-  <rect x="760" y="430" width="80" height="140" fill="#10283f"/>
-  <rect x="780" y="465" width="40" height="105" fill="#f6b57d" opacity="0.8"/>
+    <rect x="730" y="260" width="140" height="300" fill="#183454"/>
+    <polygon points="730,260 800,180 870,260" fill="#264a72"/>
 
-  <polygon points="500,640 760,500 880,500 1120,640" fill="#1a3655"/>
-  <polygon points="420,760 620,660 790,700 980,640 1200,760" fill="#f08d68" opacity="0.5"/>
+    <rect x="630" y="340" width="95" height="230" fill="#25466d"/>
+    <polygon points="630,340 678,270 725,340" fill="#3c6394"/>
 
-  <circle cx="430" cy="260" r="38" fill="#f08964" opacity="0.9"/>
-  <circle cx="1160" cy="250" r="42" fill="#ef7d61" opacity="0.85"/>
-  <ellipse cx="800" cy="820" rx="280" ry="34" fill="#f7d6aa" opacity="0.8"/>
+    <rect x="875" y="355" width="95" height="215" fill="#28496f"/>
+    <polygon points="875,355 922,290 970,355" fill="#486f9f"/>
+
+    <rect x="776" y="440" width="48" height="120" fill="#0d1e35"/>
+    <rect x="780" y="450" width="40" height="34" fill="#f0c597"/>
+
+    <rect x="772" y="275" width="12" height="38" fill="#f4be86"/>
+    <rect x="816" y="305" width="10" height="34" fill="#f4be86"/>
+    <rect x="660" y="380" width="9" height="32" fill="#f4be86"/>
+    <rect x="920" y="395" width="9" height="28" fill="#f4be86"/>
+
+    <polygon points="520,660 650,610 650,675" fill="#2e507c"/>
+    <polygon points="1080,660 950,610 950,675" fill="#0f2948"/>
+  </g>
+
+  <g opacity="0.72">
+    <ellipse cx="380" cy="265" rx="76" ry="34" fill="#eb7d63"/>
+    <ellipse cx="1220" cy="252" rx="82" ry="36" fill="#ea745f"/>
+    <ellipse cx="260" cy="700" rx="170" ry="56" fill="#f08b68"/>
+    <ellipse cx="1360" cy="710" rx="180" ry="62" fill="#f08b68"/>
+    <ellipse cx="800" cy="780" rx="280" ry="48" fill="#f4c194"/>
+  </g>
+
+  <path d="M80 760 C240 700 390 735 530 700 C620 680 710 730 800 700 C910 665 1030 725 1140 700 C1280 665 1390 705 1520 760 L1520 900 L80 900 Z" fill="#d97766" opacity="0.45"/>
+  <rect width="1600" height="900" fill="url(#grainWarm)"/>
 </svg>

@@ -1,32 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Géopolitique du ketchup">
   <defs>
     <linearGradient id="bgDarkK" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0f1228"/>
-      <stop offset="100%" stop-color="#1c1231"/>
+      <stop offset="0%" stop-color="#21193e"/>
+      <stop offset="52%" stop-color="#1f2f58"/>
+      <stop offset="100%" stop-color="#2b4d7b"/>
     </linearGradient>
     <linearGradient id="moonDarkK" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#a8ddff"/>
-      <stop offset="100%" stop-color="#5b7db3"/>
+      <stop offset="0%" stop-color="#dcf5ff"/>
+      <stop offset="100%" stop-color="#7ab5e7"/>
     </linearGradient>
-    <linearGradient id="bottleDark" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#101b35"/>
-      <stop offset="100%" stop-color="#060f24"/>
+    <linearGradient id="bottleDarkK" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#132845"/>
+      <stop offset="100%" stop-color="#061526"/>
     </linearGradient>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgDarkK)"/>
-  <circle cx="800" cy="390" r="285" fill="url(#moonDarkK)"/>
+  <circle cx="800" cy="390" r="300" fill="url(#moonDarkK)"/>
 
-  <rect x="680" y="230" width="240" height="430" rx="95" fill="url(#bottleDark)"/>
-  <rect x="735" y="170" width="130" height="90" rx="25" fill="#1a2c4d"/>
-  <rect x="750" y="315" width="100" height="190" rx="18" fill="#2b3759"/>
-  <path d="M772 393h56" stroke="#87abd4" stroke-width="7" opacity="0.45"/>
-  <path d="M772 433h56" stroke="#87abd4" stroke-width="7" opacity="0.45"/>
+  <g opacity="0.34">
+    <rect x="500" y="230" width="600" height="22" fill="#b8e0ff"/>
+    <rect x="500" y="287" width="600" height="18" fill="#9dc7ef"/>
+    <rect x="500" y="344" width="600" height="16" fill="#85add6"/>
+    <rect x="500" y="401" width="600" height="14" fill="#7498c3"/>
+  </g>
 
-  <polygon points="510,710 710,620 900,620 1090,710" fill="#0d1833"/>
-  <polygon points="370,780 600,700 800,738 1030,695 1250,780" fill="#232040"/>
+  <g>
+    <rect x="690" y="220" width="220" height="450" rx="90" fill="url(#bottleDarkK)"/>
+    <rect x="745" y="165" width="110" height="80" rx="24" fill="#1f3f65"/>
+    <rect x="735" y="315" width="130" height="220" rx="22" fill="#a2d1ff" opacity="0.88"/>
+    <rect x="760" y="335" width="80" height="180" rx="16" fill="#16385d"/>
 
-  <rect x="260" y="185" width="270" height="22" fill="#5d76a3" opacity="0.35"/>
-  <rect x="1070" y="220" width="270" height="20" fill="#5d76a3" opacity="0.35"/>
-  <ellipse cx="800" cy="822" rx="300" ry="30" fill="#6884b2" opacity="0.23"/>
+    <path d="M780 370 C790 360 810 360 820 370 C810 380 790 380 780 370 Z" fill="#b5dcff"/>
+    <path d="M780 420 C792 408 808 408 820 420 C808 432 792 432 780 420 Z" fill="#b5dcff"/>
+    <path d="M780 470 C790 462 810 462 820 470 C810 478 790 478 780 470 Z" fill="#b5dcff"/>
+
+    <line x1="700" y1="610" x2="900" y2="610" stroke="#0f2f51" stroke-width="12"/>
+    <polygon points="560,700 800,590 1040,700" fill="#173a61"/>
+    <polygon points="420,770 620,700 800,735 980,700 1180,770" fill="#2a4a76" opacity="0.72"/>
+
+    <rect x="300" y="188" width="250" height="18" fill="#8cb6e2"/>
+    <rect x="1050" y="208" width="250" height="16" fill="#8cb6e2"/>
+  </g>
+
+  <ellipse cx="800" cy="812" rx="300" ry="34" fill="#a0c8ef" opacity="0.62"/>
 </svg>

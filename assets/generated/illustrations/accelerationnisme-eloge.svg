@@ -1,27 +1,54 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Accélérationnisme">
   <defs>
     <linearGradient id="bgWarmAcc" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f8dcb2"/>
-      <stop offset="100%" stop-color="#f19773"/>
+      <stop offset="0%" stop-color="#f7d8af"/>
+      <stop offset="52%" stop-color="#f1b183"/>
+      <stop offset="100%" stop-color="#df8a67"/>
     </linearGradient>
     <linearGradient id="sunWarmAcc" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffb276"/>
-      <stop offset="100%" stop-color="#ef655f"/>
+      <stop offset="0%" stop-color="#f9ba74"/>
+      <stop offset="100%" stop-color="#e86d64"/>
+    </linearGradient>
+    <linearGradient id="rocketWarm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#244b75"/>
+      <stop offset="100%" stop-color="#0f2b4a"/>
     </linearGradient>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgWarmAcc)"/>
-  <circle cx="790" cy="380" r="290" fill="url(#sunWarmAcc)"/>
+  <circle cx="800" cy="380" r="290" fill="url(#sunWarmAcc)"/>
 
-  <polygon points="770,210 860,370 800,370 800,560 740,560 740,370 680,370" fill="#1f3f63"/>
-  <polygon points="760,180 790,120 820,180" fill="#2f5682"/>
-  <rect x="760" y="560" width="40" height="150" fill="#1f3f63"/>
+  <g opacity="0.45">
+    <rect x="500" y="230" width="600" height="20" fill="#f5be88"/>
+    <rect x="500" y="286" width="600" height="16" fill="#ef956d"/>
+    <rect x="500" y="342" width="600" height="14" fill="#e87969"/>
+    <rect x="500" y="398" width="600" height="12" fill="#df6470"/>
+  </g>
 
-  <polygon points="440,700 620,470 620,700" fill="#355e8e"/>
-  <polygon points="980,700 980,470 1160,700" fill="#274b72"/>
-  <rect x="600" y="650" width="400" height="70" fill="#17334f"/>
+  <g>
+    <rect x="620" y="640" width="360" height="64" fill="#173553"/>
+    <rect x="700" y="704" width="200" height="26" fill="#204262"/>
 
-  <line x1="300" y1="720" x2="1300" y2="720" stroke="#f8cf98" stroke-width="10" opacity="0.8"/>
-  <line x1="360" y1="765" x2="1240" y2="765" stroke="#f8cf98" stroke-width="8" opacity="0.65"/>
-  <ellipse cx="800" cy="820" rx="350" ry="30" fill="#f8d8ae" opacity="0.8"/>
+    <polygon points="780,220 820,220 840,270 760,270" fill="#2e567f"/>
+    <polygon points="800,250 880,420 850,420 850,620 750,620 750,420 720,420" fill="url(#rocketWarm)"/>
+    <rect x="775" y="360" width="50" height="150" fill="#f2bf89" opacity="0.86"/>
+    <rect x="784" y="372" width="32" height="70" fill="#133256"/>
+
+    <polygon points="720,470 650,620 750,620" fill="#2f5785"/>
+    <polygon points="880,470 950,620 850,620" fill="#203f64"/>
+
+    <polygon points="610,704 700,620 700,704" fill="#315a8a"/>
+    <polygon points="990,704 900,620 900,704" fill="#163655"/>
+
+    <line x1="760" y1="620" x2="840" y2="620" stroke="#f7c692" stroke-width="8"/>
+    <line x1="755" y1="648" x2="845" y2="648" stroke="#f7c692" stroke-width="6" opacity="0.8"/>
+  </g>
+
+  <g opacity="0.68">
+    <ellipse cx="420" cy="280" rx="72" ry="28" fill="#ec7f63"/>
+    <ellipse cx="1180" cy="278" rx="78" ry="32" fill="#ed7b62"/>
+    <ellipse cx="800" cy="800" rx="300" ry="32" fill="#f5c89e"/>
+  </g>
+
+  <path d="M80 780 C220 735 390 765 530 735 C650 705 750 760 880 735 C1030 705 1190 760 1520 785 L1520 900 L80 900 Z" fill="#db7a67" opacity="0.52"/>
 </svg>

@@ -1,32 +1,47 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Géopolitique du ketchup">
   <defs>
     <linearGradient id="bgWarmK" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f7d8af"/>
-      <stop offset="100%" stop-color="#f4a07b"/>
+      <stop offset="0%" stop-color="#f6d8af"/>
+      <stop offset="52%" stop-color="#efb082"/>
+      <stop offset="100%" stop-color="#dc8368"/>
     </linearGradient>
     <linearGradient id="sunWarmK" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffb37a"/>
-      <stop offset="100%" stop-color="#ee6061"/>
+      <stop offset="0%" stop-color="#f8bc75"/>
+      <stop offset="100%" stop-color="#e86864"/>
     </linearGradient>
-    <linearGradient id="bottleWarm" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2f5683"/>
-      <stop offset="100%" stop-color="#183857"/>
+    <linearGradient id="bottleWarmK" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2d5682"/>
+      <stop offset="100%" stop-color="#102b49"/>
     </linearGradient>
   </defs>
 
   <rect width="1600" height="900" fill="url(#bgWarmK)"/>
-  <circle cx="800" cy="390" r="295" fill="url(#sunWarmK)"/>
+  <circle cx="800" cy="390" r="300" fill="url(#sunWarmK)"/>
 
-  <rect x="680" y="230" width="240" height="430" rx="95" fill="url(#bottleWarm)"/>
-  <rect x="735" y="170" width="130" height="90" rx="25" fill="#24486f"/>
-  <rect x="750" y="310" width="100" height="190" rx="18" fill="#f59b73" opacity="0.85"/>
-  <path d="M772 390h56" stroke="#22466d" stroke-width="8" opacity="0.8"/>
-  <path d="M772 430h56" stroke="#22466d" stroke-width="8" opacity="0.8"/>
+  <g opacity="0.45">
+    <rect x="500" y="230" width="600" height="22" fill="#f7c18a"/>
+    <rect x="500" y="287" width="600" height="18" fill="#f09a6f"/>
+    <rect x="500" y="344" width="600" height="16" fill="#e8796a"/>
+    <rect x="500" y="401" width="600" height="14" fill="#df6571"/>
+  </g>
 
-  <polygon points="520,700 710,620 900,620 1080,700" fill="#264b73"/>
-  <polygon points="380,770 600,700 800,735 1020,690 1240,770" fill="#ef8d69" opacity="0.5"/>
+  <g>
+    <rect x="690" y="220" width="220" height="450" rx="90" fill="url(#bottleWarmK)"/>
+    <rect x="745" y="165" width="110" height="80" rx="24" fill="#264a71"/>
+    <rect x="735" y="315" width="130" height="220" rx="22" fill="#f3b784"/>
+    <rect x="760" y="335" width="80" height="180" rx="16" fill="#22486f"/>
 
-  <circle cx="460" cy="290" r="46" fill="#ef8164" opacity="0.9"/>
-  <circle cx="1140" cy="280" r="50" fill="#f08a67" opacity="0.88"/>
-  <ellipse cx="800" cy="820" rx="300" ry="32" fill="#f8d8ad" opacity="0.8"/>
+    <path d="M780 370 C790 360 810 360 820 370 C810 380 790 380 780 370 Z" fill="#f2be8b"/>
+    <path d="M780 420 C792 408 808 408 820 420 C808 432 792 432 780 420 Z" fill="#f2be8b"/>
+    <path d="M780 470 C790 462 810 462 820 470 C810 478 790 478 780 470 Z" fill="#f2be8b"/>
+
+    <line x1="700" y1="610" x2="900" y2="610" stroke="#173552" stroke-width="12"/>
+    <polygon points="560,700 800,590 1040,700" fill="#1f4267"/>
+    <polygon points="420,770 620,700 800,735 980,700 1180,770" fill="#df7d67" opacity="0.52"/>
+
+    <circle cx="565" cy="290" r="42" fill="#ec7f63"/>
+    <circle cx="1035" cy="288" r="42" fill="#ec7f63"/>
+  </g>
+
+  <ellipse cx="800" cy="812" rx="300" ry="34" fill="#f5c89d" opacity="0.75"/>
 </svg>
