@@ -38,12 +38,91 @@
     .nav-link-active { color: var(--accent-color); }
     details > summary { list-style: none; cursor: pointer; }
     details > summary::-webkit-details-marker { display: none; }
-    .manifest-line {
-      text-indent: 1.5rem;
-      text-align: justify;
+    .manifesto-shell {
+      max-width: 54rem;
+      margin: 0 auto;
     }
-    .manifest-line + .manifest-line {
-      margin-top: 0;
+    .manifesto-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 2px 8px rgba(17, 24, 39, 0.04);
+    }
+    .manifesto-card + .manifesto-card {
+      margin-top: 1.5rem;
+    }
+    .manifesto-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.75rem);
+      line-height: 1.03;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .manifesto-subtitle {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.12rem, 2.4vw, 1.5rem);
+      line-height: 1.65;
+      color: #4b5563;
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+    .manifesto-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.1vw, 2.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 1.15rem;
+      color: #111827;
+    }
+    .manifesto-prose {
+      font-family: 'Libre Baskerville', serif;
+      color: #374151;
+      line-height: 1.82;
+      font-size: 1.06rem;
+    }
+    .manifesto-prose p + p {
+      margin-top: 0.7rem;
+    }
+    .manifesto-pattern {
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 0.95rem 1rem;
+      background: linear-gradient(180deg, #fff 0%, #fcfdff 100%);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+    .manifesto-pattern[open],
+    .manifesto-pattern:hover {
+      border-color: #9ca3af;
+    }
+    .manifesto-pattern summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+    }
+    .manifesto-pattern summary::after {
+      content: '+';
+      font-size: 1rem;
+      line-height: 1;
+      color: #6b7280;
+      font-weight: 700;
+    }
+    .manifesto-pattern[open] summary::after {
+      content: '−';
+    }
+    .manifesto-pattern p {
+      margin-top: 0.75rem;
+      font-family: 'Libre Baskerville', serif;
+      color: #374151;
+      line-height: 1.7;
+    }
+    @media (max-width: 640px) {
+      .manifesto-card {
+        padding: 1.5rem 1.15rem;
+      }
     }
   </style>
 </head>
@@ -66,69 +145,71 @@
     </div>
   </header>
 
-  <main class="container mx-auto px-4 max-w-4xl py-12">
-    <header class="text-center mb-12">
+  <main class="container mx-auto px-4 py-14 md:py-16">
+    <div class="manifesto-shell">
+    <header class="text-center mb-12 md:mb-14">
       <p class="text-xs font-bold uppercase tracking-[0.25em] accent-text mb-4">Position éditoriale</p>
-      <h2 class="font-heading text-5xl md:text-6xl font-bold mb-6">Manifeste</h2>
-      <p class="font-serif text-xl text-gray-600">Un laboratoire critique simple&nbsp;: deux angles, un même sujet, zéro dogme.</p>
+      <h2 class="manifesto-heading">Manifeste</h2>
+      <p class="manifesto-subtitle">Un laboratoire critique simple&nbsp;: deux angles, un même sujet, zéro dogme.</p>
     </header>
 
-    <section class="space-y-8">
-      <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
-        <h3 class="font-heading text-3xl font-bold mb-4">Pourquoi ce dispositif existe</h3>
-        <div class="font-serif text-gray-700 leading-relaxed">
-          <p class="manifest-line">Éloge / Démolition part d’une idée volontairement sobre&nbsp;: il n’y a que des lectures situées, argumentées, discutables.</p>
-          <p class="manifest-line">Le site met donc en scène deux voix contradictoires pour rappeler que toute œuvre ou sujet peut toujours être défendu et contesté de manière systématique.</p>
-          <p class="manifest-line">La fabrication d'un réel à la demande est désormais automatisé et ouvre la voie à un solipsisme numérique renforcé.</p>
+    <section>
+      <article class="manifesto-card">
+        <h3 class="manifesto-title">Pourquoi ce dispositif existe</h3>
+        <div class="manifesto-prose">
+          <p>Éloge / Démolition part d’une idée volontairement sobre&nbsp;: il n’y a que des lectures situées, argumentées, discutables.</p>
+          <p>Le site met donc en scène deux voix contradictoires pour rappeler que toute œuvre ou sujet peut toujours être défendu et contesté de manière systématique.</p>
+          <p>La fabrication d’un réel à la demande est désormais automatisée et ouvre la voie à un solipsisme numérique renforcé.</p>
         </div>
       </article>
 
-      <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
-        <h3 class="font-heading text-3xl font-bold mb-4">Comment on limite les hallucinations</h3>
-        <p class="font-serif text-gray-700 leading-relaxed mb-6">
+      <article class="manifesto-card">
+        <h3 class="manifesto-title">Comment on limite les hallucinations</h3>
+        <p class="manifesto-prose mb-6">
           Patterns utilisés pour limiter les hallucinations et garantir la qualité du contenu généré&nbsp;:
         </p>
         <div class="space-y-3">
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Sortie structurée (Structured Output / JSON Schema)</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: génération intermédiaire contrainte (observations, citations, interprétations) pour rendre la sortie vérifiable avant rédaction finale.</p>
+            <p>Contexte&nbsp;: génération intermédiaire contrainte (observations, citations, interprétations) pour rendre la sortie vérifiable avant rédaction finale.</p>
           </details>
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Ancrage par citation (Citation Grounding)</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: critique littéraire sous contrainte. Toute affirmation importante doit pointer vers des extraits exacts du texte source.</p>
+            <p>Contexte&nbsp;: critique littéraire sous contrainte. Toute affirmation importante doit pointer vers des extraits exacts du texte source.</p>
           </details>
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Validation d’entités (NER Grounding)</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: anti-hallucination nominale. Les noms propres/entités mentionnés doivent exister dans l’entrée.</p>
+            <p>Contexte&nbsp;: anti-hallucination nominale. Les noms propres/entités mentionnés doivent exister dans l’entrée.</p>
           </details>
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Audit déterministe (Deterministic Validator)</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: pipeline de prod. Le script d’audit vérifie structure + exact match, sans jugement flou ni modèle secondaire.</p>
+            <p>Contexte&nbsp;: pipeline de prod. Le script d’audit vérifie structure + exact match, sans jugement flou ni modèle secondaire.</p>
           </details>
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Rejet immédiat (Fail Fast)</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: qualité de sortie. Si une règle échoue, on rejette la génération au lieu de “réparer” silencieusement.</p>
+            <p>Contexte&nbsp;: qualité de sortie. Si une règle échoue, on rejette la génération au lieu de “réparer” silencieusement.</p>
           </details>
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Tests par fixtures (Golden/Fixture Tests)</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: régression. Jeux PASS/FAIL pour s’assurer que l’audit continue de détecter citations invalides et structures cassées.</p>
+            <p>Contexte&nbsp;: régression. Jeux PASS/FAIL pour s’assurer que l’audit continue de détecter citations invalides et structures cassées.</p>
           </details>
-          <details class="border border-gray-200 rounded-custom p-4">
+          <details class="manifesto-pattern">
             <summary class="font-bold uppercase tracking-widest text-xs accent-text">Hors scope Phase 1&nbsp;: RAG, NLI, SBERT</summary>
-            <p class="font-serif text-gray-700 mt-3">Contexte&nbsp;: cadrage produit. Ces patterns sont connus dans la communauté, mais volontairement exclus tant que le noyau minimal n’est pas stabilisé.</p>
+            <p>Contexte&nbsp;: cadrage produit. Ces patterns sont connus dans la communauté, mais volontairement exclus tant que le noyau minimal n’est pas stabilisé.</p>
           </details>
         </div>
       </article>
 
-      <article class="bg-white border border-gray-100 rounded-custom p-8 shadow-sm">
-        <h3 class="font-heading text-3xl font-bold mb-4">Message implicite (et assumé)</h3>
-        <p class="font-serif text-gray-700 leading-relaxed">
+      <article class="manifesto-card">
+        <h3 class="manifesto-title">Message implicite (et assumé)</h3>
+        <p class="manifesto-prose">
           Ce projet de portfolio n’essaie pas de “faire plus”&nbsp;: il essaie de faire proprement. Définir un cadre,
           séparer production et validation, documenter les règles, tester les sorties, puis itérer sans gonfler le scope.
           C’est une démonstration de méthode autant qu’un objet éditorial.
         </p>
       </article>
     </section>
+    </div>
   </main>
 
   <footer class="bg-black text-white py-16 mt-10">
