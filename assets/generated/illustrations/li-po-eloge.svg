@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Li Po">
+  <rect width="1600" height="900" fill="#f5f8ff"/>
+  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#eaf1ff"/>
+  
+<polygon points="120,640 420,360 680,640" fill="#c8e1ff"/>
+<polygon points="420,640 760,280 1080,640" fill="#8bb8ff" opacity="0.85"/>
+<polygon points="760,640 1080,420 1360,640" fill="#7dd3c7" opacity="0.8"/>
+<polygon points="0,700 300,620 680,700 980,640 1600,740 1600,900 0,900" fill="#f6d58f" opacity="0.55"/>
+<polygon points="840,220 920,140 1000,220 920,300" fill="#fdf7d2"/>
+<polyline points="180,700 380,520 540,560 770,420 980,470 1210,360 1420,420" stroke="#2f4f9d" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+
+</svg>

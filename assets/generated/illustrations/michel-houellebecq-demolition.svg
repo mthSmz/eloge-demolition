@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Michel Houellebecq">
+  <rect width="1600" height="900" fill="#12131d"/>
+  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#1c1e2d"/>
+  
+<polygon points="120,700 120,500 290,410 290,700" fill="#25304d"/>
+<polygon points="305,700 305,430 470,370 470,700" fill="#3d2036"/>
+<polygon points="485,700 485,470 650,390 650,700" fill="#7a1f2b"/>
+<polygon points="760,300 930,200 1080,290 980,430 830,420" fill="#9a3b2f"/>
+<polygon points="700,430 1120,430 1220,700 620,700" fill="#3d2036"/>
+<polyline points="120,700 280,630 450,660 610,610 780,640 980,590 1210,640 1410,610" stroke="#f2b3b3" stroke-width="10" fill="none" opacity="0.75"/>
+<line x1="890" y1="260" x2="850" y2="380" stroke="#12131d" stroke-width="12"/>
+<line x1="980" y1="250" x2="940" y2="390" stroke="#12131d" stroke-width="12"/>
+
+</svg>

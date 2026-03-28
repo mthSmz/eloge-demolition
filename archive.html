@@ -167,6 +167,15 @@
       return `${entry.subject}, ${title.charAt(0).toLowerCase()}${title.slice(1)}`;
     }
 
+    function resolveFigureForMode(figure, mode, fallbackTitle = '') {
+      const modeFigure = figure?.modes?.[mode] || null;
+      const fallbackFigure = figure?.modes?.eloge || figure?.modes?.demolition || null;
+      return {
+        cover: modeFigure?.cover || fallbackFigure?.cover || figure?.cover || 'assets/book-cover.svg',
+        alt: modeFigure?.alt || fallbackFigure?.alt || figure?.alt || fallbackTitle
+      };
+    }
+
     function syncNavigationLinks(mode) {
       const archiveLink = document.getElementById('nav-archives-link');
       const manifesteLink = document.getElementById('nav-manifeste-link');
@@ -190,8 +199,9 @@
 
       const heroNode = document.getElementById('hero-section');
       if (hero && heroNode) {
+        const heroFigure = resolveFigureForMode(hero.entry.figure, activeMode, hero.article.title);
         heroNode.innerHTML = `
-          <img class="lg:col-span-2 w-full h-[420px] object-cover rounded-custom" src="${escapeHtml(hero.entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(hero.entry.figure.alt || hero.article.title)}"/>
+          <img class="lg:col-span-2 w-full h-[420px] object-cover rounded-custom" src="${escapeHtml(heroFigure.cover)}" alt="${escapeHtml(heroFigure.alt)}"/>
           <article class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-300 pt-6 lg:pt-0 lg:pl-8">
             <div>
               <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${formatText(hero.entry.label)}</p>
@@ -204,15 +214,18 @@
 
       const featuredNode = document.getElementById('featured-grid');
       if (featuredNode) {
-        featuredNode.innerHTML = featured.map(({ entry, article }) => `
+        featuredNode.innerHTML = featured.map(({ entry, article }) => {
+          const figure = resolveFigureForMode(entry.figure, activeMode, article.title);
+          return `
           <article class="min-w-0">
-            <img class="w-full h-48 object-cover rounded-custom mb-3" src="${escapeHtml(entry.figure.cover || 'assets/book-cover.svg')}" alt="${escapeHtml(entry.figure.alt || article.title)}"/>
+            <img class="w-full h-48 object-cover rounded-custom mb-3" src="${escapeHtml(figure.cover)}" alt="${escapeHtml(figure.alt)}"/>
             <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${formatText(entry.label || "Critique littéraire")}</p>
             <h4 class="font-heading text-3xl font-bold leading-tight mb-3 text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h4>
             <p class="text-gray-600">${formatText(article.subtitle || '')}</p>
             <a class="inline-block mt-3 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">Ouvrir →</a>
           </article>
-        `).join('');
+        `;
+        }).join('');
       }
 
       const opinionsNode = document.getElementById('recent-opinions');

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Accélérationnisme">
+  <rect width="1600" height="900" fill="#12131d"/>
+  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#1c1e2d"/>
+  
+<polygon points="120,520 360,380 360,470 620,470 620,570 360,570 360,660" fill="#3d2036"/>
+<polygon points="740,320 980,460 890,460 890,700 790,700 790,460 700,460" fill="#7a1f2b"/>
+<polygon points="1020,700 1260,540 1260,630 1460,630 1460,730 1260,730 1260,820" fill="#25304d"/>
+<line x1="620" y1="520" x2="790" y2="520" stroke="#f2b3b3" stroke-width="16"/>
+<line x1="680" y1="460" x2="730" y2="580" stroke="#f2b3b3" stroke-width="12"/>
+<line x1="730" y1="460" x2="680" y2="580" stroke="#f2b3b3" stroke-width="12"/>
+<circle cx="1110" cy="230" r="58" fill="#9a3b2f" opacity="0.8"/>
+
+</svg>

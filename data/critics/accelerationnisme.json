@@ -2,24 +2,32 @@
   "pairingId": "accelerationnisme",
   "label": "Les idées",
   "figure": {
-    "cover": "assets/book-cover.svg",
-    "alt": "Illustration abstraite d'un manifeste",
-    "caption": "Dossier idées : accélérationnisme"
+    "caption": "Dossier idées : accélérationnisme",
+    "modes": {
+      "eloge": {
+        "cover": "assets/generated/illustrations/accelerationnisme-eloge.svg",
+        "alt": "Illustration éloge pour Accélérer, mais vers quoi ?"
+      },
+      "demolition": {
+        "cover": "assets/generated/illustrations/accelerationnisme-demolition.svg",
+        "alt": "Illustration démolition pour Une ambiguïté dangereuse"
+      }
+    }
   },
   "authors": [
     {
       "name": "Ulysse Poussin",
       "role": "Critique de la raison pure",
       "bio": "Essayiste et romancier, Ulysse Poussin explore les idées contemporaines avec une attention portée à leur cohérence historique et morale.",
-      "avatar": "assets/ulysse-poussin.svg",
-      "alt": "Portrait de Ulysse Poussin"
+      "avatar": "assets/generated/avatars/ulysse-poussin.svg",
+      "alt": "Avatar illustré de Ulysse Poussin"
     },
     {
       "name": "Achille Corbeau",
       "role": "Critique de la raison dure",
       "bio": "Pamphlétaire et critique, Achille Corbeau démonte les rhétoriques séduisantes quand elles masquent des angles morts politiques.",
-      "avatar": "assets/achille-corbeau.svg",
-      "alt": "Portrait de Achille Corbeau"
+      "avatar": "assets/generated/avatars/achille-corbeau.svg",
+      "alt": "Avatar illustré de Achille Corbeau"
     }
   ],
   "articles": [
@@ -40,7 +48,7 @@
         "On peut lui reprocher ses excès de jargon ou ses ambiguïtés. Mais il a le mérite de rouvrir le débat sur la capacité de la gauche à gouverner la complexité technique plutôt qu’à la fuir.",
         "À son meilleur niveau, ce courant n’ordonne pas d’accélérer n’importe quoi : il exige d’orienter les tendances existantes vers des objectifs d’émancipation, de réduction du travail contraint et d’élargissement des capacités collectives."
       ],
-      "conclusion": "Conclusion : Une pensée exigeante et imparfaite, mais précieuse pour relier critique du capitalisme, stratégie institutionnelle et bataille technologique." 
+      "conclusion": "Conclusion : Une pensée exigeante et imparfaite, mais précieuse pour relier critique du capitalisme, stratégie institutionnelle et bataille technologique."
     },
     {
       "id": "accelerationnisme-demolition",
@@ -59,7 +67,7 @@
         "Les versions libérales récentes — “inconditionnelle” ou “efficace” — aggravent encore le problème en substituant la performance au politique. On accélère, puis on verra. C’est exactement l’inverse d’une stratégie collective.",
         "Au final, l’accélérationnisme risque de devenir une esthétique de la puissance plus qu’une théorie de l’émancipation, où le mouvement lui-même sert d’argument et la question des fins disparaît derrière celle des moyens."
       ],
-      "conclusion": "Conclusion : Concept stimulant, mais dangereusement poreux : sans clarification stricte des finalités et des acteurs, l’accélérationnisme devient un mot-écran." 
+      "conclusion": "Conclusion : Concept stimulant, mais dangereusement poreux : sans clarification stricte des finalités et des acteurs, l’accélérationnisme devient un mot-écran."
     }
   ]
 }

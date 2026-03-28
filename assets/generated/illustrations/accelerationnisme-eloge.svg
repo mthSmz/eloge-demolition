@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Accélérationnisme">
+  <rect width="1600" height="900" fill="#f5f8ff"/>
+  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#eaf1ff"/>
+  
+<polygon points="120,520 360,380 360,470 620,470 620,570 360,570 360,660" fill="#8bb8ff"/>
+<polygon points="500,470 760,320 760,410 1040,410 1040,510 760,510 760,600" fill="#7dd3c7"/>
+<polygon points="900,410 1180,250 1180,340 1430,340 1430,440 1180,440 1180,530" fill="#c8e1ff"/>
+<circle cx="260" cy="240" r="42" fill="#f6d58f"/>
+<circle cx="620" cy="220" r="34" fill="#8bb8ff" opacity="0.8"/>
+<circle cx="980" cy="190" r="30" fill="#7dd3c7" opacity="0.8"/>
+<line x1="260" y1="240" x2="620" y2="220" stroke="#2f4f9d" stroke-width="8"/>
+<line x1="620" y1="220" x2="980" y2="190" stroke="#2f4f9d" stroke-width="8"/>
+
+</svg>

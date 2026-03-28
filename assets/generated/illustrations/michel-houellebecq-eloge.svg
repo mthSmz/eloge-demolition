@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Michel Houellebecq">
+  <rect width="1600" height="900" fill="#f5f8ff"/>
+  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#eaf1ff"/>
+  
+<polygon points="120,700 120,460 320,360 320,700" fill="#8bb8ff" opacity="0.55"/>
+<polygon points="330,700 330,390 520,330 520,700" fill="#c8e1ff"/>
+<polygon points="530,700 530,430 700,350 700,700" fill="#7dd3c7" opacity="0.7"/>
+<polygon points="760,280 900,200 1040,280 960,390 840,390" fill="#f6d58f"/>
+<polygon points="820,410 1080,410 1180,700 720,700" fill="#8bb8ff" opacity="0.75"/>
+<polyline points="150,700 340,620 480,640 660,590 800,620 980,560 1200,620 1420,580" stroke="#2f4f9d" stroke-width="10" fill="none" opacity="0.65"/>
+<line x1="240" y1="420" x2="240" y2="700" stroke="#2f4f9d" stroke-width="6" opacity="0.4"/>
+<line x1="420" y1="390" x2="420" y2="700" stroke="#2f4f9d" stroke-width="6" opacity="0.4"/>
+<line x1="610" y1="430" x2="610" y2="700" stroke="#2f4f9d" stroke-width="6" opacity="0.4"/>
+
+</svg>

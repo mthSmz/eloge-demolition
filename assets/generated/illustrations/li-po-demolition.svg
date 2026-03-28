@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Li Po">
+  <rect width="1600" height="900" fill="#12131d"/>
+  <rect x="56" y="56" width="1488" height="788" rx="22" fill="#1c1e2d"/>
+  
+<polygon points="80,680 360,340 620,680" fill="#25304d"/>
+<polygon points="360,680 700,240 980,680" fill="#3d2036"/>
+<polygon points="740,680 1060,320 1400,680" fill="#7a1f2b"/>
+<polygon points="0,760 260,700 480,740 700,690 960,760 1200,700 1600,790 1600,900 0,900" fill="#9a3b2f" opacity="0.55"/>
+<polygon points="980,210 1070,120 1160,210 1070,300" fill="#f1c7c7" opacity="0.9"/>
+<line x1="1035" y1="175" x2="1105" y2="245" stroke="#7a1f2b" stroke-width="10"/>
+<line x1="1105" y1="175" x2="1035" y2="245" stroke="#7a1f2b" stroke-width="10"/>
+<polyline points="160,700 330,530 520,590 690,450 860,520 1030,410 1220,480 1400,430" stroke="#f2b3b3" stroke-width="12" fill="none" opacity="0.8"/>
+
+</svg>

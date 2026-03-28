@@ -103,6 +103,10 @@
       return 'eloge';
     }
 
+    function fallbackAvatarForMode(mode) {
+      return mode === 'demolition' ? 'assets/achille-corbeau.svg' : 'assets/ulysse-poussin.svg';
+    }
+
     function resolveModeFromUrl() {
       const params = new URLSearchParams(window.location.search);
       return params.get('mode') === 'demolition' ? 'demolition' : 'eloge';
@@ -133,7 +137,7 @@
         const publicationsHref = `archive.html?mode=${encodeURIComponent(mode)}`;
         return `
         <article class="flex flex-col md:flex-row items-center md:items-start gap-6 bg-white p-8 rounded-custom shadow-sm border border-gray-100">
-          <img alt="${escapeHtml(author.alt || `Portrait de ${author.name}`)}" class="w-32 h-32 rounded-full object-cover" src="${escapeHtml(author.avatar || 'assets/ulysse-poussin.svg')}"/>
+          <img alt="${escapeHtml(author.alt || `Portrait de ${author.name}`)}" class="w-32 h-32 rounded-full object-cover" src="${escapeHtml(author.avatar || fallbackAvatarForMode(mode))}" onerror="this.onerror=null;this.src='${escapeHtml(fallbackAvatarForMode(mode))}';"/>
           <div>
             <h3 class="font-heading text-2xl font-bold mb-2">${formatText(author.name)}</h3>
             <p class="text-sm ${roleClass(author.role)} font-bold uppercase tracking-widest mb-4">${formatText(author.role)}</p>

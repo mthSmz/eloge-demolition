@@ -2,24 +2,32 @@
   "pairingId": "li-po",
   "label": "Critique littéraire",
   "figure": {
-    "cover": "assets/book-cover.svg",
-    "alt": "Illustration d'un livre classique en noir et blanc",
-    "caption": "Dossier critique : li-po"
+    "caption": "Dossier critique : li-po",
+    "modes": {
+      "eloge": {
+        "cover": "assets/generated/illustrations/li-po-eloge.svg",
+        "alt": "Illustration éloge pour L’ivresse comme clarté"
+      },
+      "demolition": {
+        "cover": "assets/generated/illustrations/li-po-demolition.svg",
+        "alt": "Illustration démolition pour Pastoral pour paresseux"
+      }
+    }
   },
   "authors": [
     {
       "name": "Ulysse Poussin",
       "role": "Critique de la raison pure",
       "bio": "Essayiste et romancier, Ulysse Poussin célèbre la production littéraire contemporaine avec une attention lumineuse portée aux nuances de style. Il défend une critique de l’enthousiasme, nourrie par les revues, les correspondances d’auteurs et l’art de la lecture lente.",
-      "avatar": "assets/ulysse-poussin.svg",
-      "alt": "Portrait de Ulysse Poussin"
+      "avatar": "assets/generated/avatars/ulysse-poussin.svg",
+      "alt": "Avatar illustré de Ulysse Poussin"
     },
     {
       "name": "Achille Corbeau",
       "role": "Critique de la raison dure",
       "bio": "Pamphlétaire et critique au verbe sec, Achille Corbeau traque les poses et les faux prestiges avec une rigueur mordante. Ses démolitions méthodiques, publiées dans les marges les plus redoutées, font de lui l’ennemi intime des œuvres trop sûres d’elles-mêmes.",
-      "avatar": "assets/achille-corbeau.svg",
-      "alt": "Portrait de Achille Corbeau"
+      "avatar": "assets/generated/avatars/achille-corbeau.svg",
+      "alt": "Avatar illustré de Achille Corbeau"
     }
   ],
   "articles": [

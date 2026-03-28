@@ -2,24 +2,32 @@
   "pairingId": "michel-houellebecq",
   "label": "Critique littéraire",
   "figure": {
-    "cover": "assets/book-cover.svg",
-    "alt": "Illustration d'un livre classique en noir et blanc",
-    "caption": "Dossier critique : michel-houellebecq"
+    "caption": "Dossier critique : michel-houellebecq",
+    "modes": {
+      "eloge": {
+        "cover": "assets/generated/illustrations/michel-houellebecq-eloge.svg",
+        "alt": "Illustration éloge pour La lucidité comme roman social"
+      },
+      "demolition": {
+        "cover": "assets/generated/illustrations/michel-houellebecq-demolition.svg",
+        "alt": "Illustration démolition pour Le désenchantement en série"
+      }
+    }
   },
   "authors": [
     {
       "name": "Ulysse Poussin",
       "role": "Critique de la raison pure",
       "bio": "Essayiste et romancier, Ulysse Poussin défend une critique attentive aux formes, même quand elles prennent le masque du désenchantement.",
-      "avatar": "assets/ulysse-poussin.svg",
-      "alt": "Portrait de Ulysse Poussin"
+      "avatar": "assets/generated/avatars/ulysse-poussin.svg",
+      "alt": "Avatar illustré de Ulysse Poussin"
     },
     {
       "name": "Achille Corbeau",
       "role": "Critique de la raison dure",
       "bio": "Pamphlétaire et critique au verbe sec, Achille Corbeau dissèque les impostures esthétiques avec une constance féroce.",
-      "avatar": "assets/achille-corbeau.svg",
-      "alt": "Portrait de Achille Corbeau"
+      "avatar": "assets/generated/avatars/achille-corbeau.svg",
+      "alt": "Avatar illustré de Achille Corbeau"
     }
   ],
   "articles": [
@@ -38,9 +46,9 @@
         "On lui reproche son pessimisme ; il faudrait plutôt parler d'une anthropologie sans consolation. Houellebecq n'embellit pas le monde, et c'est précisément ce refus qui rend parfois possible une forme de compassion sèche.",
         "Son œuvre sait aussi ménager des respirations inattendues : descriptions de paysages, notations techniques, moments de douceur presque maladroite. Ces contrepoints empêchent le désespoir de se figer en doctrine.",
         "Enfin, il faut reconnaître son impact stylistique : il a ouvert une voie où le roman peut redevenir diagnostic, tout en gardant une puissance de fiction. Son influence, qu'on la juge heureuse ou non, est devenue structurelle.",
-        "À rebours de nombreuses écritures de l'effet, Houellebecq propose une prose de l'usure. Et cette usure, loin d'appauvrir le récit, y inscrit la vérité d'une époque qui s'épuise en se racontant." 
+        "À rebours de nombreuses écritures de l'effet, Houellebecq propose une prose de l'usure. Et cette usure, loin d'appauvrir le récit, y inscrit la vérité d'une époque qui s'épuise en se racontant."
       ],
-      "conclusion": "Conclusion : Une œuvre qui capte la fatigue moderne avec une précision clinique, et qui redonne au roman sa fonction d'instrument de connaissance." 
+      "conclusion": "Conclusion : Une œuvre qui capte la fatigue moderne avec une précision clinique, et qui redonne au roman sa fonction d'instrument de connaissance."
     },
     {
       "id": "houellebecq-demolition",
@@ -59,7 +67,7 @@
         "Même ses moments d'émotion paraissent parfois calibrés par contraste, comme si la tendresse n'était admise qu'à la condition de confirmer ensuite la thèse du désastre.",
         "Reste un écrivain influent, certes ; mais une influence n'est pas une preuve de vitalité. Elle peut aussi signaler la diffusion d'un geste devenu automatique."
       ],
-      "conclusion": "Conclusion : Une œuvre importante, mais peut-être enfermée dans son propre dispositif, où la clairvoyance initiale s'érode en répétition." 
+      "conclusion": "Conclusion : Une œuvre importante, mais peut-être enfermée dans son propre dispositif, où la clairvoyance initiale s'érode en répétition."
     }
   ]
 }
