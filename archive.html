@@ -79,7 +79,8 @@
       text-transform: inherit;
       letter-spacing: inherit;
     }
-    .header-mode-btn:hover { color: var(--accent-color); }
+    .header-mode-btn-eloge:hover { color: var(--eloge-color); }
+    .header-mode-btn-demolition:hover { color: var(--demolition-color); }
     .header-mode-btn-active-eloge { color: var(--eloge-color); }
     .header-mode-btn-active-demolition { color: var(--demolition-color); }
     .header-mode-separator { color: #9ca3af; }
@@ -95,9 +96,9 @@
       </div>
       <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">
         <span class="header-mode-toggle" aria-label="Basculer entre les modes Éloge et Démolition">
-          <button class="header-mode-btn header-mode-btn-active-eloge" id="header-btn-eloge" type="button" onclick="toggleArchiveMode('eloge')">Éloge</button>
+          <button class="header-mode-btn header-mode-btn-eloge header-mode-btn-active-eloge" id="header-btn-eloge" type="button" onclick="toggleArchiveMode('eloge')">Éloge</button>
           <span aria-hidden="true" class="header-mode-separator">/</span>
-          <button class="header-mode-btn" id="header-btn-demolition" type="button" onclick="toggleArchiveMode('demolition')">Démolition</button>
+          <button class="header-mode-btn header-mode-btn-demolition" id="header-btn-demolition" type="button" onclick="toggleArchiveMode('demolition')">Démolition</button>
         </span>
       </h1>
       <nav class="mt-6">
