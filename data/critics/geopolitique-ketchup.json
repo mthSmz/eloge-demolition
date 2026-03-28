@@ -2,24 +2,32 @@
   "pairingId": "geopolitique-ketchup",
   "label": "Les idées",
   "figure": {
-    "cover": "assets/book-cover.svg",
-    "alt": "Illustration conceptuelle autour du ketchup",
-    "caption": "Dossier idées : géopolitique du ketchup"
+    "caption": "Dossier idées : géopolitique du ketchup",
+    "modes": {
+      "eloge": {
+        "cover": "assets/generated/illustrations/geopolitique-ketchup-eloge.svg",
+        "alt": "Illustration éloge pour Le rouge qui cartographie le monde"
+      },
+      "demolition": {
+        "cover": "assets/generated/illustrations/geopolitique-ketchup-demolition.svg",
+        "alt": "Illustration démolition pour La sauce de toutes les paresses"
+      }
+    }
   },
   "authors": [
     {
       "name": "Ulysse Poussin",
       "role": "Critique de la raison pure",
       "bio": "Essayiste et romancier, Ulysse Poussin aime traquer les structures politiques là où personne ne pense à regarder.",
-      "avatar": "assets/ulysse-poussin.svg",
-      "alt": "Portrait de Ulysse Poussin"
+      "avatar": "assets/generated/avatars/ulysse-poussin.svg",
+      "alt": "Avatar illustré de Ulysse Poussin"
     },
     {
       "name": "Achille Corbeau",
       "role": "Critique de la raison dure",
       "bio": "Pamphlétaire et critique, Achille Corbeau démonte les mythologies contemporaines avec une ironie sans concession.",
-      "avatar": "assets/achille-corbeau.svg",
-      "alt": "Portrait de Achille Corbeau"
+      "avatar": "assets/generated/avatars/achille-corbeau.svg",
+      "alt": "Avatar illustré de Achille Corbeau"
     }
   ],
   "articles": [
@@ -40,7 +48,7 @@
         "Même sa présence dans les fast-foods raconte une histoire du temps social : accélération des repas, compression des rythmes urbains, recherche de repères gustatifs stables dans des vies fragmentées.",
         "En définitive, le ketchup agit comme une miniature du XXIe siècle : une infrastructure comestible où se rencontrent souveraineté alimentaire, industrie culturelle et désir d’un commun gustatif mondial."
       ],
-      "conclusion": "Conclusion : Étudier le ketchup, c’est découvrir qu’aucun objet de masse n’est insignifiant dès lors qu’on le lit comme une forme politique." 
+      "conclusion": "Conclusion : Étudier le ketchup, c’est découvrir qu’aucun objet de masse n’est insignifiant dès lors qu’on le lit comme une forme politique."
     },
     {
       "id": "ketchup-demolition",
@@ -59,7 +67,7 @@
         "La géopolitique mérite mieux qu’une métaphore qui fait sourire. Elle exige des échelles, des séries, des conflits identifiables, des acteurs situés. Sans cela, on n’a pas une analyse : on a un bon pitch.",
         "Bref, le ketchup n’est pas un mauvais objet ; c’est un objet maltraité. Trop de discours veulent en faire un totem critique, quand il faudrait commencer par le traiter comme un fait matériel précis."
       ],
-      "conclusion": "Conclusion : Une idée brillante en apparence, mais qui tourne vite à la sauce conceptuelle si elle n’est pas tenue par une vraie discipline d’enquête." 
+      "conclusion": "Conclusion : Une idée brillante en apparence, mais qui tourne vite à la sauce conceptuelle si elle n’est pas tenue par une vraie discipline d’enquête."
     }
   ]
 }

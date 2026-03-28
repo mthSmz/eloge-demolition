@@ -244,6 +244,25 @@
       return data.authors.find((author) => author.name === authorName) || null;
     }
 
+    function resolveFigureForMode(figure, mode) {
+      const modeFigure = figure?.modes?.[mode] || null;
+      const fallbackFigure = figure?.modes?.eloge || figure?.modes?.demolition || null;
+      return {
+        cover: modeFigure?.cover || fallbackFigure?.cover || figure?.cover || 'assets/book-cover.svg',
+        alt: modeFigure?.alt || fallbackFigure?.alt || figure?.alt || 'Illustration de la couverture'
+      };
+    }
+
+    function applyCoverForMode(mode) {
+      const coverNode = document.getElementById('article-cover');
+      if (!coverNode) return;
+
+      const figure = critiquePairingData?.figure || {};
+      const resolvedFigure = resolveFigureForMode(figure, mode);
+      coverNode.src = resolvedFigure.cover;
+      coverNode.alt = resolvedFigure.alt;
+    }
+
     function renderArticleContent(article, mode) {
       const contentNode = document.getElementById(`content-${mode}`);
       if (!contentNode || !article) return;
@@ -313,8 +332,14 @@
     function updateAuthorBlock(mode) {
       const author = authorByMode[mode];
       if (!author) return;
-      document.getElementById('author-avatar').src = author.avatar;
-      document.getElementById('author-avatar').alt = author.alt;
+      const avatarNode = document.getElementById('author-avatar');
+      const fallbackAvatar = mode === 'demolition' ? 'assets/achille-corbeau.svg' : 'assets/ulysse-poussin.svg';
+      avatarNode.onerror = () => {
+        avatarNode.onerror = null;
+        avatarNode.src = fallbackAvatar;
+      };
+      avatarNode.src = author.avatar;
+      avatarNode.alt = author.alt;
       document.getElementById('author-name').textContent = author.name;
       document.getElementById('author-title').textContent = author.title;
       document.getElementById('author-bio-text').textContent = author.bio;
@@ -351,11 +376,7 @@
           || (data?.pairingId ? `Dossier critique : ${data.pairingId}` : 'Dossier critique');
       }
 
-      const coverNode = document.getElementById('article-cover');
-      if (coverNode && figure.cover) {
-        coverNode.src = figure.cover;
-        coverNode.alt = figure.alt || coverNode.alt;
-      }
+      applyCoverForMode(resolveInitialMode());
 
       if (eloge?.author) {
         const elogeAuthor = getAuthorCard(data, eloge.author);
@@ -398,6 +419,7 @@
       currentMode = mode;
       updateAuthorBlock(mode);
       syncHeaderForMode(mode);
+      applyCoverForMode(mode);
       renderRecentPosts(mode);
 
       if (mode === 'eloge') {
