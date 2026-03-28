@@ -53,6 +53,23 @@
     .nav-link-active { color: var(--accent-color); }
     .author-link-eloge:hover { color: var(--eloge-color); }
     .author-link-demolition:hover { color: var(--demolition-color); }
+    .header-mode-toggle { display: inline-flex; align-items: center; gap: 0.2em; }
+    .header-mode-btn {
+      color: #111827;
+      transition: color 0.2s ease;
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      font: inherit;
+      text-transform: inherit;
+      letter-spacing: inherit;
+    }
+    .header-mode-btn-eloge:hover { color: var(--eloge-color); }
+    .header-mode-btn-demolition:hover { color: var(--demolition-color); }
+    .header-mode-btn-active-eloge { color: var(--eloge-color); }
+    .header-mode-btn-active-demolition { color: var(--demolition-color); }
+    .header-mode-separator { color: #9ca3af; }
   </style>
 </head>
 <body class="antialiased">
@@ -63,7 +80,13 @@
         <div class="absolute w-12 h-0.5 bg-black rotate-45"></div><div class="absolute w-12 h-0.5 bg-black -rotate-45"></div>
         <div class="z-10 bg-white px-1 font-black text-xs uppercase tracking-widest">ED</div>
       </div>
-      <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">Éloge / Démolition</h1>
+      <h1 class="font-heading text-2xl font-bold tracking-tighter uppercase">
+        <span class="header-mode-toggle" aria-label="Basculer entre les modes Éloge et Démolition">
+          <button class="header-mode-btn header-mode-btn-eloge header-mode-btn-active-eloge" id="header-btn-eloge" type="button" onclick="toggleReview('eloge')">Éloge</button>
+          <span aria-hidden="true" class="header-mode-separator">/</span>
+          <button class="header-mode-btn header-mode-btn-demolition" id="header-btn-demolition" type="button" onclick="toggleReview('demolition')">Démolition</button>
+        </span>
+      </h1>
       <nav class="mt-6"><ul class="flex space-x-8 text-xs font-bold uppercase tracking-widest">
         <li><a class="nav-link" href="archive.html" id="nav-archives-link">Archives</a></li>
         <li><a class="nav-link" href="manifeste.html" id="nav-manifeste-link">Manifeste</a></li>
@@ -409,6 +432,8 @@
       const demolitionContent = document.getElementById('content-demolition');
       const btnEloge = document.getElementById('btn-eloge');
       const btnDemolition = document.getElementById('btn-demolition');
+      const headerBtnEloge = document.getElementById('header-btn-eloge');
+      const headerBtnDemolition = document.getElementById('header-btn-demolition');
 
       currentMode = mode;
       updateAuthorBlock(mode);
@@ -424,6 +449,9 @@
         btnEloge.classList.remove('text-gray-400', 'mode-btn-active-demolition');
         btnDemolition.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
         btnDemolition.classList.add('text-gray-400');
+        headerBtnEloge.classList.add('header-mode-btn-active-eloge');
+        headerBtnEloge.classList.remove('header-mode-btn-active-demolition');
+        headerBtnDemolition.classList.remove('header-mode-btn-active-eloge', 'header-mode-btn-active-demolition');
       } else {
         pageBody.classList.add('mode-demolition');
         demolitionContent.classList.remove('hidden-state');
@@ -432,6 +460,9 @@
         btnDemolition.classList.remove('text-gray-400', 'mode-btn-active-eloge');
         btnEloge.classList.remove('bg-white', 'shadow-sm', 'mode-btn-active-eloge', 'mode-btn-active-demolition');
         btnEloge.classList.add('text-gray-400');
+        headerBtnDemolition.classList.add('header-mode-btn-active-demolition');
+        headerBtnDemolition.classList.remove('header-mode-btn-active-eloge');
+        headerBtnEloge.classList.remove('header-mode-btn-active-eloge', 'header-mode-btn-active-demolition');
       }
 
       syncNavigationLinks(mode);
