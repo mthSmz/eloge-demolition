@@ -1,54 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Accélérationnisme">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration démolition Accélérationnisme - autoroute nocturne saturée">
   <defs>
-    <linearGradient id="bgDarkAcc" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#221a3f"/>
-      <stop offset="52%" stop-color="#203059"/>
-      <stop offset="100%" stop-color="#2d4f7e"/>
+    <linearGradient id="skyAD" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#251f45"/>
+      <stop offset="48%" stop-color="#273963"/>
+      <stop offset="100%" stop-color="#335c8f"/>
     </linearGradient>
-    <linearGradient id="moonDarkAcc" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#dcf6ff"/>
-      <stop offset="100%" stop-color="#7bb4e6"/>
-    </linearGradient>
-    <linearGradient id="rocketDark" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#132946"/>
-      <stop offset="100%" stop-color="#061427"/>
+    <linearGradient id="moonAD" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e8f9ff"/>
+      <stop offset="100%" stop-color="#8cc3ef"/>
     </linearGradient>
   </defs>
 
-  <rect width="1600" height="900" fill="url(#bgDarkAcc)"/>
-  <circle cx="800" cy="380" r="290" fill="url(#moonDarkAcc)"/>
+  <rect width="1600" height="900" fill="url(#skyAD)"/>
+  <circle cx="1040" cy="225" r="165" fill="url(#moonAD)"/>
 
-  <g opacity="0.34">
-    <rect x="500" y="230" width="600" height="20" fill="#b5ddff"/>
-    <rect x="500" y="286" width="600" height="16" fill="#98c3ed"/>
-    <rect x="500" y="342" width="600" height="14" fill="#83aad3"/>
-    <rect x="500" y="398" width="600" height="12" fill="#7196c3"/>
+  <g opacity="0.42">
+    <rect x="0" y="185" width="1600" height="18" fill="#9bc8ee"/>
+    <rect x="0" y="235" width="1600" height="16" fill="#84aed6"/>
+    <rect x="0" y="285" width="1600" height="14" fill="#7095bf"/>
   </g>
 
-  <g>
-    <rect x="620" y="640" width="360" height="64" fill="#112b49"/>
-    <rect x="700" y="704" width="200" height="26" fill="#183455"/>
+  <polygon points="0,900 0,620 470,420 980,420 1600,620 1600,900" fill="#123153"/>
+  <polygon points="0,900 0,690 500,520 990,520 1600,690 1600,900" fill="#1b426b"/>
 
-    <polygon points="780,220 820,220 840,270 760,270" fill="#315987"/>
-    <polygon points="800,250 880,420 850,420 850,620 750,620 750,420 720,420" fill="url(#rocketDark)"/>
-    <rect x="775" y="360" width="50" height="150" fill="#9ed0ff" opacity="0.78"/>
-    <rect x="784" y="372" width="32" height="70" fill="#0f2948"/>
+  <polygon points="520,900 700,540 840,540 950,900" fill="#0d2745"/>
+  <polygon points="700,900 780,600 840,600 900,900" fill="#1c436d"/>
 
-    <polygon points="720,470 650,620 750,620" fill="#21456f"/>
-    <polygon points="880,470 950,620 850,620" fill="#16345a"/>
+  <rect x="720" y="350" width="75" height="240" fill="#102f4e"/>
+  <polygon points="757,240 825,360 689,360" fill="#315985"/>
+  <rect x="736" y="415" width="44" height="110" fill="#a8d7ff"/>
 
-    <polygon points="610,704 700,620 700,704" fill="#294f7d"/>
-    <polygon points="990,704 900,620 900,704" fill="#0f2c4e"/>
+  <polygon points="1080,900 980,560 1140,560 1330,900" fill="#204873"/>
+  <polygon points="180,900 320,560 460,560 430,900" fill="#204873"/>
+  <rect x="1040" y="630" width="100" height="180" fill="#163a60"/>
+  <rect x="300" y="630" width="100" height="180" fill="#163a60"/>
 
-    <line x1="760" y1="620" x2="840" y2="620" stroke="#b5dcff" stroke-width="8"/>
-    <line x1="755" y1="648" x2="845" y2="648" stroke="#b5dcff" stroke-width="6" opacity="0.72"/>
-  </g>
-
-  <g opacity="0.62">
-    <rect x="300" y="185" width="250" height="18" fill="#89b3e1"/>
-    <rect x="1050" y="210" width="255" height="16" fill="#89b3e1"/>
-    <ellipse cx="800" cy="800" rx="300" ry="32" fill="#9ec7ef"/>
-  </g>
-
-  <path d="M80 780 C220 735 390 765 530 735 C650 705 750 760 880 735 C1030 705 1190 760 1520 785 L1520 900 L80 900 Z" fill="#2b4c79" opacity="0.7"/>
+  <line x1="500" y1="710" x2="1010" y2="710" stroke="#afd9ff" stroke-width="8"/>
+  <line x1="600" y1="775" x2="910" y2="775" stroke="#afd9ff" stroke-width="6" opacity="0.75"/>
+  <ellipse cx="770" cy="845" rx="250" ry="30" fill="#9ccaf0" opacity="0.58"/>
 </svg>

@@ -1,75 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Li Po">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Illustration éloge Li Po - paysage de montagnes et nuages">
   <defs>
-    <linearGradient id="bgWarmLiPo" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f6d8ae"/>
-      <stop offset="45%" stop-color="#f2b585"/>
-      <stop offset="100%" stop-color="#e88a6a"/>
+    <linearGradient id="skyLPE" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8e1b9"/>
+      <stop offset="50%" stop-color="#f3bc8d"/>
+      <stop offset="100%" stop-color="#e78f70"/>
     </linearGradient>
-    <linearGradient id="sunWarmLiPo" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f8b56d"/>
-      <stop offset="60%" stop-color="#f07f67"/>
-      <stop offset="100%" stop-color="#d86473"/>
+    <linearGradient id="sunLPE" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffbe7a"/>
+      <stop offset="100%" stop-color="#ef6d64"/>
     </linearGradient>
-    <linearGradient id="stoneL" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#284b73"/>
-      <stop offset="100%" stop-color="#112845"/>
+    <linearGradient id="mountainBackLPE" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7697bf"/>
+      <stop offset="100%" stop-color="#3f608c"/>
     </linearGradient>
-    <linearGradient id="stoneR" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#4a6898"/>
-      <stop offset="100%" stop-color="#1f3f66"/>
+    <linearGradient id="mountainFrontLPE" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2f537d"/>
+      <stop offset="100%" stop-color="#173457"/>
     </linearGradient>
-    <pattern id="grainWarm" width="8" height="8" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="0.8" fill="#ffd9b1" opacity="0.18"/>
-      <circle cx="6" cy="4" r="0.7" fill="#5e3550" opacity="0.12"/>
-    </pattern>
   </defs>
 
-  <rect width="1600" height="900" fill="url(#bgWarmLiPo)"/>
+  <rect width="1600" height="900" fill="url(#skyLPE)"/>
+  <circle cx="980" cy="255" r="145" fill="url(#sunLPE)" opacity="0.95"/>
 
-  <circle cx="800" cy="430" r="320" fill="url(#sunWarmLiPo)"/>
-  <rect x="500" y="210" width="600" height="440" rx="24" fill="url(#stoneL)"/>
-
-  <g opacity="0.55">
-    <rect x="500" y="240" width="600" height="28" fill="#f6ab72"/>
-    <rect x="500" y="300" width="600" height="24" fill="#ee8266"/>
-    <rect x="500" y="360" width="600" height="22" fill="#e5676f"/>
-    <rect x="500" y="420" width="600" height="20" fill="#d95d74"/>
-    <rect x="500" y="480" width="600" height="18" fill="#f2a06d"/>
+  <g opacity="0.45">
+    <ellipse cx="320" cy="210" rx="130" ry="38" fill="#ef8d69"/>
+    <ellipse cx="1320" cy="190" rx="150" ry="42" fill="#ef8868"/>
+    <ellipse cx="690" cy="170" rx="110" ry="30" fill="#f3a173"/>
   </g>
 
   <g>
-    <polygon points="650,610 800,450 950,610" fill="#0f2440"/>
-    <polygon points="520,660 800,500 1080,660" fill="#16355a"/>
-
-    <rect x="730" y="260" width="140" height="300" fill="#183454"/>
-    <polygon points="730,260 800,180 870,260" fill="#264a72"/>
-
-    <rect x="630" y="340" width="95" height="230" fill="#25466d"/>
-    <polygon points="630,340 678,270 725,340" fill="#3c6394"/>
-
-    <rect x="875" y="355" width="95" height="215" fill="#28496f"/>
-    <polygon points="875,355 922,290 970,355" fill="#486f9f"/>
-
-    <rect x="776" y="440" width="48" height="120" fill="#0d1e35"/>
-    <rect x="780" y="450" width="40" height="34" fill="#f0c597"/>
-
-    <rect x="772" y="275" width="12" height="38" fill="#f4be86"/>
-    <rect x="816" y="305" width="10" height="34" fill="#f4be86"/>
-    <rect x="660" y="380" width="9" height="32" fill="#f4be86"/>
-    <rect x="920" y="395" width="9" height="28" fill="#f4be86"/>
-
-    <polygon points="520,660 650,610 650,675" fill="#2e507c"/>
-    <polygon points="1080,660 950,610 950,675" fill="#0f2948"/>
+    <polygon points="80,560 280,330 450,560" fill="url(#mountainBackLPE)"/>
+    <polygon points="300,580 540,290 740,580" fill="#5f80ab"/>
+    <polygon points="610,560 860,250 1080,560" fill="#4f719f"/>
+    <polygon points="900,590 1160,300 1390,590" fill="#5e7eab"/>
+    <polygon points="1220,560 1420,345 1560,560" fill="#7494bc"/>
   </g>
 
-  <g opacity="0.72">
-    <ellipse cx="380" cy="265" rx="76" ry="34" fill="#eb7d63"/>
-    <ellipse cx="1220" cy="252" rx="82" ry="36" fill="#ea745f"/>
-    <ellipse cx="260" cy="700" rx="170" ry="56" fill="#f08b68"/>
-    <ellipse cx="1360" cy="710" rx="180" ry="62" fill="#f08b68"/>
-    <ellipse cx="800" cy="780" rx="280" ry="48" fill="#f4c194"/>
+  <g>
+    <path d="M0 630 C180 600 300 650 450 620 C620 585 780 650 950 620 C1100 595 1260 650 1600 620 L1600 760 L0 760 Z" fill="#e79a76" opacity="0.55"/>
+    <path d="M0 690 C180 660 330 700 490 670 C660 635 820 700 1000 670 C1170 640 1320 690 1600 670 L1600 820 L0 820 Z" fill="#dc886f" opacity="0.58"/>
   </g>
 
-  <path d="M80 760 C240 700 390 735 530 700 C620 680 710 730 800 700 C910 665 1030 725 1140 700 C1280 665 1390 705 1520 760 L1520 900 L80 900 Z" fill="#d97766" opacity="0.45"/>
-  <rect width="1600" height="900" fill="url(#grainWarm)"/>
+  <g>
+    <polygon points="260,760 500,470 700,760" fill="url(#mountainFrontLPE)"/>
+    <polygon points="560,780 860,420 1120,780" fill="#21486f"/>
+    <polygon points="950,760 1220,500 1460,760" fill="#2f5781"/>
+    <polygon points="0,900 0,760 240,690 460,760 700,700 910,780 1150,720 1400,790 1600,760 1600,900" fill="#173756"/>
+  </g>
+
+  <g>
+    <path d="M280 675 C360 640 430 660 510 635 C570 615 650 650 730 620" stroke="#f2c499" stroke-width="10" fill="none" opacity="0.8"/>
+    <path d="M870 705 C940 675 1020 690 1090 665 C1165 640 1230 670 1315 640" stroke="#f2c499" stroke-width="8" fill="none" opacity="0.72"/>
+  </g>
+
+  <ellipse cx="890" cy="835" rx="320" ry="40" fill="#f7d8ac" opacity="0.58"/>
 </svg>
