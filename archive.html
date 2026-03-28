@@ -45,6 +45,28 @@
       word-break: break-word;
       hyphens: auto;
     }
+    .archive-card-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    .archive-card-link:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+    .archive-card-media {
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .zoom-image {
+      transition: transform 0.35s ease;
+      transform-origin: center center;
+    }
+    .archive-card-link:hover .zoom-image,
+    .archive-card-link:focus-visible .zoom-image {
+      transform: scale(1.06);
+    }
   </style>
 </head>
 <body class="antialiased">
@@ -102,7 +124,7 @@
     <div class="container mx-auto px-4 text-center">
       <div class="w-12 h-12 mb-8 mx-auto flex items-center justify-center border border-white rounded-full"><span class="text-[10px] font-bold tracking-widest">ED</span></div>
       <p class="text-xs uppercase tracking-[0.4em] mb-8 text-gray-400">Revue systématiquement Pour & Contre</p>
-      <p class="text-[10px] text-gray-600">© 2024 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
+      <p class="text-[10px] text-gray-600">© 2026 ÉLOGE / DÉMOLITION. TOUS DROITS RÉSERVÉS.</p>
     </div>
   </footer>
 
@@ -201,15 +223,19 @@
       if (hero && heroNode) {
         const heroFigure = resolveFigureForMode(hero.entry.figure, activeMode, hero.article.title);
         heroNode.innerHTML = `
-          <img class="lg:col-span-2 w-full h-[420px] object-cover rounded-custom" src="${escapeHtml(heroFigure.cover)}" alt="${escapeHtml(heroFigure.alt)}"/>
-          <article class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-300 pt-6 lg:pt-0 lg:pl-8">
-            <div>
-              <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${formatText(hero.entry.label)}</p>
-              <h2 class="font-heading text-6xl leading-tight font-bold mb-4 text-wrap-safe">${formatText(hero.article.title)}</h2>
-              <p class="font-serif text-2xl italic text-gray-600">${formatText(hero.article.subtitle || '')}</p>
+          <a class="archive-card-link lg:col-span-3 grid lg:grid-cols-3 gap-8 items-stretch group" href="index.html?critique=${encodeURIComponent(hero.entry.id)}&mode=${activeMode}">
+            <div class="archive-card-media lg:col-span-2">
+              <img class="zoom-image w-full h-[420px] object-cover" src="${escapeHtml(heroFigure.cover)}" alt="${escapeHtml(heroFigure.alt)}"/>
             </div>
-            <a class="mt-8 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(hero.entry.id)}&mode=${activeMode}">Lire la critique →</a>
-          </article>`;
+            <article class="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-gray-300 pt-6 lg:pt-0 lg:pl-8">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.2em] ${modeClass} mb-4">${formatText(hero.entry.label)}</p>
+                <h2 class="font-heading text-6xl leading-tight font-bold mb-4 text-wrap-safe">${formatText(hero.article.title)}</h2>
+                <p class="font-serif text-2xl italic text-gray-600">${formatText(hero.article.subtitle || '')}</p>
+              </div>
+              <span class="mt-8 text-xs uppercase tracking-[0.2em] font-bold accent-text">Lire la critique →</span>
+            </article>
+          </a>`;
       }
 
       const featuredNode = document.getElementById('featured-grid');
@@ -218,11 +244,15 @@
           const figure = resolveFigureForMode(entry.figure, activeMode, article.title);
           return `
           <article class="min-w-0">
-            <img class="w-full h-48 object-cover rounded-custom mb-3" src="${escapeHtml(figure.cover)}" alt="${escapeHtml(figure.alt)}"/>
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${formatText(entry.label || "Critique littéraire")}</p>
-            <h4 class="font-heading text-3xl font-bold leading-tight mb-3 text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h4>
-            <p class="text-gray-600">${formatText(article.subtitle || '')}</p>
-            <a class="inline-block mt-3 text-xs uppercase tracking-[0.2em] font-bold accent-text" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">Ouvrir →</a>
+            <a class="archive-card-link group" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">
+              <div class="archive-card-media mb-3">
+                <img class="zoom-image w-full h-48 object-cover" src="${escapeHtml(figure.cover)}" alt="${escapeHtml(figure.alt)}"/>
+              </div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] ${modeClass} mb-2">${formatText(entry.label || "Critique littéraire")}</p>
+              <h4 class="font-heading text-3xl font-bold leading-tight mb-3 text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h4>
+              <p class="text-gray-600">${formatText(article.subtitle || '')}</p>
+              <span class="inline-block mt-3 text-xs uppercase tracking-[0.2em] font-bold accent-text">Ouvrir →</span>
+            </a>
           </article>
         `;
         }).join('');
@@ -231,14 +261,16 @@
       const opinionsNode = document.getElementById('recent-opinions');
       if (opinionsNode) {
         opinionsNode.innerHTML = opinions.map(({ entry, article }) => `
-          <article class="grid md:grid-cols-5 gap-4 border-b border-gray-200 pb-5">
-            <div class="md:col-span-2 min-w-0">
-              <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">${escapeHtml(entry.date || '')}</p>
-              <h5 class="font-sans text-2xl md:text-3xl leading-snug font-bold accent-text text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h5>
-            </div>
-            <div class="md:col-span-3 border-l border-gray-200 pl-4 min-w-0">
-              <p class="font-serif italic text-2xl text-gray-600">“${formatText(article.pullQuote || article.subtitle || '')}”</p>
-            </div>
+          <article class="border-b border-gray-200 pb-5">
+            <a class="archive-card-link grid md:grid-cols-5 gap-4" href="index.html?critique=${encodeURIComponent(entry.id)}&mode=${activeMode}">
+              <div class="md:col-span-2 min-w-0">
+                <p class="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">${escapeHtml(entry.date || '')}</p>
+                <h5 class="font-sans text-2xl md:text-3xl leading-snug font-bold accent-text text-wrap-safe">${formatText(entryContextTitle(entry, article.title))}</h5>
+              </div>
+              <div class="md:col-span-3 border-l border-gray-200 pl-4 min-w-0">
+                <p class="font-serif italic text-2xl text-gray-600">“${formatText(article.pullQuote || article.subtitle || '')}”</p>
+              </div>
+            </a>
           </article>
         `).join('');
       }
