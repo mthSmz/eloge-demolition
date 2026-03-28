@@ -127,7 +127,7 @@
           <p class="text-sm accent-text font-bold uppercase tracking-widest mb-4" id="author-title">Rôle</p>
           <p class="text-gray-600 font-serif leading-relaxed" id="author-bio-text">Biographie indisponible.</p>
           <div class="mt-4 flex space-x-4">
-            <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
+            <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="https://www.instagram.com/ulysse_poussin/" id="author-follow-link" rel="noopener noreferrer" target="_blank">Suivre Ulysse</a>
             <a class="text-xs font-bold underline uppercase tracking-widest author-link-eloge" href="archive.html?mode=eloge" id="author-publications-link">Ses publications</a>
           </div>
         </div>
@@ -157,17 +157,21 @@
     const authorByMode = {
       eloge: {
         name: 'Ulysse Poussin',
+        firstName: 'Ulysse',
         title: 'Critique de la raison pure',
         bio: 'Biographie indisponible.',
         avatar: 'assets/ulysse-poussin.svg',
-        alt: 'Portrait de Ulysse Poussin'
+        alt: 'Portrait de Ulysse Poussin',
+        instagram: 'https://www.instagram.com/ulysse_poussin/'
       },
       demolition: {
         name: 'Achille Corbeau',
+        firstName: 'Achille',
         title: 'Critique de la raison dure',
         bio: 'Biographie indisponible.',
         avatar: 'assets/achille-corbeau.svg',
-        alt: 'Portrait de Achille Corbeau'
+        alt: 'Portrait de Achille Corbeau',
+        instagram: 'https://www.instagram.com/achille_corbeau/'
       }
     };
 
@@ -360,6 +364,12 @@
       document.getElementById('author-name').textContent = author.name;
       document.getElementById('author-title').textContent = author.title;
       document.getElementById('author-bio-text').textContent = author.bio;
+      const followLink = document.getElementById('author-follow-link');
+      if (followLink) {
+        const firstName = author.firstName || String(author.name || '').split(' ')[0] || 'Auteur';
+        followLink.textContent = `Suivre ${firstName}`;
+        followLink.href = author.instagram || '#';
+      }
       const publicationsLink = document.getElementById('author-publications-link');
       if (publicationsLink) {
         publicationsLink.href = `archive.html?mode=${encodeURIComponent(mode)}`;
@@ -403,7 +413,9 @@
             title: elogeAuthor.role || authorByMode.eloge.title,
             bio: elogeAuthor.bio || authorByMode.eloge.bio,
             avatar: elogeAuthor.avatar || authorByMode.eloge.avatar,
-            alt: elogeAuthor.alt || `Portrait de ${elogeAuthor.name || authorByMode.eloge.name}`
+            alt: elogeAuthor.alt || `Portrait de ${elogeAuthor.name || authorByMode.eloge.name}`,
+            firstName: (elogeAuthor.name || authorByMode.eloge.name || '').split(' ')[0] || authorByMode.eloge.firstName,
+            instagram: authorByMode.eloge.instagram
           };
         }
       }
@@ -416,7 +428,9 @@
             title: demolitionAuthor.role || authorByMode.demolition.title,
             bio: demolitionAuthor.bio || authorByMode.demolition.bio,
             avatar: demolitionAuthor.avatar || authorByMode.demolition.avatar,
-            alt: demolitionAuthor.alt || `Portrait de ${demolitionAuthor.name || authorByMode.demolition.name}`
+            alt: demolitionAuthor.alt || `Portrait de ${demolitionAuthor.name || authorByMode.demolition.name}`,
+            firstName: (demolitionAuthor.name || authorByMode.demolition.name || '').split(' ')[0] || authorByMode.demolition.firstName,
+            instagram: authorByMode.demolition.instagram
           };
         }
       }

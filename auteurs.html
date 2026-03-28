@@ -143,7 +143,7 @@
             <p class="text-sm ${roleClass(author.role)} font-bold uppercase tracking-widest mb-4">${formatText(author.role)}</p>
             <p class="text-gray-600 font-serif leading-relaxed max-w-4xl">${formatText(author.bio)}</p>
             <div class="mt-4 flex gap-8 flex-wrap">
-              <a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="#">Suivre ses travaux</a>
+              ${(() => { const firstName = String(author.name || "").split(" ")[0] || "Auteur"; const instagramByAuthor = { "Ulysse Poussin": "https://www.instagram.com/ulysse_poussin/", "Achille Corbeau": "https://www.instagram.com/achille_corbeau/" }; const instagram = instagramByAuthor[author.name] || "#"; return `<a class="text-xs font-bold underline uppercase tracking-widest hover:text-primary" href="${instagram}" rel="noopener noreferrer" target="_blank">Suivre ${escapeHtml(firstName)}</a>`; })()}
               <a class="text-xs font-bold underline uppercase tracking-widest ${modeHoverClass}" href="${publicationsHref}">Ses publications</a>
             </div>
           </div>
